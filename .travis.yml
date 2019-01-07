@@ -24,4 +24,4 @@ deploy:
   provider: heroku
   app: sun-horse # see README
   api_key:
-    secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+    secure: 3fp6EZp2tXGufL6F1ZtlQvaCDo3jk2xDg0GPgph4Vuyf9UcYZtxHGyLNPJ9f9Klyyf5iHIwm8vCsidz9aiQC1zZtb9Wo/EkXtajU803Gdu5z7KRuh7qcT0uXmjGph2x+acGaKQxAMwL4WWfM8k2VMnzY7Hk/4aDSxOrFiyJ4oMYIE7hxKC2juyoOvsqzG7hmcPFWNFyhj9tpfzVTK0s3DxvMvSUpdouP/bzKOBDtpdR6vvUSe6kAcnR8dV7ZSNuDufacg+1qEZPZCkOCiksRBTd2C3OntIHopdojlAPik51A7gp8LeXWD/+E4+9bD7GSQFQkqP4EkQD80/hm4dGyM8+LEu6XDWT8HrQSaCsjeKJN8067o/Ap4PglAuSeQl/M/sW97nuH0lelg+PljiOyKbNmcwRnQ0444kDfNAh4GnPjWS2XqlM3mesuLAKUypRgKE3lNFn0DhwFGWorQzz2PDMEc2/ZFqdnk6QUWlo0dMynqDf9iMTFFElN6hbb7TDjybAOSUMpnVxnBzZpoPuy8D8u1DtoUn5FxZmtXs0G3tkjOZ66cMcjWFsCjwJ2lVFQLvIhBmfZqbsMLqKTnRD/yCAqQiQXIsvIwB1uqSq2ZJkfyAod2BYwOLEfLvqRXRRVZctV08thE0HzSUsrPxhKwzM6Taf0unaJk12gDhwl728= # see README
