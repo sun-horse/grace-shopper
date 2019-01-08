@@ -2,21 +2,21 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-// const Product = db.model('product')
+const Product = db.model('products')
 
 describe('Product routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  xdescribe('/api/products', () => {
+  describe('/api/products', () => {
     const freeSample = {
-      name: 'Test Size',
+      name: 'Free Sample',
       price: 0
     }
 
     beforeEach(() => {
-      return Product.create(newProduct)
+      return Product.create(freeSample)
     })
 
     it('GET /api/products', async () => {
@@ -25,7 +25,7 @@ describe('Product routes', () => {
         .expect(200)
 
       expect(res.body).to.be.an('array')
-      expect(res.body[0].name).to.be.equal('')
+      expect(res.body[0].name).to.be.equal('Free Sample')
     })
   })
 })
