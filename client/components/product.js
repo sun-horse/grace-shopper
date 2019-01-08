@@ -4,15 +4,15 @@ import PropTypes from 'prop-types'
 /**
  * COMPONENT
  */
-const Product = props => {
+export const Product = props => {
   const {name, imageUrl, price} = props
 
   return (
-    <h4>
+    <div className="product">
       <img src={imageUrl} height="200" width="200" />
-      <div id="name">{name}</div>
+      <h4>{name}</h4>
       <p>${parseFloat(price).toFixed(2)}</p>
-    </h4>
+    </div>
   )
 }
 
@@ -24,6 +24,5 @@ export default Product
 Product.propTypes = {
   name: PropTypes.string,
   imageUrl: PropTypes.string,
-  // sequelize returns DECIMAL fields as strings for some reason...
-  price: PropTypes.string
+  price: PropTypes.number
 }
