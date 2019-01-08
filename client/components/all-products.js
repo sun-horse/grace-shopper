@@ -13,7 +13,13 @@ export class AllProducts extends Component {
       <div>
         <h3>All Products</h3>
         {this.props.products.map(product => {
-          return <Product key={product.id} {...product} />
+          return (
+            <Product
+              key={product.id}
+              {...product}
+              price={parseFloat(product.price)}
+            />
+          )
         })}
       </div>
     )
