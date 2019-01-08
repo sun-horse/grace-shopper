@@ -10,14 +10,14 @@ const adapter = new Adapter()
 enzyme.configure({adapter})
 
 describe('Product component', () => {
-  let product
+  let wrapper
   const fakeProductData = {name: 'Fake glitter', price: 1}
 
   beforeEach(() => {
-    product = shallow(<Product {...fakeProductData} />)
+    wrapper = shallow(<Product {...fakeProductData} />)
   })
 
   it('renders the product name in an h4', () => {
-    expect(product.find('h4').text()).to.be.equal('Fake glitter')
+    expect(wrapper.find('h4').text()).to.be.equal('Fake glitter')
   })
 })
