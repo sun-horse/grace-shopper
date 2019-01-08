@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('..')
+const db = require('../db')
 const DEFAULT_IMAGE_URL =
   'https://image.spreadshirtmedia.com/image-server/v1/mp/designs/12644108,width=178,height=178/glitter-horse.png'
 

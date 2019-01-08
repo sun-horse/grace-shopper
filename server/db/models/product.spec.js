@@ -2,15 +2,15 @@
 
 const {expect} = require('chai')
 const db = require('../index')
-const Product = db.model('product')
+const Product = db.model('products')
 
 describe('Product model', () => {
   describe('Validations', () => {
     it('requires `name`', async () => {
-      const campus = Product.build()
+      const product = Product.build()
 
       try {
-        await campus.validate()
+        await product.validate()
         throw Error(
           'validation was successful but should have failed without `name`'
         )
@@ -20,12 +20,12 @@ describe('Product model', () => {
     })
 
     it('requires `name` to not be an empty string', async () => {
-      const campus = Product.build({
+      const product = Product.build({
         name: ''
       })
 
       try {
-        await campus.validate()
+        await product.validate()
         throw Error(
           'validation was successful but should have failed if name is an empty string'
         )
