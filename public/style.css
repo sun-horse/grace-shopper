@@ -19,3 +19,9 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.fas {
+  position: absolute;
+  left: 95%;
+  margin: auto;
+}
