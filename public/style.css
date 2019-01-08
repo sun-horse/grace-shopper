@@ -20,8 +20,7 @@ form div {
   display: inline-block;
 }
 
-.fas {
-  position: absolute;
-  left: 95%;
-  margin: auto;
+.button {
+  padding: 16px;
+  height: 70%;
 }
