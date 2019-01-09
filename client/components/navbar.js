@@ -23,7 +23,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => (
           <Link to="/signup">Sign Up</Link>
           <button className="button" type="button">
             <i className="fas fa-shopping-cart" />
-            <h4 id="cart">{cart.length}</h4>
+            <p id="cart">{cart.length}</p>
           </button>
         </div>
       )}
