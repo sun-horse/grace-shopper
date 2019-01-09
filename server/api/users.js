@@ -16,3 +16,31 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/api/users/:userId/orders?isActiv', async (req, res, next) => {
+  try {
+    const existingOrder = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        isActiv: true
+      }
+    })
+    if (existingOrder) {
+      res.json(existingOrder)
+    } else {
+      Order.create({
+        userId: req.params.userId,
+        isActiv: true
+      })
+      const newOrder = await Order.findOne({
+        where: {
+          userId: req.params.userId,
+          isActiv: true
+        }
+      })
+      res.json(newOrder)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
