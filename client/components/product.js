@@ -25,7 +25,7 @@ export class Product extends Component {
     this.props.addItem(productToAdd)
   }
   render() {
-    console.log('recived this props', this.props)
+    // console.log('recived this props', this.props)
     const {name, imageUrl, price} = this.props
 
     return (
@@ -41,11 +41,11 @@ export class Product extends Component {
     )
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   addItem: product => dispatch(addItem(product))
 })
-// export default withRouter(connect(null, mapDispatchToProps)(Product))
-export default connect(null, mapDispatchToProps)(Product)
+export default withRouter(connect(null, mapDispatchToProps)(Product))
 
 /**
  * PROP TYPES
