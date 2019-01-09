@@ -22,7 +22,7 @@ export class Product extends Component {
 
   handleClick(evt) {
     const productToAdd = this.props
-    // this.props.addItem(productToAdd)
+    this.props.addItem(productToAdd)
   }
   render() {
     console.log('recived this props', this.props)
@@ -40,6 +40,20 @@ export class Product extends Component {
     )
   }
 }
+const mapDispatchToProps = dispatch => ({
+  addItem: product => dispatch(addItem(product))
+})
+export default withRouter(connect(null, mapDispatchToProps)(Product))
+
+/**
+ * PROP TYPES
+ */
+Product.propTypes = {
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  price: PropTypes.number
+}
+
 // export const Product = props => {
 //   const {name, imageUrl, price} = props
 
@@ -51,14 +65,3 @@ export class Product extends Component {
 //     </div>
 //   )
 // }
-
-export default Product
-
-/**
- * PROP TYPES
- */
-Product.propTypes = {
-  name: PropTypes.string,
-  imageUrl: PropTypes.string,
-  price: PropTypes.number
-}
