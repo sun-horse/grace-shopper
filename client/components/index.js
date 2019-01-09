@@ -7,14 +7,4 @@ export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {default as AllProducts} from './all-products'
 export {default as Product} from './product'
-/**
- * export all the exports received from the components
- * tests do not work with connected default components
- * and need dumb component
- */
-// export * from './navbar'
-// export * from './user-home'
-// export * from './all-products'
-// export * from './product'
-
 export {Login, Signup} from './auth-form'
