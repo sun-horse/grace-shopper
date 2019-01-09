@@ -11,13 +11,13 @@ enzyme.configure({adapter})
 
 describe('Navbar', () => {
   let navBar
-  const fakeCartData = [
+  const cart = [
     {name: 'Fake glitter', price: 1},
     {name: 'Fake flying potion', price: 1}
   ]
 
   beforeEach(() => {
-    navBar = shallow(<Navbar {...fakeCartData} />)
+    navBar = shallow(<Navbar cart={cart} />)
   })
 
   it('renders the number of items in the cart', () => {
