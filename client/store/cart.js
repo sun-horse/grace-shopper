@@ -2,6 +2,7 @@
  * ACTION TYPES
  */
 const ADD_ITEM = 'ADD_ITEM'
+const GET_CART = 'GET_CART'
 
 import axios from 'axios'
 
@@ -17,11 +18,12 @@ const defaultCart = {
  * ACTION CREATORS
  */
 const addItem = item => ({type: ADD_ITEM, item})
+const getCart = cart => ({type: GET_CART})
 
 /**
  * THUNK CREATORS
  */
-export const setCart = item => async dispatch => {
+export const setCart = () => async dispatch => {
   try {
     const orderId = await axios.get('/api/users/:userId/orders')
 
@@ -39,7 +41,7 @@ export const setCart = item => async dispatch => {
 export default function(state = defaultCart, action) {
   switch (action.type) {
     case ADD_ITEM:
-      return [...state, action.item]
+      return {...state, products: [...state.products, action.item]}
     default:
       return state
   }
