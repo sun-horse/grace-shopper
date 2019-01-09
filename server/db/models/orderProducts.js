@@ -6,7 +6,7 @@ const OrderProducts = db.define('order-products', {
     type: Sequelize.INTEGER,
     defaultValue: 1
   },
-  price: Sequelize.INTEGER
+  price: Sequelize.INTEGER // after hook?
 })
 
 module.exports = OrderProducts

@@ -21,8 +21,8 @@ describe('Order', () => {
 
   describe('Instance method `getTotal`', () => {
     it('finds gets the order total', async () => {
-      const order = await Order.findById(1)
-      console.log(order)
+      const orders = await OrderProducts.findAll()
+      console.log(orders)
     })
   })
 })

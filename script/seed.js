@@ -13,16 +13,20 @@ async function seed() {
   ])
   const products = await Promise.all([
     Product.create({name: 'glitter paint', price: 6.9}),
-    Product.create({name: 'soothing balm', price: 3.5})
+    Product.create({name: 'soothing balm', price: 3.5}),
+    Product.create({name: 'flying dust', price: 10})
   ])
 
-  // const orders = await Promise.all([
-  //   Order.create({userId: 1, isActive: false, finalizedAt: new Date()})
-  // ])
+  // Seed association tables
+  const newOrder = await Order.create({isActive: false})
 
-  // const orderProducts = await Promise.all([
-  //   OrderProducts.create({orderId: 1, userId: 1, quantity: 5, productId: 1})
-  // ])
+  const newUser = await User.findById(2)
+  await newUser.addOrders(newOrder)
+
+  const newProduct = await Product.findById(3)
+  await newProduct.addOrders(newOrder)
+
+  console.log(newProduct.dataValues)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
