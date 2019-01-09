@@ -11,7 +11,7 @@ enzyme.configure({adapter})
 
 describe('Product component', () => {
   let wrapper
-  const product = {name: 'Fake glitter', price: 1}
+  const product = {name: 'Fake glitter', price: 100}
 
   beforeEach(() => {
     wrapper = shallow(<Product {...product} />)
@@ -19,5 +19,8 @@ describe('Product component', () => {
 
   it('renders the product name in an h4', () => {
     expect(wrapper.find('h4').text()).to.be.equal('Fake glitter')
+  })
+  it('renders add to cart button for each product', () => {
+    expect(wrapper.find('button').text()).to.be.equal('+ cart')
   })
 })

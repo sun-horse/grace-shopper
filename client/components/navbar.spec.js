@@ -12,8 +12,8 @@ enzyme.configure({adapter})
 describe('Navbar', () => {
   let navBar
   const cart = [
-    {name: 'Fake glitter', price: 1},
-    {name: 'Fake flying potion', price: 1}
+    {name: 'Fake glitter', price: 100},
+    {name: 'Fake flying potion', price: 100}
   ]
 
   beforeEach(() => {
