@@ -2,6 +2,7 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+//CG: This should be called horse. (of course)
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,

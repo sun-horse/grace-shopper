@@ -9,6 +9,9 @@ export class AllProducts extends Component {
   }
 
   render() {
+    // class="products"
+    // className="products-card"
+    // className="product"
     return (
       <div>
         <h3>All Products</h3>

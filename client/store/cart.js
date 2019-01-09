@@ -17,6 +17,8 @@ const addItem = item => ({type: ADD_ITEM, item})
  * THUNK CREATORS
  */
 
+//  localStorage.setItem('items', JSON.stringify(cart))
+
 /**
  * REDUCER
  */

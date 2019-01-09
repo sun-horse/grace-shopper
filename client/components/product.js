@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 /**
  * COMPONENT
  */
+
+ //CG: Make this clear that this is a card for a product and not the single product component.
 export const Product = props => {
   const {name, imageUrl, price} = props
 

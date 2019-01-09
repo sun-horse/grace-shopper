@@ -18,3 +18,14 @@ module.exports = {
   User,
   Product
 }
+
+// What would an order look like? 
+/* CG:
+  Users     Orders                    Products           
+            userId    order-products
+                        orderId
+                        productId
+                        quantity
+                        price
+  What's the difference between an order and a cart?
+*/

@@ -11,6 +11,7 @@ const Product = db.define('products', {
       notEmpty: true
     }
   },
+  //CG: Pro-tip use an Integer here to avoid rounding errors!
   price: {
     type: Sequelize.DECIMAL,
     allowNull: false

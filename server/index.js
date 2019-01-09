@@ -29,12 +29,13 @@ if (process.env.NODE_ENV === 'test') {
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
+//CG: This says that this session (or cookie) = this user.
 passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await db.models.user.findById(id)
-    done(null, user)
+    done(null, user) //req.user
   } catch (err) {
     done(err)
   }

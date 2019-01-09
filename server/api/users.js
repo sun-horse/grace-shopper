@@ -15,3 +15,21 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id', async (req, res, next) => {
+  const userId = Number(req.params.id);
+  if(req.user && req.user.id === userId){
+    try {
+      const user = await User.findById(userId);
+      res.json(user);
+    } catch(err){
+      next(err); 
+    }
+  } else {
+    res.status(403).send('You have no business here.');
+  }
+})
+
+// /orders/:userId  //This request doesnt represent the state that we are trying to transfer. 
+// /orders --> req.user.getOrders();
+// /users/:userId/orders 

@@ -10,3 +10,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+//CG: Thoughts for restfulness.
+// /:category ?      /products/:id
+// /products?category=glittery
