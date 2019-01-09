@@ -1,5 +1,14 @@
-import React from 'react'
+/**
+ * IMPORT REQUIRED MODULES
+ */
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+/**
+ * IMPORT CART REDUCER
+ */
 
 /**
  * COMPONENT
@@ -15,6 +24,17 @@ export const Product = props => {
     </div>
   )
 }
+// export const Product = props => {
+//   const {name, imageUrl, price} = props
+
+//   return (
+//     <div className="product">
+//       <img src={imageUrl} height="200" width="200" />
+//       <h4>{name}</h4>
+//       <p>${parseFloat(price).toFixed(2)}</p>
+//     </div>
+//   )
+// }
 
 export default Product
 
