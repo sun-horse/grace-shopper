@@ -43,7 +43,8 @@ export class Product extends Component {
 const mapDispatchToProps = dispatch => ({
   addItem: product => dispatch(addItem(product))
 })
-export default withRouter(connect(null, mapDispatchToProps)(Product))
+// export default withRouter(connect(null, mapDispatchToProps)(Product))
+export default connect(null, mapDispatchToProps)(Product)
 
 /**
  * PROP TYPES

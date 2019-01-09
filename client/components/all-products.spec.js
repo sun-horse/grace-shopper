@@ -25,7 +25,9 @@ describe('AllProducts component', () => {
     wrapper = shallow(<AllProducts products={products} />, {
       disableLifecycleMethods: true
     })
+    console.log(wrapper.debug())
     productDivs = wrapper.find(Product)
+    // console.dir(productDivs)
   })
 
   it('renders DIVs with names of each product', () => {
