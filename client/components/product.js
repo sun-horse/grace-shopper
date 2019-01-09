@@ -21,18 +21,19 @@ export class Product extends Component {
   }
 
   handleClick(evt) {
-    const productToAdd = this.props.product
-    this.props.addItem(productToAdd)
+    const productToAdd = this.props
+    // this.props.addItem(productToAdd)
   }
   render() {
-    const {name, imageUrl, price} = this.props.product
+    console.log('recived this props', this.props)
+    const {name, imageUrl, price} = this.props
 
     return (
       <div className="product">
         <img src={imageUrl} height="200" width="200" />
         <h4>{name}</h4>
         <p>${parseFloat(price).toFixed(2)}</p>
-        <button name="add" onClick="this.handleClick()" type="button">
+        <button name="add" onClick={this.handleClick} type="button">
           + cart
         </button>
       </div>
