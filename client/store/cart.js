@@ -11,7 +11,7 @@ const defaultCart = []
 /**
  * ACTION CREATORS
  */
-const addItem = item => ({type: ADD_ITEM, item})
+export const addItem = item => ({type: ADD_ITEM, item})
 
 /**
  * THUNK CREATORS
