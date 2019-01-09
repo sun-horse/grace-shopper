@@ -13,15 +13,7 @@ export class AllProducts extends Component {
       <div>
         <h3>All Products</h3>
         {this.props.products.map(product => {
-          return (
-            <Product
-              key={product.id}
-              {...product}
-              // sequelize returns decimal fields as strings (?!),
-              // so we need to convert price back into a number
-              price={parseFloat(product.price)}
-            />
-          )
+          return <Product key={product.id} {...product} />
         })}
       </div>
     )
