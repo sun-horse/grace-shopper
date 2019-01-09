@@ -16,14 +16,3 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
-router.get('/:id/orders', async (req, res, next) => {
-  try {
-    const orderId = await Order.findOne({
-      where: {userId: req.params.id, isActive: true}
-    })
-    res.json(orderId)
-  } catch (err) {
-    next(err)
-  }
-})
