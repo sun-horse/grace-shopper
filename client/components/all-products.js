@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store'
-import Product from './product'
+import {Product} from '../components'
 
 export class AllProducts extends Component {
   componentDidMount() {
@@ -17,6 +17,8 @@ export class AllProducts extends Component {
             <Product
               key={product.id}
               {...product}
+              // sequelize returns decimal fields as strings (?!),
+              // so we need to convert price back into a number
               price={parseFloat(product.price)}
             />
           )
