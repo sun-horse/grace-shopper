@@ -9,20 +9,35 @@ import {connect} from 'react-redux'
 /**
  * IMPORT CART REDUCER
  */
+import {addItem} from '../store'
 
 /**
  * COMPONENT
  */
-export const Product = props => {
-  const {name, imageUrl, price} = props
+export class Product extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
 
-  return (
-    <div className="product">
-      <img src={imageUrl} height="200" width="200" />
-      <h4>{name}</h4>
-      <p>${parseFloat(price).toFixed(2)}</p>
-    </div>
-  )
+  handleClick(evt) {
+    const productToAdd = this.props.product
+    this.props.addItem(productToAdd)
+  }
+  render() {
+    const {name, imageUrl, price} = this.props.product
+
+    return (
+      <div className="product">
+        <img src={imageUrl} height="200" width="200" />
+        <h4>{name}</h4>
+        <p>${parseFloat(price).toFixed(2)}</p>
+        <button name="add" onClick="this.handleClick()" type="button">
+          + cart
+        </button>
+      </div>
+    )
+  }
 }
 // export const Product = props => {
 //   const {name, imageUrl, price} = props
