@@ -25,7 +25,6 @@ export class Product extends Component {
     this.props.addItem(productToAdd)
   }
   render() {
-    // console.log('recived this props', this.props)
     const {name, imageUrl, price} = this.props
 
     return (
@@ -55,15 +54,3 @@ Product.propTypes = {
   imageUrl: PropTypes.string,
   price: PropTypes.number
 }
-
-// export const Product = props => {
-//   const {name, imageUrl, price} = props
-
-//   return (
-//     <div className="product">
-//       <img src={imageUrl} height="200" width="200" />
-//       <h4>{name}</h4>
-//       <p>${parseFloat(price).toFixed(2)}</p>
-//     </div>
-//   )
-// }
