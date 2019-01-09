@@ -32,7 +32,8 @@ export class Product extends Component {
       <div className="product">
         <img src={imageUrl} height="200" width="200" />
         <h4>{name}</h4>
-        <p>${parseFloat(price).toFixed(2)}</p>
+        {/* price is stored in cents, so divide by 100 for dollars */}
+        <p>${parseFloat(price / 100.0).toFixed(2)}</p>
         <button name="add" onClick={this.handleClick} type="button">
           + cart
         </button>

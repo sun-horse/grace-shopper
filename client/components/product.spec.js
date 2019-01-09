@@ -11,7 +11,7 @@ enzyme.configure({adapter})
 
 describe('Product component', () => {
   let wrapper
-  const product = {name: 'Fake glitter', price: 1}
+  const product = {name: 'Fake glitter', price: 100}
 
   beforeEach(() => {
     wrapper = shallow(<Product {...product} />)

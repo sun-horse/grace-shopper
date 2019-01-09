@@ -4,8 +4,8 @@ import reducer from './cart'
 describe('cart reducer', () => {
   const initialCart = []
 
-  const glitterPaint = {name: 'glitter paint', price: 6.9}
-  const soothingBalm = {name: 'soothing balm', price: 3.5}
+  const glitterPaint = {name: 'glitter paint', price: 690}
+  const soothingBalm = {name: 'soothing balm', price: 350}
 
   const updatedCart = reducer(initialCart, {
     type: 'ADD_ITEM',
