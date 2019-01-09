@@ -12,12 +12,16 @@ const Product = db.define('products', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: DEFAULT_IMAGE_URL
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 100
   },
   description: {
     type: Sequelize.TEXT
