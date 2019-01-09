@@ -10,3 +10,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    await OrderProduct.create({
+      orderId: req.body.orderId,
+      productId: req.body.productId
+    })
+    res.status(201)
+    res.json('Product added to order')
+  } catch (err) {
+    next(err)
+  }
+})
