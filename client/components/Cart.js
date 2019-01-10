@@ -8,8 +8,8 @@ const imageUrl =
   'https://image.spreadshirtmedia.com/image-server/v1/mp/designs/12644108,width=178,height=178/glitter-horse.png'
 const dummyCart = {
   products: [
-    {name: 'dummy product 1', price: 200, imageUrl, quantity: 1},
-    {name: 'dummy product 2', price: 300, imageUrl, quantity: 3}
+    {id: 1, name: 'dummy product 1', price: 200, imageUrl, quantity: 1},
+    {id: 2, name: 'dummy product 2', price: 300, imageUrl, quantity: 3}
   ],
   orderId: 1
 }
@@ -33,19 +33,27 @@ export class Cart extends Component {
 
   handleQuantitySelect(evt) {
     const newQuantity = Number(evt.target.value)
+
     // determine current product on which to change the quantity key
-    const productIdx = evt.target.getAttribute('data-product-idx')
-    console.log(newQuantity)
-    const products = this.state.cart.products
+    const productId = Number(evt.target.getAttribute('data-product-id'))
+
     // don't mutate existing products array on state
+    const products = this.state.cart.products
     const newProducts = [...products]
-    newProducts[productIdx].quantity = newQuantity
+
+    // find the product whose quantity we want to change
+    newProducts.forEach(p => {
+      if (p.id === productId) {
+        p.quantity = newQuantity
+      }
+    })
+
+    // update local state
     this.setState({
       cart: {
         products: newProducts
       }
     })
-    console.log('new state: ', this.state)
   }
 
   render() {

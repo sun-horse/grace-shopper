@@ -18,17 +18,21 @@ import {addItem} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
+    // local state for keeping track of product quantity
+    this.state = {
+      quantity: Number(this.props.product.quantity) || 1
+    }
     this.handleAddToCartClick = this.handleAddToCartClick.bind(this)
   }
 
   handleAddToCartClick() {
+    // need to also send product quantity (this.state.quantity) to cart reducer
     const productToAdd = this.props.product
     this.props.addItem(productToAdd)
   }
 
   render() {
     const {product, handleQuantitySelect} = this.props
-
     return (
       <div className="product">
         <img src={product.imageUrl} height="200" width="200" />
@@ -40,7 +44,7 @@ export class ProductCard extends Component {
             name="item-quantity"
             data-product-id={product.id}
             onChange={handleQuantitySelect}
-            defaultValue={product.quantity}
+            defaultValue={this.state.quantity}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
