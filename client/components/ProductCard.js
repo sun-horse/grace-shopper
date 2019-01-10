@@ -14,7 +14,7 @@ import {addItem} from '../store'
 /**
  * COMPONENT
  */
-export class Product extends Component {
+export class ProductCard extends Component {
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
@@ -44,12 +44,12 @@ export class Product extends Component {
 const mapDispatchToProps = dispatch => ({
   addItem: product => dispatch(addItem(product))
 })
-export default withRouter(connect(null, mapDispatchToProps)(Product))
+export default withRouter(connect(null, mapDispatchToProps)(ProductCard))
 
 /**
  * PROP TYPES
  */
-Product.propTypes = {
+ProductCard.propTypes = {
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   price: PropTypes.number

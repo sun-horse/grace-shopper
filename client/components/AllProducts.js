@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store'
-import {Product} from '../components'
+import {ProductCard} from '.'
 
 export class AllProducts extends Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ export class AllProducts extends Component {
       <div>
         <h3>All Products</h3>
         {this.props.products.map(product => {
-          return <Product key={product.id} {...product} />
+          return <ProductCard key={product.id} {...product} />
         })}
       </div>
     )
