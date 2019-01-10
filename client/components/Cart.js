@@ -11,7 +11,7 @@ const dummyCart = {
     {name: 'dummy product 1', price: 200, imageUrl, quantity: 1},
     {name: 'dummy product 2', price: 300, imageUrl, quantity: 1}
   ],
-  orderId: null
+  orderId: 1
 }
 
 export class Cart extends Component {
@@ -50,6 +50,7 @@ export class Cart extends Component {
     // console.log('state: ', this.state)
     // console.log('props: ', this.props)
     let totalCost = 0
+    let totalItems = 0
     const products = this.state.cart.products
 
     if (products) {
@@ -58,7 +59,8 @@ export class Cart extends Component {
           <h3>Cart</h3>
 
           {products.map((product, idx) => {
-            totalCost = totalCost + product.price
+            totalCost += product.price * product.quantity
+            totalItems += product.quantity
             return (
               <div key={product.id} className="cart-item">
                 <ProductCard {...product} />
@@ -81,7 +83,7 @@ export class Cart extends Component {
             )
           })}
           <h4>
-            Total Cost ({products.length} items): ${formatPrice(totalCost)}
+            Total Cost ({totalItems} items): ${formatPrice(totalCost)}
           </h4>
           <button type="button" id="cart-checkout">
             Check Out
