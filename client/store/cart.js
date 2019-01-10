@@ -18,7 +18,7 @@ const defaultCart = {
  * ACTION CREATORS
  */
 const addItem = item => ({type: ADD_ITEM, item})
-const getCart = cart => ({type: GET_CART})
+const getCart = cart => ({type: GET_CART, cart})
 
 /**
  * THUNK CREATORS
@@ -29,7 +29,7 @@ export const setCart = () => async dispatch => {
 
     const productOrder = {...item, orderId: orderId}
     const res = await axios.post('/api/products', productOrder)
-    dispatch(addItem(res.data))
+    dispatch(getCart(res.data))
   } catch (err) {
     console.error(err)
   }
@@ -40,6 +40,8 @@ export const setCart = () => async dispatch => {
  */
 export default function(state = defaultCart, action) {
   switch (action.type) {
+    case GET_CART:
+      return
     case ADD_ITEM:
       return {...state, products: [...state.products, action.item]}
     default:

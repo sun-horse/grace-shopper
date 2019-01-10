@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 const {Order} = require('../db/models')
+const {OrderProduct} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -26,7 +27,12 @@ router.post('/api/users/:userId/orders?isActiv', async (req, res, next) => {
       }
     })
     if (existingOrder) {
-      res.json(existingOrder)
+      const orderProducts = await OrderProduct.findAll({
+        where: {
+          orderId: existingOrder.id
+        }
+      })
+      res.json(orderProducts)
     } else {
       Order.create({
         userId: req.params.userId,
