@@ -22,7 +22,7 @@ async function seed() {
   const newOrder = await Order.create({isActive: false})
   newUser.addOrders(newOrder)
 
-  // Add items to Order-Products list
+  // Add items to Order-Products listg
   await Product.findById(3).then(product => product.addOrders(newOrder))
 
   await Product.findById(2).then(product => product.addOrders(newOrder))
