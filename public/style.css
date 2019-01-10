@@ -23,6 +23,7 @@ form div {
 /* cart button in navbar */
 nav button {
   padding: 16px;
+  cursor: pointer;
 }
 
 /* don't display add to cart buttons on cart componenent */
