@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {setCart} from '../store'
 import {ProductCard} from '.'
 import {formatPrice} from '../utils'
 
@@ -27,7 +26,6 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    // this.props.setCart()
     this.setState({cart: dummyCart})
   }
 
@@ -57,8 +55,6 @@ export class Cart extends Component {
   }
 
   render() {
-    // console.log('state: ', this.state)
-    // console.log('props: ', this.props)
     let totalCost = 0
     let totalItems = 0
     const products = this.state.cart.products
