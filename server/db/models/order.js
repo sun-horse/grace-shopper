@@ -25,4 +25,10 @@ Order.prototype.getProducts = async function() {
   return ProductList.map(obj => obj.dataValues)
 }
 
+Order.prototype.getTotal = function(productList) {
+  return productList.reduce((acc, product) => {
+    return acc + product.price
+  }, 0)
+}
+
 module.exports = Order
