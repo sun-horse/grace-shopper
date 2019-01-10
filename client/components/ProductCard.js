@@ -26,6 +26,7 @@ export class ProductCard extends Component {
   }
   render() {
     const {name, imageUrl, price} = this.props
+    console.log('image: ', imageUrl)
 
     return (
       <div className="product">
@@ -33,7 +34,12 @@ export class ProductCard extends Component {
         <h4>{name}</h4>
         {/* price is stored in cents, so divide by 100 for dollars */}
         <p>${parseFloat(price / 100.0).toFixed(2)}</p>
-        <button name="add" onClick={this.handleClick} type="button">
+        <button
+          className="add-to-cart"
+          name="add"
+          onClick={this.handleClick}
+          type="button"
+        >
           + cart
         </button>
       </div>
