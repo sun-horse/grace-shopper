@@ -1,9 +1,6 @@
 const {expect} = require('chai')
 const db = require('../index')
-const Order = db.model('orders')
-const OrderProducts = db.model('order-products')
-const User = db.model('users')
-const Product = db.model('products')
+const {User, Product, Order, OrderProducts} = require('./index')
 
 describe('Order', () => {
   beforeEach(async () => {
@@ -23,14 +20,17 @@ describe('Order', () => {
     const newUser = await User.findById(2)
     await newUser.addOrders(newOrder)
 
-    const newProduct = await Product.findById(3)
-    await newProduct.addOrders(newOrder)
+    await Product.findById(3).then(product => product.addOrders(newOrder))
+
+    await Product.findById(2).then(product => product.addOrders(newOrder))
   })
 
-  describe('Instance method `getTotal`', () => {
+  xdescribe('Instance method `getTotal`', () => {
     it('finds gets the order total', async () => {
-      const orders = await OrderProducts.findAll()
-      console.log(orders)
+      const firstOrder = await Order.findById(1)
+      const total = await firstOrder.getTotal()
+
+      console.log(total)
     })
   })
 })

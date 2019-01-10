@@ -23,10 +23,9 @@ async function seed() {
   const newUser = await User.findById(2)
   await newUser.addOrders(newOrder)
 
-  const newProduct = await Product.findById(3)
-  await newProduct.addOrders(newOrder)
+  await Product.findById(3).then(product => product.addOrders(newOrder))
 
-  console.log(newProduct.dataValues)
+  await Product.findById(2).then(product => product.addOrders(newOrder))
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
