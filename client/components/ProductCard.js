@@ -18,28 +18,29 @@ import {addItem} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleAddToCartClick = this.handleAddToCartClick.bind(this)
   }
 
-  handleClick(evt) {
-    const productToAdd = this.props
+  handleAddToCartClick() {
+    const productToAdd = this.props.product
     this.props.addItem(productToAdd)
   }
+
   render() {
-    const {name, imageUrl, price, quantity, handleQuantitySelect} = this.props
+    const {product, handleQuantitySelect} = this.props
 
     return (
       <div className="product">
-        <img src={imageUrl} height="200" width="200" />
+        <img src={product.imageUrl} height="200" width="200" />
         <h4>{name}</h4>
-        <p>${formatPrice(price)}</p>
+        <p>${formatPrice(product.price)}</p>
         <div className="cart-item-quantity">
           Quantity:{' '}
           <select
             name="item-quantity"
-            data-product-idx={idx}
+            data-product-id={product.id}
             onChange={handleQuantitySelect}
-            defaultValue={quantity}
+            defaultValue={product.quantity}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -51,7 +52,7 @@ export class ProductCard extends Component {
         <button
           className="add-to-cart"
           name="add"
-          onClick={this.handleClick}
+          onClick={this.handleAddToCartClick}
           type="button"
         >
           + cart

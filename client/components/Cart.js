@@ -35,6 +35,7 @@ export class Cart extends Component {
     const newQuantity = Number(evt.target.value)
     // determine current product on which to change the quantity key
     const productIdx = evt.target.getAttribute('data-product-idx')
+    console.log(newQuantity)
     const products = this.state.cart.products
     // don't mutate existing products array on state
     const newProducts = [...products]
@@ -59,13 +60,14 @@ export class Cart extends Component {
         <div className="cart">
           <h3>Cart</h3>
 
-          {products.map((product, idx) => {
+          {products.map(product => {
             totalCost += product.price * product.quantity
             totalItems += product.quantity
             return (
               <div key={product.id} className="cart-item">
                 <ProductCard
-                  {...product}
+                  key={product.id}
+                  product={product}
                   handleQuantitySelect={this.handleQuantitySelect}
                 />
               </div>
