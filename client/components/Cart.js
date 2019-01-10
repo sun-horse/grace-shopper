@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 // import {setCart} from '../store'
-
 import {ProductCard} from '.'
+import {formatPrice} from '../utils'
 
 const imageUrl =
   'https://image.spreadshirtmedia.com/image-server/v1/mp/designs/12644108,width=178,height=178/glitter-horse.png'
@@ -33,15 +33,29 @@ export class Cart extends Component {
   render() {
     console.log('state: ', this.state)
     console.log('props: ', this.props)
+    let totalCost = 0
+    const products = this.state.cart.products
 
-    if (this.state.cart) {
+    if (products) {
       return (
         <div className="cart">
           <h3>Cart</h3>
 
-          {this.state.cart.products.map(product => {
-            return <ProductCard key={product.id} {...product} />
+          {products.map(product => {
+            totalCost = totalCost + product.price
+            return (
+              <div key={product.id} className="cart-item">
+                <ProductCard {...product} />
+                <div className="cart-item-quantity">Quantity: 1</div>
+              </div>
+            )
           })}
+          <h4>
+            Total Cost ({products.length} items): ${formatPrice(totalCost)}
+          </h4>
+          <button type="button" id="cart-checkout">
+            Check Out
+          </button>
         </div>
       )
     }

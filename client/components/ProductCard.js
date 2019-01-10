@@ -5,9 +5,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {formatPrice} from '../utils'
 
 /**
- * IMPORT CART REDUCER
+ * IMPORT CART THUNK
  */
 import {addItem} from '../store'
 
@@ -26,14 +27,12 @@ export class ProductCard extends Component {
   }
   render() {
     const {name, imageUrl, price} = this.props
-    console.log('image: ', imageUrl)
 
     return (
       <div className="product">
         <img src={imageUrl} height="200" width="200" />
         <h4>{name}</h4>
-        {/* price is stored in cents, so divide by 100 for dollars */}
-        <p>${parseFloat(price / 100.0).toFixed(2)}</p>
+        <p>${formatPrice(price)}</p>
         <button
           className="add-to-cart"
           name="add"
