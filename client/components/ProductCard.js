@@ -26,13 +26,28 @@ export class ProductCard extends Component {
     this.props.addItem(productToAdd)
   }
   render() {
-    const {name, imageUrl, price} = this.props
+    const {name, imageUrl, price, quantity, handleQuantitySelect} = this.props
 
     return (
       <div className="product">
         <img src={imageUrl} height="200" width="200" />
         <h4>{name}</h4>
         <p>${formatPrice(price)}</p>
+        <div className="cart-item-quantity">
+          Quantity:{' '}
+          <select
+            name="item-quantity"
+            data-product-idx={idx}
+            onChange={handleQuantitySelect}
+            defaultValue={quantity}
+          >
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+        </div>
         <button
           className="add-to-cart"
           name="add"

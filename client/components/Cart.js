@@ -9,7 +9,7 @@ const imageUrl =
 const dummyCart = {
   products: [
     {name: 'dummy product 1', price: 200, imageUrl, quantity: 1},
-    {name: 'dummy product 2', price: 300, imageUrl, quantity: 1}
+    {name: 'dummy product 2', price: 300, imageUrl, quantity: 3}
   ],
   orderId: 1
 }
@@ -36,6 +36,7 @@ export class Cart extends Component {
     // determine current product on which to change the quantity key
     const productIdx = evt.target.getAttribute('data-product-idx')
     const products = this.state.cart.products
+    // don't mutate existing products array on state
     const newProducts = [...products]
     newProducts[productIdx].quantity = newQuantity
     this.setState({
@@ -63,22 +64,10 @@ export class Cart extends Component {
             totalItems += product.quantity
             return (
               <div key={product.id} className="cart-item">
-                <ProductCard {...product} />
-                <div className="cart-item-quantity">
-                  Quantity:{' '}
-                  <select
-                    name="item-quantity"
-                    data-product-idx={idx}
-                    onChange={this.handleQuantitySelect}
-                    defaultValue={1}
-                  >
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                  </select>
-                </div>
+                <ProductCard
+                  {...product}
+                  handleQuantitySelect={this.handleQuantitySelect}
+                />
               </div>
             )
           })}
