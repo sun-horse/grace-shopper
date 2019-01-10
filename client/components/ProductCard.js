@@ -41,7 +41,7 @@ export class ProductCard extends Component {
     return (
       <div className="product">
         <img src={product.imageUrl} height="200" width="200" />
-        <h4>{name}</h4>
+        <h4>{product.name}</h4>
         <p>${formatPrice(product.price)}</p>
         <form method="post" onSubmit={this.handleAddToCartSubmit}>
           <div className="cart-item-quantity">
