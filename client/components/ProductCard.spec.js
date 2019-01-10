@@ -9,7 +9,7 @@ import {ProductCard} from './ProductCard'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('Product Cardcomponent', () => {
+describe('ProductCard component', () => {
   let wrapper
   const product = {name: 'Fake glitter', price: 100}
 
