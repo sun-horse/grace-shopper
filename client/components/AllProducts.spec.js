@@ -4,8 +4,8 @@ import {expect} from 'chai'
 import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {AllProducts} from './all-products'
-import {Product} from './product'
+import {AllProducts} from './AllProducts'
+import {ProductCard} from './ProductCard'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
@@ -25,10 +25,10 @@ describe('AllProducts component', () => {
     wrapper = shallow(<AllProducts products={products} />, {
       disableLifecycleMethods: true
     })
-    productDivs = wrapper.find(Product)
+    productDivs = wrapper.find(ProductCard)
   })
 
-  it('renders DIVs with names of each product', () => {
+  xit('renders DIVs with names of each product', () => {
     expect(productDivs).to.have.length(products.length)
 
     products.forEach(product => {

@@ -6,7 +6,9 @@ import {logout} from '../store'
 
 export const Navbar = ({handleClick, isLoggedIn, cart}) => (
   <div>
-    <h1>Sun Horse</h1>
+    <h1>
+      <Link to="/products">Sun Horse</Link>
+    </h1>
     <nav>
       {isLoggedIn ? (
         <div>
