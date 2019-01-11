@@ -7,8 +7,7 @@ const OrderProduct = db.define('order-products', {
   quantity: {
     type: Sequelize.INTEGER,
     defaultValue: 1
-  },
-  pricePerItem: Sequelize.INTEGER
+  }
 })
 
 OrderProduct.getProductsById = async function(orderId) {
