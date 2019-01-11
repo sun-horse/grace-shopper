@@ -10,8 +10,8 @@ import axios from 'axios'
  * INITIAL STATE
  */
 const defaultCart = {
-  orderId: null,
-  products: []
+  products: [],
+  orderId: null
 }
 
 /**
@@ -24,14 +24,14 @@ const getCart = cart => ({type: GET_CART, cart, orderId: cart[0].orderId})
  * THUNK CREATORS
  */
 
-// export const addToOrder = () => async dispatch => {
-//   try{
-//     await axios.post('/api/users/:userId/orders')
-
-//   } catch(err) {
-//     console.error(err)
-//   }
-// }
+export const addToOrder = item => async dispatch => {
+  try {
+    await axios.post('/api/users/:userId/orders', item)
+    dispatch(addItem(item))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 export const setCart = () => async dispatch => {
   try {
@@ -48,9 +48,9 @@ export const setCart = () => async dispatch => {
 export default function(state = defaultCart, action) {
   switch (action.type) {
     case GET_CART:
-      return {orderId: action.orderId, products: action.cart}
+      return action.cart
     case ADD_ITEM:
-      return {...state, products: [action.item]}
+      return {...state, products: [...state.products, action.item]}
     default:
       return state
   }

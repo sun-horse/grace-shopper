@@ -36,7 +36,7 @@ router.get('/:userId/orders', async (req, res, next) => {
     } else {
       Order.create({
         userId: req.params.userId,
-        isActiv: true
+        isActive: true
       })
       const newOrder = await Order.findOne({
         where: {
@@ -46,6 +46,24 @@ router.get('/:userId/orders', async (req, res, next) => {
       })
       res.json(newOrder)
     }
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/:userId/orders', async (req, res, next) => {
+  try {
+    const orderId = await Order.findOne({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    OrderProducts.create({
+      where: {
+        orderId: orderId,
+        productId: req.body.productId
+      }
+    })
   } catch (err) {
     next(err)
   }
