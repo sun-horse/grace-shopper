@@ -46,21 +46,3 @@ router.get('/:userId/orders', async (req, res, next) => {
     next(err)
   }
 })
-
-// router.post('/:userId/orders', async (req, res, next) => {
-//   try {
-//     const orderId = await Order.findOne({
-//       where: {
-//         userId: req.params.userId
-//       }
-//     })
-//     OrderProducts.create({
-//       where: {
-//         orderId: orderId,
-//         productId: req.body.productId
-//       }
-//     })
-//   } catch (err) {
-//     next(err)
-//   }
-// })
