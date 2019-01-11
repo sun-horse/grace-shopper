@@ -71,7 +71,7 @@ export class ProductCard extends Component {
 const mapDispatchToProps = dispatch => ({
   addItem: product => dispatch(addItem(product))
 })
-export default withRouter(connect(null, mapDispatchToProps)(ProductCard))
+export default connect(null, mapDispatchToProps)(ProductCard)
 
 /**
  * PROP TYPES
