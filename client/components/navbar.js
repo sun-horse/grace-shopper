@@ -25,7 +25,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => (
           <Link to="/signup">Sign Up</Link>
           <button className="button" type="button">
             <i className="fas fa-shopping-cart" />
-            <p id="cart">{cart.length}</p>
+            <p id="cart">{cart.products.length}</p>
           </button>
         </div>
       )}

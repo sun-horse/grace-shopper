@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
-const {Order} = require('../db/models')
-const {OrderProduct} = require('../db/models')
+const {Order, OrderProducts, Product} = require('../db/models')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -18,16 +18,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/api/users/:userId/orders?isActiv', async (req, res, next) => {
+router.get('/:userId/orders', async (req, res, next) => {
   try {
     const existingOrder = await Order.findOne({
       where: {
         userId: req.params.userId,
-        isActiv: true
+        isActive: true
       }
     })
     if (existingOrder) {
-      const orderProducts = await OrderProduct.findAll({
+      const orderProducts = await OrderProducts.findAll({
         where: {
           orderId: existingOrder.id
         }
@@ -41,7 +41,7 @@ router.post('/api/users/:userId/orders?isActiv', async (req, res, next) => {
       const newOrder = await Order.findOne({
         where: {
           userId: req.params.userId,
-          isActiv: true
+          isActive: true
         }
       })
       res.json(newOrder)
