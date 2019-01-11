@@ -14,7 +14,7 @@ const OrderProduct = db.define('order-products', {
 OrderProduct.getProductsById = async function(orderId) {
   try {
     const orderProducts = await OrderProduct.findAll({
-      where: {orderId: orderId}
+      where: {orderId}
     }).map(obj => obj.dataValues.productId)
 
     const productList = await Product.findAll({

@@ -1,10 +1,12 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 const OrderProduct = require('./orderProduct')
-const Product = require('./product')
 
 const Order = db.define('orders', {
-  isActive: Sequelize.BOOLEAN,
+  isActive: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
   finalizedAt: Sequelize.DATE,
   total: Sequelize.INTEGER
 })
