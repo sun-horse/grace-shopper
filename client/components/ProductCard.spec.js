@@ -14,7 +14,7 @@ describe('ProductCard component', () => {
   const product = {name: 'Fake glitter', price: 100}
 
   beforeEach(() => {
-    wrapper = shallow(<ProductCard {...product} />)
+    wrapper = shallow(<ProductCard product={product} />)
   })
 
   it('renders the product name in an h4', () => {

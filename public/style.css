@@ -20,6 +20,13 @@ form div {
   display: inline-block;
 }
 
-.button {
+/* cart button in navbar */
+nav button {
   padding: 16px;
+  cursor: pointer;
+}
+
+/* don't display add to cart buttons on cart componenent */
+.cart .add-to-cart {
+  display: none;
 }
