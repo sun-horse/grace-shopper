@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const db = require('../db')
-const OrderProducts = require('./orderProducts')
-const Products = require('./product')
+const OrderProduct = require('./orderProduct')
+const Product = require('./product')
 
 const Order = db.define('orders', {
   isActive: Sequelize.BOOLEAN,
@@ -13,11 +13,11 @@ const Order = db.define('orders', {
 // Instance method
 Order.prototype.getProducts = async function() {
   try {
-    const orderProducts = await OrderProducts.findAll({
+    const orderProducts = await OrderProduct.findAll({
       where: {orderId: this.dataValues.id}
     }).map(obj => obj.dataValues.productId)
 
-    const ProductList = await Products.findAll({
+    const ProductList = await Product.findAll({
       where: {
         id: {
           [Op.in]: orderProducts

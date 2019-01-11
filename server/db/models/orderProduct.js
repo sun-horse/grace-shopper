@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const Product = require('./product')
 
-const OrderProducts = db.define(
+const OrderProduct = db.define(
   'order-products',
   {
     quantity: {
@@ -36,4 +36,4 @@ const OrderProducts = db.define(
   }
 )
 
-module.exports = OrderProducts
+module.exports = OrderProduct
