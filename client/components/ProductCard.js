@@ -5,9 +5,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {formatPrice} from '../utils'
 
 /**
- * IMPORT CART REDUCER
+ * IMPORT CART THUNK
  */
 import {addItem} from '../store'
 
@@ -17,25 +18,51 @@ import {addItem} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    // local state for keeping track of product quantity
+    this.state = {
+      quantity: Number(this.props.product.quantity) || 1
+    }
+    this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
 
-  handleClick(evt) {
-    const productToAdd = this.props
-    this.props.addItem(productToAdd)
+  handleAddToCartSubmit(evt) {
+    evt.preventDefault()
+    const quantity = Number(evt.target.quantity.value)
+    const productToAdd = this.props.product
+    // for now, addItem doesn't accept a quantity
+    // we will eventually want to send the quantity to the cart reducer
+    for (let i = 0; i < quantity; i++) {
+      this.props.addItem(productToAdd)
+    }
   }
+
   render() {
-    const {name, imageUrl, price} = this.props
-
+    const {product, handleQuantitySelect} = this.props
     return (
       <div className="product">
-        <img src={imageUrl} height="200" width="200" />
-        <h4>{name}</h4>
-        {/* price is stored in cents, so divide by 100 for dollars */}
-        <p>${parseFloat(price / 100.0).toFixed(2)}</p>
-        <button name="add" onClick={this.handleClick} type="button">
-          + cart
-        </button>
+        <img src={product.imageUrl} height="200" width="200" />
+        <h4>{product.name}</h4>
+        <p>${formatPrice(product.price)}</p>
+        <form method="post" onSubmit={this.handleAddToCartSubmit}>
+          <div className="cart-item-quantity">
+            Quantity:{' '}
+            <select
+              name="quantity"
+              data-product-id={product.id}
+              onChange={handleQuantitySelect}
+              defaultValue={this.state.quantity}
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+          </div>
+          <button className="add-to-cart" name="add" type="submit">
+            + cart
+          </button>
+        </form>
       </div>
     )
   }
