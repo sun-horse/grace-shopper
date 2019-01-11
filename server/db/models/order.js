@@ -10,20 +10,25 @@ const Order = db.define('orders', {
   total: Sequelize.INTEGER
 })
 
+// Instance method
 Order.prototype.getProducts = async function() {
-  const orderProducts = await OrderProducts.findAll({
-    where: {orderId: this.dataValues.id}
-  }).map(obj => obj.dataValues.productId)
+  try {
+    const orderProducts = await OrderProducts.findAll({
+      where: {orderId: this.dataValues.id}
+    }).map(obj => obj.dataValues.productId)
 
-  const ProductList = await Products.findAll({
-    where: {
-      id: {
-        [Op.in]: orderProducts
+    const ProductList = await Products.findAll({
+      where: {
+        id: {
+          [Op.in]: orderProducts
+        }
       }
-    }
-  })
+    })
 
-  return ProductList.map(obj => obj.dataValues)
+    return ProductList.map(obj => obj.dataValues)
+  } catch (err) {
+    console.log(err.message)
+  }
 }
 
 Order.prototype.getTotal = function(productList) {

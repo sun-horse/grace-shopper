@@ -12,30 +12,27 @@ const OrderProducts = db.define(
     pricePerItem: Sequelize.INTEGER
   },
   {
-    hooks: {
-      afterBulkCreate: function(orderProduct) {
-        const orderProductList = orderProduct.map(obj => obj.dataValues)
-
-        console.log('orderProductList', orderProductList)
-
-        orderProductList.forEach(async obj => {
-          const product = await Product.findById(obj.productId)
-          const productPrice = product.dataValues.price
-
-          await OrderProducts.update(
-            {
-              pricePerItem: productPrice
-            },
-            {
-              where: {
-                orderId: 1
-              }
-            }
-          )
-        })
-        // console.log(orderProduct)
-      }
-    }
+    // hooks: {
+    //   afterBulkCreate: function(orderProduct) {
+    //     const orderProductList = orderProduct.map(obj => obj.dataValues)
+    //     console.log('orderProductList', orderProductList)
+    //     orderProductList.forEach(async obj => {
+    //       const product = await Product.findById(obj.productId)
+    //       const productPrice = product.dataValues.price
+    //       await OrderProducts.update(
+    //         {
+    //           pricePerItem: productPrice
+    //         },
+    //         {
+    //           where: {
+    //             orderId: 1
+    //           }
+    //         }
+    //       )
+    //     })
+    //     // console.log(orderProduct)
+    //   }
+    // }
   }
 )
 
