@@ -14,10 +14,11 @@ Order.prototype.getProducts = function() {
   return OrderProduct.getProductsById(this.dataValues.id)
 }
 
-// Order.prototype.getTotal = function(productList) {
-//   return productList.reduce((acc, product) => {
-//     return acc + product.price
-//   }, 0)
-// }
+// Instance method -- does not account for quantity
+Order.prototype.getTotal = function(productArr) {
+  return productArr.reduce((acc, product) => {
+    return acc + product.price
+  }, 0)
+}
 
 module.exports = Order

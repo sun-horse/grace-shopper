@@ -1,8 +1,10 @@
 const {expect} = require('chai')
 const db = require('../index')
-const {User, Product, Order, OrderProduct} = require('./index')
+const Product = db.model('products')
+const Order = db.model('orders')
+const OrderProduct = db.model('order-products')
 
-describe('Order model', () => {
+describe('Order and  Order-products model', () => {
   beforeEach(async () => {
     try {
       const order = await Order.create({isActive: false})
@@ -17,11 +19,9 @@ describe('Order model', () => {
         price: 350
       }).then(product => product.addOrders(order))
 
-      const orderProducts = await order.getProducts()
+      const orderProductsInstance = await order.getProducts()
 
-      // const orderTotal = await order.getTotal(orderProducts)
-
-      console.log(orderProducts)
+      const orderTotal = await order.getTotal(orderProductsInstance.products)
     } catch (err) {
       console.log(err.message)
     }
