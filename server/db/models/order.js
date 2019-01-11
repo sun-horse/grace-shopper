@@ -6,7 +6,8 @@ const Products = require('./product')
 
 const Order = db.define('orders', {
   isActive: Sequelize.BOOLEAN,
-  finalizedAt: Sequelize.DATE
+  finalizedAt: Sequelize.DATE,
+  total: Sequelize.INTEGER
 })
 
 Order.prototype.getProducts = async function() {
