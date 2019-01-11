@@ -19,7 +19,7 @@ describe('Order model', () => {
 
       const orderProducts = await order.getProducts()
 
-      const orderTotal = await order.getTotal(orderProducts)
+      // const orderTotal = await order.getTotal(orderProducts)
 
       console.log(orderProducts)
     } catch (err) {

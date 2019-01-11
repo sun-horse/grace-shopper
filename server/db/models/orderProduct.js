@@ -1,39 +1,38 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Op = Sequelize.Op
 const Product = require('./product')
 
-const OrderProduct = db.define(
-  'order-products',
-  {
-    quantity: {
-      type: Sequelize.INTEGER,
-      defaultValue: 1
-    },
-    pricePerItem: Sequelize.INTEGER
+const OrderProduct = db.define('order-products', {
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
   },
-  {
-    // hooks: {
-    //   afterBulkCreate: function(orderProduct) {
-    //     const orderProductList = orderProduct.map(obj => obj.dataValues)
-    //     console.log('orderProductList', orderProductList)
-    //     orderProductList.forEach(async obj => {
-    //       const product = await Product.findById(obj.productId)
-    //       const productPrice = product.dataValues.price
-    //       await OrderProducts.update(
-    //         {
-    //           pricePerItem: productPrice
-    //         },
-    //         {
-    //           where: {
-    //             orderId: 1
-    //           }
-    //         }
-    //       )
-    //     })
-    //     // console.log(orderProduct)
-    //   }
-    // }
+  pricePerItem: Sequelize.INTEGER
+})
+
+OrderProduct.getProductsById = async function(orderId) {
+  try {
+    const orderProducts = await OrderProduct.findAll({
+      where: {orderId: orderId}
+    }).map(obj => obj.dataValues.productId)
+
+    const productList = await Product.findAll({
+      where: {
+        id: {
+          [Op.in]: orderProducts
+        }
+      }
+    })
+
+    const orderProductsObj = {
+      products: productList.map(obj => obj.dataValues),
+      orderId
+    }
+    return orderProductsObj
+  } catch (err) {
+    console.log(err.message)
   }
-)
+}
 
 module.exports = OrderProduct
