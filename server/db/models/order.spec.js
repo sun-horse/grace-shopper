@@ -4,7 +4,7 @@ const Product = db.model('products')
 const Order = db.model('orders')
 const OrderProduct = db.model('order-products')
 
-describe('Order and  Order-products model', () => {
+describe('Order and Order-products model', () => {
   beforeEach(async () => {
     try {
       const order = await Order.create({isActive: false})
@@ -18,18 +18,47 @@ describe('Order and  Order-products model', () => {
         name: 'soothing balm',
         price: 350
       }).then(product => product.addOrders(order))
-
-      const orderProductsInstance = await order.getProducts()
-
-      const orderTotal = await order.getTotal(orderProductsInstance.products)
     } catch (err) {
       console.log(err.message)
     }
   })
 
-  describe('Instance method `getProducts`', () => {
-    it('returns an array of products', () => {})
+  describe('Order: Instance method `getProducts`', () => {
+    it('returns and object with the array of products and the orderId', async () => {
+      const order = await Order.findById(1)
+      const orderProductsInstance = await order.getProducts()
+
+      expect(orderProductsInstance).to.be.an('object')
+      expect(orderProductsInstance.products).to.be.an('array')
+      expect(orderProductsInstance.orderId).to.be.a('number')
+      expect(orderProductsInstance.orderId).to.equal(1)
+    })
   })
 
-  describe('Instance method `getTotal`', () => {})
+  describe('Order: Instance method `getTotal`', () => {
+    it('returns the total of the order when quantity of each item is 1', async () => {
+      const order = await Order.findById(1)
+      const orderProductsInstance = await order.getProducts()
+      const orderTotal = await order.getTotal(orderProductsInstance.products)
+
+      expect(orderTotal).to.be.a('number')
+      expect(orderTotal).to.equal(1040)
+    })
+  })
+
+  describe('Order-Product: Class method `getProductsById`', () => {
+    it('returns the same information as the Order Instance method', async () => {
+      const order = await Order.findById(1)
+      const orderProductsInstance = await order.getProducts()
+      const orderProductsClass = await OrderProduct.getProductsById(1)
+
+      expect(typeof orderProductsInstance).to.equal(typeof orderProductsClass)
+
+      expect(orderProductsInstance.orderId).to.equal(orderProductsClass.orderId)
+
+      expect(orderProductsInstance.products.length).to.equal(
+        orderProductsClass.products.length
+      )
+    })
+  })
 })
