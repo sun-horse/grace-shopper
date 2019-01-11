@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const morgan = require('morgan')
 const compression = require('compression')
 const session = require('express-session')
@@ -27,6 +28,29 @@ if (process.env.NODE_ENV === 'test') {
  * Node process on process.env
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
+// enable cors
+app.use(cors())
+// const allowedOrigins = [
+//   'http://localhost:8080/*',
+//   'http://sun-horse-herokoapp.com'
+// ]
+
+// app.use(
+//   cors({
+//     origin: function(origin, callback) {
+//       // allow requests with no origin
+//       // (like mobile apps or curl requests)
+//       // if(!origin) return callback(null, true);
+//       console.log('showing origin', origin)
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         const errMsg = 'Guests are welcome through front door!'
+//         return callback(new Error(errMsg), false)
+//       }
+
+//       return callback(null, true)
+//     }
+//   })
+// )
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
