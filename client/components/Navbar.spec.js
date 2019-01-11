@@ -5,22 +5,20 @@ import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {Navbar} from './Navbar'
+import {dummyCart} from './testData'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
 describe('Navbar', () => {
   let navBar
-  const cart = [
-    {name: 'Fake glitter', price: 100},
-    {name: 'Fake flying potion', price: 100}
-  ]
+  const cart = dummyCart
 
   beforeEach(() => {
     navBar = shallow(<Navbar cart={cart} />)
   })
 
   it('renders the number of items in the cart', () => {
-    expect(navBar.find('#cart-count').text()).to.be.equal('2')
+    expect(navBar.find('#cart-count').text()).to.be.equal('4')
   })
 })
