@@ -23,12 +23,14 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => (
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <button className="button" type="button">
-            <i className="fas fa-shopping-cart" />
-            <p id="cart">{cart.products.length}</p>
-          </button>
         </div>
       )}
+      <Link to="/cart">
+        <button type="button">
+          <i className="fas fa-shopping-cart" />
+          <p id="cart-count">{cart.length}</p>
+        </button>
+      </Link>
     </nav>
     <hr />
   </div>

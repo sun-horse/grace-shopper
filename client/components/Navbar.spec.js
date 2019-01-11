@@ -21,6 +21,6 @@ describe('Navbar', () => {
   })
 
   it('renders the number of items in the cart', () => {
-    expect(navBar.find('#cart').text()).to.be.equal('2')
+    expect(navBar.find('#cart-count').text()).to.be.equal('2')
   })
 })
