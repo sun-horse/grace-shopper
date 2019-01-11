@@ -14,7 +14,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
 
   return (
     <div>
-      <h1>
+      <h1 className="title is-2">
         <Link to="/products">Sun Horse</Link>
       </h1>
       <nav>

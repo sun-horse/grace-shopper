@@ -11,7 +11,7 @@ export class AllProducts extends Component {
   render() {
     return (
       <div>
-        <h3>All Products</h3>
+        <h3 className="title">All Products</h3>
         {this.props.products.map(product => {
           return <ProductCard key={product.id} product={product} />
         })}
