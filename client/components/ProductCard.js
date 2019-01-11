@@ -29,11 +29,8 @@ export class ProductCard extends Component {
     evt.preventDefault()
     const quantity = Number(evt.target.quantity.value)
     const productToAdd = this.props.product
-    // for now, addItem doesn't accept a quantity
-    // we will eventually want to send the quantity to the cart reducer
-    for (let i = 0; i < quantity; i++) {
-      this.props.addItem(productToAdd)
-    }
+    productToAdd.quantity = quantity
+    this.props.addItem(productToAdd)
   }
 
   render() {

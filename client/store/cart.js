@@ -17,25 +17,27 @@ const defaultCart = {
 /**
  * ACTION CREATORS
  */
-const addItem = item => ({type: ADD_ITEM, item})
+export const addItem = item => ({type: ADD_ITEM, item})
 const getCart = cart => ({type: GET_CART, cart, orderId: cart[0].orderId})
 
 /**
  * THUNK CREATORS
  */
 
-export const addToOrder = item => async dispatch => {
+//DO NOT USE YET - need to send arguments to thunk
+export const addToOrder = (item, userId) => async dispatch => {
   try {
-    await axios.post('/api/users/:userId/orders', item)
+    await axios.post(`/api/${userId}/orders`, item)
     dispatch(addItem(item))
   } catch (err) {
     console.error(err)
   }
 }
 
-export const setCart = () => async dispatch => {
+//DO NOT USE YET - Need to send userId to thunk
+export const setCart = userId => async dispatch => {
   try {
-    const res = await axios.get('/api/users/:userId/orders')
+    const res = await axios.get(`/api/users/${userId}/orders`)
     dispatch(getCart(res.data))
   } catch (err) {
     console.error(err)
