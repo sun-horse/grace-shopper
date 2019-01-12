@@ -54,20 +54,21 @@ export class Cart extends Component {
       return (
         <div className="cart">
           <h3 className="title">Cart</h3>
-
-          {products.map(product => {
-            totalCost += product.price * product.quantity
-            totalItems += product.quantity
-            return (
-              <div key={product.id} className="cart-item">
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  handleQuantitySelect={this.handleQuantitySelect}
-                />
-              </div>
-            )
-          })}
+          <div className="columns">
+            {products.map(product => {
+              totalCost += product.price * product.quantity
+              totalItems += product.quantity
+              return (
+                <div key={product.id} className="cart-item column">
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    handleQuantitySelect={this.handleQuantitySelect}
+                  />
+                </div>
+              )
+            })}
+          </div>
           <h4>
             Total Cost ({totalItems} items): ${formatPrice(totalCost)}
           </h4>
