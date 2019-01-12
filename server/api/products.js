@@ -2,15 +2,31 @@ const router = require('express').Router()
 const {Product, OrderProduct} = require('../db/models')
 module.exports = router
 
+// all products
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll()
+    const products = await Product.findAll({
+      attributes: ['id', 'name', 'price', 'imageUrl']
+    })
     res.json(products)
   } catch (err) {
     next(err)
   }
 })
 
+// single product
+router.get('/:productId', async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.productId, {
+      attributes: ['id', 'name', 'price', 'imageUrl']
+    })
+    res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// security check pending
 router.post('/', async (req, res, next) => {
   try {
     await OrderProduct.create({
