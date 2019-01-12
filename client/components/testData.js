@@ -1,9 +1,14 @@
-const imageUrl =
-  'https://image.spreadshirtmedia.com/image-server/v1/mp/designs/12644108,width=178,height=178/glitter-horse.png'
+const imageUrlGlitter = '/images/glitter.jpg'
 export const dummyCart = {
   products: [
-    {id: 1, name: 'dummy product 1', price: 200, imageUrl, quantity: 1},
-    {id: 2, name: 'dummy product 2', price: 300, imageUrl, quantity: 3}
+    {
+      id: 1,
+      name: 'Mane Glitter',
+      price: 200,
+      imageUrl: '/images/glitter.jpg',
+      quantity: 1
+    },
+    {id: 2, name: '', price: 300, imageUrlGlitter, quantity: 3}
   ],
   orderId: 1
 }

@@ -36,29 +36,41 @@ export class ProductCard extends Component {
   render() {
     const {product, handleQuantitySelect} = this.props
     return (
-      <div className="product">
-        <img src={product.imageUrl} height="200" width="200" />
-        <h4>{product.name}</h4>
-        <p>${formatPrice(product.price)}</p>
+      <div className="product card">
+        <div className="card-image">
+          <figure className="image">
+            <img src={product.imageUrl} />
+          </figure>
+        </div>
+        <div className="card-content">
+          <h4 className="title is-3">{product.name}</h4>
+          <p className="subtitle is-5">Price: ${formatPrice(product.price)}</p>
+        </div>
         <form method="post" onSubmit={this.handleAddToCartSubmit}>
-          <div className="cart-item-quantity">
-            Quantity:{' '}
-            <select
-              name="quantity"
-              data-product-id={product.id}
-              onChange={handleQuantitySelect}
-              defaultValue={this.state.quantity}
+          <footer className="card-footer">
+            <div className="cart-item-quantity cart-footer-item">
+              Quantity:{' '}
+              <select
+                name="quantity"
+                data-product-id={product.id}
+                onChange={handleQuantitySelect}
+                defaultValue={this.state.quantity}
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+            </div>
+            <button
+              className="add-to-cart cart-footer-item"
+              name="add"
+              type="submit"
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-          </div>
-          <button className="add-to-cart" name="add" type="submit">
-            + cart
-          </button>
+              Add to Cart
+            </button>
+          </footer>
         </form>
       </div>
     )
