@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  margin-bottom: 5em;
 }
 
 a {
@@ -20,4 +21,13 @@ nav button {
 /* don't display add to cart buttons on cart componenent */
 .cart .add-to-cart {
   display: none;
+}
+
+.cart footer {
+  padding: 3rem 1.5rem;
+}
+
+/* checkout button */
+#cart-checkout {
+  margin-left: 1em;
 }

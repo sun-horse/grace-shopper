@@ -12,9 +12,9 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
   const products = await Promise.all([
-    Product.create({name: 'glitter paint', price: 690}),
-    Product.create({name: 'soothing balm', price: 350}),
-    Product.create({name: 'flying dust', price: 1000})
+    Product.create({name: 'Glitter Paint', price: 690}),
+    Product.create({name: 'Soothing Balm', price: 350}),
+    Product.create({name: 'Flying Dust', price: 1000})
   ])
 
   // Seed association tables

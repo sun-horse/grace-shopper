@@ -11,10 +11,16 @@ export class AllProducts extends Component {
   render() {
     return (
       <div>
-        <h3 className="title">All Products</h3>
-        {this.props.products.map(product => {
-          return <ProductCard key={product.id} product={product} />
-        })}
+        <h3 className="title is-2">All Products</h3>
+        <div className="columns">
+          {this.props.products.map((product, i) => {
+            return (
+              <div className="column" key={product.id}>
+                <ProductCard product={product} />
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
