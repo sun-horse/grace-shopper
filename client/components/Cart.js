@@ -54,6 +54,7 @@ export class Cart extends Component {
       return (
         <div className="cart">
           <h3 className="title is-2">Cart</h3>
+
           <div className="columns">
             {products.map(product => {
               totalCost += product.price * product.quantity
@@ -69,12 +70,28 @@ export class Cart extends Component {
               )
             })}
           </div>
-          <h4>
-            Total Cost ({totalItems} items): ${formatPrice(totalCost)}
-          </h4>
-          <button type="button" id="cart-checkout">
-            Check Out
-          </button>
+          <footer className="level footer">
+            <div className="level-left" />
+            <div className="level-right">
+              <div className="level-item">
+                <h4 className="subtitle is-3 is-spaced">
+                  Total Cost ({totalItems} items):
+                </h4>
+                <h5 className="title is-3">
+                  &nbsp;&nbsp;${formatPrice(totalCost)}
+                </h5>
+              </div>
+              <div className="level-item has-text-right">
+                <button
+                  type="button"
+                  id="cart-checkout"
+                  className="button is-primary is-large"
+                >
+                  Check Out
+                </button>
+              </div>
+            </div>
+          </footer>
         </div>
       )
     }
