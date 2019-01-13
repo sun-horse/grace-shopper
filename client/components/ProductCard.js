@@ -50,7 +50,6 @@ export class ProductCard extends Component {
 
   render() {
     const {product, handleQuantitySelect} = this.props
-    console.log('product: ', product)
     return (
       <div className="product card">
         <div className="card-image">
