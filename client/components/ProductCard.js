@@ -30,13 +30,27 @@ export class ProductCard extends Component {
 
     // update cart object in local storage
     const localCart = JSON.parse(window.localStorage.getItem('cart'))
-    const newProducts = [...localCart.products, productToAdd]
+
+    // if we add an item that's already in the cart,
+    // update the item's quantity instead of adding a duplicate item
+    let productNotInCart = true
+    localCart.products.forEach(p => {
+      if (p.id === productToAdd.id) {
+        p.quantity += productToAdd.quantity
+        productNotInCart = false
+      }
+    })
+    const newProducts = [...localCart.products]
+    if (productNotInCart) {
+      newProducts.push(productToAdd)
+    }
     localCart.products = newProducts
     window.localStorage.setItem('cart', JSON.stringify(localCart))
   }
 
   render() {
     const {product, handleQuantitySelect} = this.props
+    console.log('product: ', product)
     return (
       <div className="product card">
         <div className="card-image">
@@ -70,6 +84,11 @@ export class ProductCard extends Component {
                     <option value={3}>3</option>
                     <option value={4}>4</option>
                     <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={7}>7</option>
+                    <option value={8}>8</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
                   </select>
                 </span>
                 <span className="icon is-small is-left">

@@ -9,6 +9,8 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
 
   const storeCart = cart
   let localCart = {products: []}
+  // uncomment the following line to initiate an empty cart in local storage
+  // window.localStorage.setItem('cart', JSON.stringify(localCart))
 
   // tests don't have access to global window object
   if (process.env.NODE_ENV !== 'test') {

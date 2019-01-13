@@ -21,7 +21,7 @@ export class Cart extends Component {
     if (process.env.NODE_ENV !== 'test') {
       localCart = JSON.parse(window.localStorage.getItem('cart'))
     }
-    if (this.props.isLoggedIn) {
+    if (this.props.isLoggedIn || process.env.NODE_ENV === 'test') {
       // need to fetch cart from store with state.user.id
       this.setState({cart: dummyCart})
     } else {
