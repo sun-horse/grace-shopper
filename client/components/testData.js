@@ -1,4 +1,3 @@
-const imageUrlGlitter = '/images/glitter.jpg'
 export const dummyCart = {
   products: [
     {
@@ -8,7 +7,13 @@ export const dummyCart = {
       imageUrl: '/images/glitter.jpg',
       quantity: 1
     },
-    {id: 2, name: '', price: 300, imageUrlGlitter, quantity: 3}
+    {
+      id: 2,
+      name: 'Pegasus Wings',
+      price: 300,
+      imageUrl: '/images/wings.jpg',
+      quantity: 3
+    }
   ],
   orderId: 1
 }
