@@ -20,7 +20,7 @@ export class ProductCard extends Component {
     super(props)
     // local state for keeping track of product quantity
     this.state = {
-      quantity: Number(this.props.product.quantity) || 1
+      quantity: 0
     }
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
@@ -36,30 +36,52 @@ export class ProductCard extends Component {
   render() {
     const {product, handleQuantitySelect} = this.props
     return (
-      <div className="product">
-        <img src={product.imageUrl} height="200" width="200" />
-        <h4>{product.name}</h4>
-        <p>${formatPrice(product.price)}</p>
-        <form method="post" onSubmit={this.handleAddToCartSubmit}>
-          <div className="cart-item-quantity">
-            Quantity:{' '}
-            <select
-              name="quantity"
-              data-product-id={product.id}
-              onChange={handleQuantitySelect}
-              defaultValue={this.state.quantity}
-            >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-          </div>
-          <button className="add-to-cart" name="add" type="submit">
-            + cart
-          </button>
-        </form>
+      <div className="product card">
+        <div className="card-image">
+          <figure className="image">
+            <img src={product.imageUrl} />
+          </figure>
+        </div>
+        <div className="card-content">
+          <h4 className="title is-3">{product.name}</h4>
+          <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
+
+          <form
+            method="post"
+            onSubmit={this.handleAddToCartSubmit}
+            className="level"
+          >
+            <div className="field cart-item-quantity is-grouped">
+              <div className="control has-icons-left">
+                <span className="select">
+                  <select
+                    name="quantity"
+                    data-product-id={product.id}
+                    onChange={handleQuantitySelect}
+                    defaultValue={this.state.quantity}
+                  >
+                    <option value={0}>Quantity</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                  </select>
+                </span>
+                <span className="icon is-small is-left">
+                  <i className="fas fa-shopping-cart" />
+                </span>
+              </div>
+              <button
+                className="add-to-cart button is-link"
+                name="add"
+                type="submit"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }
