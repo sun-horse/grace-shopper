@@ -1,9 +1,8 @@
 // SingleProduct module
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {formatPrice} from '../utils'
-import {fetchProduct} from '../store'
+import {fetchProduct, addItem} from '../store'
 
 // define class SingleProduct
 export class SingleProduct extends Component {
@@ -30,11 +29,6 @@ export class SingleProduct extends Component {
 
   render() {
     const {product} = this.props
-    console.log(product)
-    // if (!product.id) {
-    //   return <Redirect to="/" />
-    // }
-
     return !product.id ? (
       <div>Nothing found</div>
     ) : (
@@ -71,7 +65,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchProduct: productId => dispatch(fetchProduct(productId))
+  fetchProduct: productId => dispatch(fetchProduct(productId)),
+  addItem: product => dispatch(addItem(product))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

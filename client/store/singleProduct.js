@@ -21,9 +21,10 @@ const gotProduct = product => ({type: GOT_PRODUCT, product})
 export const fetchProduct = productId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/products/${productId}`)
-    dispatch(gotProduct(data))
+    const productsWithQuant = {...data, quantity: 1}
+    dispatch(gotProduct(productsWithQuant || defaultProduct))
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
   }
 }
 
