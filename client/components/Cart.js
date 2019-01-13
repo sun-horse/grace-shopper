@@ -18,6 +18,7 @@ export class Cart extends Component {
 
   componentDidMount() {
     this.setState({cart: dummyCart})
+    window.localStorage.setItem('cart', JSON.stringify(dummyCart))
   }
 
   handleQuantitySelect(evt) {

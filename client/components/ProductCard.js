@@ -31,6 +31,12 @@ export class ProductCard extends Component {
     const productToAdd = this.props.product
     productToAdd.quantity = quantity
     this.props.addItem(productToAdd)
+
+    // update cart object in local storage
+    const localCart = JSON.parse(window.localStorage.getItem('cart'))
+    const newProducts = [...localCart.products, productToAdd]
+    localCart.products = newProducts
+    console.log('local cart: ', localCart)
   }
 
   render() {
