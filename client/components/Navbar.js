@@ -7,7 +7,18 @@ import {logout} from '../store'
 export const Navbar = ({handleClick, isLoggedIn, cart}) => {
   let totalProducts = 0
 
-  cart.products.forEach(product => {
+  const storeCart = cart
+  let localCart = {products: []}
+
+  // tests don't have access to global window object
+  if (process.env.NODE_ENV !== 'test') {
+    localCart = JSON.parse(window.localStorage.getItem('cart'))
+  }
+
+  // use cart from the store if user is logged in or we're running a test
+  const cartToUse =
+    isLoggedIn || process.env.NODE_ENV === 'test' ? storeCart : localCart
+  cartToUse.products.forEach(product => {
     totalProducts += Number(product.quantity)
   })
   totalProducts = totalProducts.toString()

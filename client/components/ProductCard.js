@@ -36,7 +36,7 @@ export class ProductCard extends Component {
     const localCart = JSON.parse(window.localStorage.getItem('cart'))
     const newProducts = [...localCart.products, productToAdd]
     localCart.products = newProducts
-    console.log('local cart: ', localCart)
+    window.localStorage.setItem('cart', JSON.stringify(localCart))
   }
 
   render() {
@@ -57,16 +57,18 @@ export class ProductCard extends Component {
             onSubmit={this.handleAddToCartSubmit}
             className="level"
           >
-            <div className="field cart-item-quantity is-grouped">
-              <div className="control has-icons-left">
+            <div className="field cart-item-quantity is-grouped level">
+              <label className="label level-item is-marginless">
+                Quantity:&nbsp;&nbsp;
+              </label>
+              <div className="control level-item has-icons-left">
                 <span className="select">
                   <select
                     name="quantity"
                     data-product-id={product.id}
                     onChange={handleQuantitySelect}
-                    defaultValue={this.state.quantity}
+                    defaultValue={product.quantity}
                   >
-                    <option value={0}>Quantity</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
@@ -79,7 +81,7 @@ export class ProductCard extends Component {
                 </span>
               </div>
               <button
-                className="add-to-cart button is-link"
+                className="add-to-cart button is-link level-item"
                 name="add"
                 type="submit"
               >

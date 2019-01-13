@@ -17,8 +17,18 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    this.setState({cart: dummyCart})
-    window.localStorage.setItem('cart', JSON.stringify(dummyCart))
+    // fetch cart from store if user is logged in
+
+    // use local storage if user is not logged in
+    let localCart
+    if (process.env.NODE_ENV !== 'test') {
+      localCart = JSON.parse(window.localStorage.getItem('cart'))
+    }
+    if (localCart) {
+      this.setState({cart: localCart})
+    } else {
+      this.setState({cart: dummyCart})
+    }
   }
 
   handleQuantitySelect(evt) {
