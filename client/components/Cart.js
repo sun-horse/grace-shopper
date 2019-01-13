@@ -17,17 +17,16 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    // fetch cart from store if user is logged in
-
-    // use local storage if user is not logged in
     let localCart
     if (process.env.NODE_ENV !== 'test') {
       localCart = JSON.parse(window.localStorage.getItem('cart'))
     }
-    if (localCart) {
-      this.setState({cart: localCart})
-    } else {
+    if (this.props.isLoggedIn) {
+      // need to fetch cart from store with state.user.id
       this.setState({cart: dummyCart})
+    } else {
+      // use local storage if user is not logged in
+      this.setState({cart: localCart})
     }
   }
 
@@ -110,6 +109,7 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
+  isLoggedIn: !!state.user.id,
   cart: state.cart
 })
 
