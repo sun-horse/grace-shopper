@@ -20,7 +20,7 @@ export class ProductCard extends Component {
     super(props)
     // local state for keeping track of product quantity
     this.state = {
-      quantity: Number(this.props.product.quantity) || 1
+      quantity: 0
     }
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
@@ -45,23 +45,26 @@ export class ProductCard extends Component {
         <div className="card-content">
           <h4 className="title is-3">{product.name}</h4>
           <p className="subtitle is-5">Price: ${formatPrice(product.price)}</p>
-        </div>
-        <form method="post" onSubmit={this.handleAddToCartSubmit}>
-          <footer className="card-footer">
-            <div className="cart-item-quantity cart-footer-item">
-              Quantity:{' '}
-              <select
-                name="quantity"
-                data-product-id={product.id}
-                onChange={handleQuantitySelect}
-                defaultValue={this.state.quantity}
-              >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-              </select>
+
+          <form method="post" onSubmit={this.handleAddToCartSubmit}>
+            <div className="field cart-item-quantity cart-footer-item">
+              <div className="control">
+                <div className="select">
+                  <select
+                    name="quantity"
+                    data-product-id={product.id}
+                    onChange={handleQuantitySelect}
+                    defaultValue={this.state.quantity}
+                  >
+                    <option value={0}>Quantity</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                  </select>
+                </div>
+              </div>
             </div>
             <button
               className="add-to-cart cart-footer-item"
@@ -70,8 +73,8 @@ export class ProductCard extends Component {
             >
               Add to Cart
             </button>
-          </footer>
-        </form>
+          </form>
+        </div>
       </div>
     )
   }
