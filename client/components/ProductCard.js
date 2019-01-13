@@ -18,10 +18,6 @@ import {addItem} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    // local state for keeping track of product quantity
-    this.state = {
-      quantity: 0
-    }
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
 
