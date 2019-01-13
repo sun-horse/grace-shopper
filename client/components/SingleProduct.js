@@ -1,5 +1,6 @@
 // SingleProduct module
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {formatPrice} from '../utils'
 import {fetchProduct} from '../store'
@@ -29,7 +30,14 @@ export class SingleProduct extends Component {
 
   render() {
     const {product} = this.props
-    return (
+    console.log(product)
+    // if (!product.id) {
+    //   return <Redirect to="/" />
+    // }
+
+    return !product.id ? (
+      <div>Nothing found</div>
+    ) : (
       <div className="product">
         <img src={product.imageUrl} height="200" width="200" />
         <h4>{product.name}</h4>
