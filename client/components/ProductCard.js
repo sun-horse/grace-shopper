@@ -43,9 +43,9 @@ export class ProductCard extends Component {
           </figure>
         </div>
         <div className="card-content">
-          <h4 className="title is-3">
-            <NavLink to={`/products/${product.id}`}>{product.name} </NavLink>
-          </h4>
+          <NavLink to={`/products/${product.id}`}>
+            <h4 className="title is-3">{product.name}</h4>
+          </NavLink>
 
           <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
 
