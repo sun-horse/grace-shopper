@@ -53,7 +53,7 @@ export class Cart extends Component {
     if (products) {
       return (
         <div className="cart">
-          <h3 className="title">Cart</h3>
+          <h3 className="title is-2">Cart</h3>
           <div className="columns">
             {products.map(product => {
               totalCost += product.price * product.quantity

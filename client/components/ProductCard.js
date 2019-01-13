@@ -44,12 +44,16 @@ export class ProductCard extends Component {
         </div>
         <div className="card-content">
           <h4 className="title is-3">{product.name}</h4>
-          <p className="subtitle is-5">Price: ${formatPrice(product.price)}</p>
+          <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
 
-          <form method="post" onSubmit={this.handleAddToCartSubmit}>
-            <div className="field cart-item-quantity cart-footer-item">
-              <div className="control">
-                <div className="select">
+          <form
+            method="post"
+            onSubmit={this.handleAddToCartSubmit}
+            className="level"
+          >
+            <div className="field cart-item-quantity is-grouped">
+              <div className="control has-icons-left">
+                <span className="select">
                   <select
                     name="quantity"
                     data-product-id={product.id}
@@ -63,16 +67,19 @@ export class ProductCard extends Component {
                     <option value={4}>4</option>
                     <option value={5}>5</option>
                   </select>
-                </div>
+                </span>
+                <span className="icon is-small is-left">
+                  <i className="fas fa-shopping-cart" />
+                </span>
               </div>
+              <button
+                className="add-to-cart button is-link"
+                name="add"
+                type="submit"
+              >
+                Add to Cart
+              </button>
             </div>
-            <button
-              className="add-to-cart cart-footer-item"
-              name="add"
-              type="submit"
-            >
-              Add to Cart
-            </button>
           </form>
         </div>
       </div>
