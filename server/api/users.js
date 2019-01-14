@@ -3,7 +3,7 @@ const {User, OrderProduct} = require('../db/models')
 
 module.exports = router
 
-router.get('/:userId/orders', async (req, res, next) => {
+router.get('/:userId/cart', async (req, res, next) => {
   try {
     let cart
     if (req.user) {
