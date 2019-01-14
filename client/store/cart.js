@@ -24,6 +24,16 @@ const getCart = cart => ({type: GET_CART, cart, orderId: cart.orderId})
  * THUNK CREATORS
  */
 
+export const createCart = userId => async dispatch => {
+  try {
+    if (userId) {
+      await axios.post(`/api/${userId}/cart`)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const addToCart = (item, userId) => async dispatch => {
   try {
     await axios.post(`/api/${userId}/orders`, item)

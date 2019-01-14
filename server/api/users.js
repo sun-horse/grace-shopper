@@ -26,3 +26,15 @@ router.get('/:userId/cart', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/:userId/cart', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId)
+    const cart = await Order.create({
+      userId: user.id
+    })
+    res.json(cart)
+  } catch (err) {
+    next(err)
+  }
+})
