@@ -9,3 +9,11 @@ export const handleAddToCartSubmit = evt => {
   productToAdd.quantity = quantity
   this.props.addItem(productToAdd)
 }
+
+export const countTotalItems = products => {
+  let total = 0
+  products.forEach(product => {
+    total += Number(product.quantity)
+  })
+  return total
+}

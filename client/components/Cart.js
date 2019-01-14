@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {ProductCard} from '.'
-import {formatPrice} from '../utils'
+import {formatPrice, countTotalItems} from '../utils'
 import {dummyCart} from './testData.js'
-import {setCart} from '../store'
+import {setCart, getUser} from '../store'
 
 export class Cart extends Component {
   constructor(props) {
@@ -11,33 +11,21 @@ export class Cart extends Component {
     this.handleQuantitySelect = this.handleQuantitySelect.bind(this)
   }
 
-  componentDidMount() {
-    this.props.setCart(this.props.user.id)
-  }
+  // componentDidMount() {
+  //   if(this.props.user.id){
+  //     this.props.setCart(this.props.user.id)
+  //   }
+  // }
 
   handleQuantitySelect(evt) {
     const newQuantity = Number(evt.target.value)
-
-    // determine current product on which to change the quantity key
-    const productId = Number(evt.target.getAttribute('data-product-id'))
-
-    // don't mutate existing products array on state
-    const products = this.state.cart.products
-    const newProducts = [...products]
-
-    // find the product whose quantity we want to change
-    newProducts.forEach(p => {
-      if (p.id === productId) {
-        p.quantity = newQuantity
-      }
-    })
   }
 
   render() {
     let totalCost = 0
     let totalItems = 0
     const products = this.props.cart.products
-
+    console.log(this.props)
     if (products) {
       return (
         <div className="cart">
@@ -88,7 +76,8 @@ export class Cart extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  user: state.user
+  user: state.user,
+  orderId: state.cart.orderId
 })
 
 const mapDispatchToProps = dispatch => ({
