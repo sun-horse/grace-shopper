@@ -16,7 +16,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/products">
-          <img src="logo.png" height="40" />
+          <img src="logo.png" height="50" />
         </a>
 
         <a
@@ -60,12 +60,10 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link to="/cart">
-              <button type="button">
-                <i className="fas fa-shopping-cart" />
-                <p id="cart-count">{totalProducts}</p>
-              </button>
-            </Link>
+            <a href="/cart" className="button is-primary">
+              <i className="fas fa-shopping-cart" />
+              <p id="cart-count">&nbsp;{totalProducts}</p>
+            </a>
           </div>
         </div>
       </div>
