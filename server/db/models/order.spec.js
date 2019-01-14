@@ -73,24 +73,50 @@ describe('Order and Order-products model', () => {
     })
   })
 
-  xdescribe('getProductsByOrderId(): Order-products class method', async () => {
-    const orderProducts = await OrderProduct.getProductsByOrderId(1)
-    it('returns', () => {})
-    xit('returns the same information as the Order Instance method', async () => {
-      const order = await Order.findById(1)
-      const orderProductsInstance = await order.getProducts()
+  describe('getProductsByOrderId(): Order-products class method', () => {
+    it('returns an object', async () => {
+      const orderProducts1 = await OrderProduct.getProductsByOrderId(1)
 
-      // console.log(orderProductsInstance)
+      const orderProducts2 = await OrderProduct.getProductsByOrderId(2)
 
-      const orderProductsClass = await OrderProduct.getProductsByOrderId(1)
+      const orderProducts3 = await OrderProduct.getProductsByOrderId(3)
 
-      console.log(orderProductsClass)
+      expect(orderProducts1).to.be.an('object')
+      expect(orderProducts2).to.be.an('object')
+      expect(orderProducts3).to.be.an('object')
+    })
 
-      expect(typeof orderProductsInstance).to.equal(typeof orderProductsClass)
+    it('returns an array of products', async () => {
+      const orderProducts1 = await OrderProduct.getProductsByOrderId(1)
 
-      expect(orderProductsInstance).to.equal(orderProductsClass)
+      const orderProducts2 = await OrderProduct.getProductsByOrderId(2)
 
-      expect(orderProductsInstance.length).to.equal(orderProductsClass.length)
+      const orderProducts3 = await OrderProduct.getProductsByOrderId(99)
+
+      expect(orderProducts1.products).to.be.an('array')
+      expect(orderProducts1.products).to.have.lengthOf(2)
+
+      expect(orderProducts2.products).to.be.an('array')
+      expect(orderProducts2.products).to.have.lengthOf(0)
+
+      expect(orderProducts3.products).to.be.an('array')
+      expect(orderProducts3.products).to.have.lengthOf(0)
+    })
+
+    it('returns the orderId', async () => {
+      const orderProducts1 = await OrderProduct.getProductsByOrderId(1)
+
+      const orderProducts2 = await OrderProduct.getProductsByOrderId(2)
+
+      const orderProducts3 = await OrderProduct.getProductsByOrderId(99)
+
+      expect(orderProducts1.orderId).to.be.an('number')
+      expect(orderProducts1.orderId).to.equal(1)
+
+      expect(orderProducts2.orderId).to.be.an('number')
+      expect(orderProducts2.orderId).to.equal(2)
+
+      expect(orderProducts3.orderId).to.equal(null)
     })
   })
 })
