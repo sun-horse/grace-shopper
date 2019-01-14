@@ -4,26 +4,6 @@ const db = require('../db')
 const Order = require('./order')
 const OrderProduct = require('./orderProduct')
 
-const dummyCart = {
-  products: [
-    {
-      id: 1,
-      name: 'Mane Glitter',
-      price: 200,
-      imageUrl: '/images/glitter.jpg',
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: 'Pegasus Wings',
-      price: 300,
-      imageUrl: '/images/wings.jpg',
-      quantity: 3
-    }
-  ],
-  orderId: 1
-}
-
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {ProductCard} from '.'
 import {formatPrice} from '../utils'
 import {dummyCart} from './testData.js'
+import {setCart} from '../store'
 
 export class Cart extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    this.setState({cart: dummyCart})
+    // this.setState({cart: dummyCart})
+    this.props.setCart(this.props.user.id)
   }
 
   handleQuantitySelect(evt) {
@@ -99,9 +101,12 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  setCart: userId => dispatch(setCart(userId))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

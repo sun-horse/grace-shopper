@@ -19,9 +19,8 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:userId/cart', async (req, res, next) => {
   try {
-    const user = await User.findById(Number(req.params.userId))
+    const user = await User.findById(req.params.userId)
     const cart = await user.getCart()
-    console.log('cart?? ', cart)
     res.json(cart)
   } catch (err) {
     next(err)

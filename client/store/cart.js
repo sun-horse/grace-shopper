@@ -18,7 +18,7 @@ const defaultCart = {
  * ACTION CREATORS
  */
 export const addItem = item => ({type: ADD_ITEM, item})
-const getCart = cart => ({type: GET_CART, cart, orderId: cart[0].orderId})
+const getCart = cart => ({type: GET_CART, cart, orderId: cart.orderId})
 
 /**
  * THUNK CREATORS
@@ -33,11 +33,18 @@ export const addToCart = (item, userId) => async dispatch => {
   }
 }
 
-//DO NOT USE YET - Need to send userId to thunk
 export const setCart = userId => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${userId}/orders`)
-    dispatch(getCart(res.data))
+    let cart
+    if (userId) {
+      const res = await axios.get(`/api/users/${userId}/cart`)
+      cart = res.data
+    } else {
+      // get cart from local storage
+      console.log('not logged in, need to get cart from local storage!')
+      cart = {products: [], orderId: null}
+    }
+    dispatch(getCart(cart))
   } catch (err) {
     console.error(err)
   }
