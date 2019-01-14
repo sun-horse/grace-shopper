@@ -17,7 +17,8 @@ describe('AllProducts component', () => {
     {
       id: 1,
       name: 'Fake glitter',
-      price: 100
+      price: 100,
+      description: 'Test desc'
     }
   ]
 

@@ -11,12 +11,14 @@ describe('Order and Order-products model', () => {
 
       const product1 = await Product.create({
         name: 'glitter paint',
-        price: 690
+        price: 690,
+        description: 'Test desc'
       }).then(product => product.addOrders(order))
 
       const product2 = await Product.create({
         name: 'soothing balm',
-        price: 350
+        price: 350,
+        description: 'Test desc'
       }).then(product => product.addOrders(order))
 
       const order2 = await Order.create({isActive: false})
