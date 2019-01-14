@@ -27,12 +27,19 @@ router.get('/:userId/cart', async (req, res, next) => {
   }
 })
 
-router.post('/:userId/cart', async (req, res, next) => {
+router.put('/:userId/cart', async (req, res, next) => {
   try {
+    const item = req.body.item
+    const orderId = req.body.orderId
     const user = await User.findById(req.params.userId)
-    const cart = await Order.create({
-      userId: user.id
+    // update our association table
+    await OrderProduct.create({
+      orderId,
+      productId: item.id,
+      quantity: item.quantity
     })
+    // get the updated cart
+    const cart = await user.getCart()
     res.json(cart)
   } catch (err) {
     next(err)

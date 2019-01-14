@@ -34,9 +34,11 @@ export const createCart = userId => async dispatch => {
   }
 }
 
-export const addToCart = (item, userId) => async dispatch => {
+export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
-    await axios.post(`/api/${userId}/orders`, item)
+    await axios.put(`/api/${userId}/orders`, {item, orderId})
+    // put request
+    // check for null userId/orderId
     dispatch(addItem(item))
   } catch (err) {
     console.error(err)

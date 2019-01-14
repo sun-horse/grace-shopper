@@ -8,7 +8,7 @@ export class AllProducts extends Component {
     this.props.fetchProducts()
   }
   componentDidUpdate(prevProps) {
-    //Did we just log in or out
+    // Did we just log in or out?
     if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
       this.props.setCart(this.props.user.id)
     }

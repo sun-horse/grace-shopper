@@ -30,7 +30,7 @@ export class ProductCard extends Component {
     const quantity = Number(evt.target.quantity.value)
     const productToAdd = this.props.product
     productToAdd.quantity = quantity
-    this.props.addItem(productToAdd)
+    this.props.addToCart(productToAdd, this.props.userId, this.props.orderId)
   }
 
   render() {
@@ -90,10 +90,17 @@ export class ProductCard extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  userId: state.user.id,
+  orderId: state.cart.orderId
+})
+
 const mapDispatchToProps = dispatch => ({
   addItem: product => dispatch(addItem(product))
 })
-export default withRouter(connect(null, mapDispatchToProps)(ProductCard))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductCard)
+)
 
 /**
  * PROP TYPES

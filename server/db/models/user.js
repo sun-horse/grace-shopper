@@ -41,7 +41,7 @@ User.prototype.correctPassword = function(candidatePwd) {
 }
 
 User.prototype.getCart = async function() {
-  const [activeOrder, wasCreated] = await Order.findOrCreate({
+  const [activeOrder] = await Order.findOrCreate({
     where: {userId: this.id, isActive: true}
   })
   const cart = await OrderProduct.getProductsById(activeOrder.id)
