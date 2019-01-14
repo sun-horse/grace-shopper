@@ -13,9 +13,10 @@ enzyme.configure({adapter})
 describe('Navbar', () => {
   let navBar
   const cart = dummyCart
+  const user = {email: 'test@email.com'}
 
   beforeEach(() => {
-    navBar = shallow(<Navbar cart={cart} />)
+    navBar = shallow(<Navbar cart={cart} user={user} />)
   })
 
   it('renders the number of items in the cart', () => {
