@@ -27,18 +27,56 @@ describe('Order and Order-products model', () => {
     }
   })
 
-  describe('returnCartObject(): Order instance method', () => {
-    it('returns', async () => {
-      // const orderProducts = await OrderProduct.getProductsByOrderId(2)
-      const orderProducts = await Order.findById(2).then(order =>
-        order.returnCartObject()
+  describe('returnOrderObject(): Order instance method', () => {
+    it('returns an object', async () => {
+      const orderProducts1 = await Order.findById(1).then(order =>
+        order.returnOrderObject()
       )
-      console.log(orderProducts)
+
+      const orderProducts2 = await Order.findById(2).then(order =>
+        order.returnOrderObject()
+      )
+      expect(orderProducts1).to.be.an('object')
+      expect(orderProducts2).to.be.an('object')
+    })
+
+    it('contains a products array', async () => {
+      const orderProducts1 = await Order.findById(1).then(order =>
+        order.returnOrderObject()
+      )
+
+      const orderProducts2 = await Order.findById(2).then(order =>
+        order.returnOrderObject()
+      )
+
+      expect(orderProducts1.products).to.be.an('array')
+      expect(orderProducts1.products).to.have.lengthOf(2)
+
+      expect(orderProducts2.products).to.be.an('array')
+      expect(orderProducts2.products).to.have.lengthOf(0)
+    })
+
+    it('contains the orderId', async () => {
+      const orderProducts1 = await Order.findById(1).then(order =>
+        order.returnOrderObject()
+      )
+
+      const orderProducts2 = await Order.findById(2).then(order =>
+        order.returnOrderObject()
+      )
+
+      expect(orderProducts1.orderId).to.be.a('number')
+      expect(orderProducts1.orderId).to.equal(1)
+
+      expect(orderProducts2.orderId).to.be.a('number')
+      expect(orderProducts2.orderId).to.equal(2)
     })
   })
 
-  xdescribe('getProductsByOrderId(): Order-products class method', () => {
-    it('returns the same information as the Order Instance method', async () => {
+  xdescribe('getProductsByOrderId(): Order-products class method', async () => {
+    const orderProducts = await OrderProduct.getProductsByOrderId(1)
+    it('returns', () => {})
+    xit('returns the same information as the Order Instance method', async () => {
       const order = await Order.findById(1)
       const orderProductsInstance = await order.getProducts()
 

@@ -11,7 +11,7 @@ const Order = db.define('orders', {
 })
 
 // Instance method
-Order.prototype.returnCartObject = async function() {
+Order.prototype.returnOrderObject = async function() {
   // Returns an empty array if no products in order
   const products = await this.getProducts().then(
     list => (list ? list.map(product => product.dataValues) : [])
