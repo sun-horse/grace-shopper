@@ -15,7 +15,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
+        <a className="navbar-item" href="/products">
           <img
             src="https://bulma.io/images/bulma-logo.png"
             width="112"
@@ -38,31 +38,38 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item">Home</a>
+          <a className="navbar-item" href="/products">
+            Shop
+          </a>
 
-          <a className="navbar-item">Documentation</a>
-
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">More</a>
-
-            <div className="navbar-dropdown">
-              <a className="navbar-item">About</a>
-              <a className="navbar-item">Jobs</a>
-              <a className="navbar-item">Contact</a>
-              <hr className="navbar-divider" />
-              <a className="navbar-item">Report an issue</a>
+          {isLoggedIn ? (
+            <div className="navbar-item">
+              {/* The navbar will show these links after you log in */}
+              <a href="#" onClick={handleClick} className="button is-light">
+                Log out
+              </a>
             </div>
-          </div>
+          ) : (
+            <div className="navbar-item">
+              <a href="/login" className="button is-light">
+                Log in
+              </a>
+
+              <a href="/signup" className="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a className="button is-light">Log in</a>
-            </div>
+            <Link to="/cart">
+              <button type="button">
+                <i className="fas fa-shopping-cart" />
+                <p id="cart-count">{totalProducts}</p>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
