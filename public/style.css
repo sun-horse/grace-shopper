@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  margin-bottom: 5em;
 }
 
 a {
@@ -24,4 +25,12 @@ nav button {
 
 .input {
   width: 30%;
+}
+.cart footer {
+  padding: 3rem 1.5rem;
+}
+
+/* checkout button */
+#cart-checkout {
+  margin-left: 1em;
 }
