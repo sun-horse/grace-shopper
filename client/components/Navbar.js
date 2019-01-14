@@ -16,11 +16,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/products">
-          <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-          />
+          <img src="logo.png" height="40" />
         </a>
 
         <a
