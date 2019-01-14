@@ -13,35 +13,50 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
   totalProducts = totalProducts.toString()
 
   return (
-    <div>
-      <h1 className="title is-2">
-        <Link to="/products">Sun Horse</Link>
-      </h1>
-      <nav>
-        {isLoggedIn ? (
-          <div>
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <a className="navbar-item" href="/products">
+          <img src="logo.png" height="50" />
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-start">
+          <a className="navbar-item" href="/products">
+            Shop
+          </a>
+
+          {isLoggedIn ? (
+            <div className="navbar-item">
+              {/* The navbar will show these links after you log in */}
+              <a href="#" onClick={handleClick} className="button is-light">
+                Log out
+              </a>
+            </div>
+          ) : (
+            <div className="navbar-item">
+              <a href="/login" className="button is-light">
+                Log in
+              </a>
+
+              <a href="/signup" className="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+            </div>
+          )}
+        </div>
+
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <a href="/cart" className="button is-primary">
+              <i className="fas fa-shopping-cart" />
+              <p>&nbsp;</p>
+              <p id="cart-count">{totalProducts}</p>
             </a>
           </div>
-        ) : (
-          <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
-        )}
-        <Link to="/cart">
-          <button type="button">
-            <i className="fas fa-shopping-cart" />
-            <p id="cart-count">{totalProducts}</p>
-          </button>
-        </Link>
-      </nav>
-      <hr />
-    </div>
+        </div>
+      </div>
+    </nav>
   )
 }
 
