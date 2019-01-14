@@ -31,13 +31,24 @@ router.put('/:userId/cart', async (req, res, next) => {
   try {
     const item = req.body.item
     const orderId = req.body.orderId
+    const productId = item.id
     const user = await User.findById(req.params.userId)
-    // update our association table
-    const addedItem = await OrderProduct.create({
-      orderId,
-      productId: item.id,
-      quantity: item.quantity
+
+    // if the item is already in the cart, update its quantity
+    const existingItem = await OrderProduct.findOne({
+      where: {orderId, productId}
     })
+    if (existingItem) {
+      const quantity = existingItem.quantity + item.quantity
+      await existingItem.update({quantity})
+    } else {
+      await OrderProduct.create({
+        orderId,
+        productId,
+        quantity: item.quantity
+      })
+    }
+
     // get the updated cart
     const cart = await user.getCart()
     res.json(cart)

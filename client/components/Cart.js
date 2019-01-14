@@ -9,16 +9,9 @@ export class Cart extends Component {
   constructor(props) {
     super(props)
     this.handleQuantitySelect = this.handleQuantitySelect.bind(this)
-    this.state = {
-      cart: {
-        products: [],
-        orderId: null
-      }
-    }
   }
 
   componentDidMount() {
-    // this.setState({cart: dummyCart})
     this.props.setCart(this.props.user.id)
   }
 
@@ -38,19 +31,12 @@ export class Cart extends Component {
         p.quantity = newQuantity
       }
     })
-
-    // update local state
-    this.setState({
-      cart: {
-        products: newProducts
-      }
-    })
   }
 
   render() {
     let totalCost = 0
     let totalItems = 0
-    const products = this.state.cart.products
+    const products = this.props.cart.products
 
     if (products) {
       return (
