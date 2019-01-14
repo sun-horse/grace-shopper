@@ -7,8 +7,16 @@ describe('cart reducer', () => {
     products: []
   }
 
-  const glitterPaint = {name: 'glitter paint', price: 690}
-  const soothingBalm = {name: 'soothing balm', price: 350}
+  const glitterPaint = {
+    name: 'glitter paint',
+    price: 690,
+    description: 'Test desc'
+  }
+  const soothingBalm = {
+    name: 'soothing balm',
+    price: 350,
+    description: 'Test desc'
+  }
 
   const updatedCart = reducer(initialCart, {
     type: 'ADD_ITEM',
