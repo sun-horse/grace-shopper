@@ -44,7 +44,7 @@ User.prototype.getCart = async function() {
   const [activeOrder] = await Order.findOrCreate({
     where: {userId: this.id, isActive: true}
   })
-  const cart = await OrderProduct.getProductsById(activeOrder.id)
+  const cart = await OrderProduct.getProductsByOrderId(activeOrder.id)
   return cart
 }
 
