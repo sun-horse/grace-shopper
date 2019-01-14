@@ -19,39 +19,7 @@ if (process.env.NODE_ENV === 'test') {
   after('close the session store', () => sessionStore.stopExpiringSessions())
 }
 
-/**
- * In your development environment, you can keep all of your
- * app's secret API keys in a file called `secrets.js`, in your project
- * root. This file is included in the .gitignore - it will NOT be tracked
- * or show up on Github. On your production server, you can add these
- * keys as environment variables, so that they can still be read by the
- * Node process on process.env
- */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
-// enable cors
-app.use(cors())
-// const allowedOrigins = [
-//   'http://localhost:8080/*',
-//   'http://sun-horse-herokoapp.com'
-// ]
-
-// app.use(
-//   cors({
-//     origin: function(origin, callback) {
-//       // allow requests with no origin
-//       // (like mobile apps or curl requests)
-//       // if(!origin) return callback(null, true);
-//       console.log('showing origin', origin)
-//       if (allowedOrigins.indexOf(origin) === -1) {
-//         const errMsg = 'Guests are welcome through front door!'
-//         return callback(new Error(errMsg), false)
-//       }
-
-//       return callback(null, true)
-//     }
-//   })
-// )
-
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
 
