@@ -23,6 +23,9 @@ nav button {
   display: none;
 }
 
+.input {
+  width: 30%;
+}
 .cart footer {
   padding: 3rem 1.5rem;
 }
