@@ -28,17 +28,13 @@ const AuthForm = props => {
             <input className="input" name="password" type="password" />
           </div>
         </div>
-        <div className="buttons">
-          <span>
-            <button className="button is-primary" type="submit">
-              {displayName}
-            </button>
-          </span>
-          <span>
-            <a className="button" href="/auth/google">
-              {displayName} with Google
-            </a>
-          </span>
+        <div className="field buttons is-grouped">
+          <button className="button is-primary" type="submit">
+            {displayName}
+          </button>
+          <a className="button" href="/auth/google">
+            {displayName} with Google
+          </a>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
