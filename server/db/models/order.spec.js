@@ -7,19 +7,19 @@ const OrderProduct = db.model('order-products')
 describe('Order and Order-products model', () => {
   beforeEach(async () => {
     try {
-      const order = await Order.create({isActive: false})
+      const order1 = await Order.create({isActive: false})
 
       const product1 = await Product.create({
         name: 'glitter paint',
         price: 690,
         description: 'Test desc'
-      }).then(product => product.addOrders(order))
+      }).then(product => product.addOrders(order1))
 
       const product2 = await Product.create({
         name: 'soothing balm',
         price: 350,
         description: 'Test desc'
-      }).then(product => product.addOrders(order))
+      }).then(product => product.addOrders(order1))
 
       const order2 = await Order.create({isActive: false})
     } catch (err) {
@@ -27,40 +27,17 @@ describe('Order and Order-products model', () => {
     }
   })
 
-  describe('returnCartObject()', () => {
+  describe('returnCartObject(): Order instance method', () => {
     it('returns', async () => {
-      const orderProducts = await OrderProduct.getProductsByOrderId(3)
-      // const orderProducts = await Order.findById(2).then(order =>
-      //   order.returnCartObject()
-      // )
+      // const orderProducts = await OrderProduct.getProductsByOrderId(2)
+      const orderProducts = await Order.findById(2).then(order =>
+        order.returnCartObject()
+      )
       console.log(orderProducts)
     })
   })
 
-  xdescribe('Order: Instance method `getProducts`', () => {
-    it('returns and object with the array of products and the orderId', async () => {
-      const order = await Order.findById(1)
-      const orderProducts = await order.getProducts()
-
-      // console.log(orderProducts)
-
-      expect(orderProducts).to.be.an('array')
-      expect(orderProducts).to.have.lengthOf(2)
-    })
-  })
-
-  xdescribe('Order: Instance method `getTotal`', () => {
-    it('returns the total of the order when quantity of each item is 1', async () => {
-      const order = await Order.findById(1)
-      const orderProductsInstance = await order.getProducts()
-      const orderTotal = await order.getTotal(orderProductsInstance.products)
-
-      expect(orderTotal).to.be.a('number')
-      expect(orderTotal).to.equal(1040)
-    })
-  })
-
-  xdescribe('Order-Product: Class method `getProductsByOrderId`', () => {
+  xdescribe('getProductsByOrderId(): Order-products class method', () => {
     it('returns the same information as the Order Instance method', async () => {
       const order = await Order.findById(1)
       const orderProductsInstance = await order.getProducts()
