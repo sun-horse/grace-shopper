@@ -18,18 +18,6 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
         <a className="navbar-item" href="/products">
           <img src="logo.png" height="50" />
         </a>
-
-        <a
-          role="button"
-          className="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-        </a>
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
