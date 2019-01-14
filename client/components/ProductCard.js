@@ -10,7 +10,7 @@ import {formatPrice} from '../utils'
 /**
  * IMPORT CART THUNK
  */
-import {addItem} from '../store'
+import {addToCart} from '../store'
 
 /**
  * COMPONENT
@@ -18,10 +18,6 @@ import {addItem} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    // local state for keeping track of product quantity
-    this.state = {
-      quantity: 0
-    }
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
 
@@ -61,7 +57,7 @@ export class ProductCard extends Component {
                     name="quantity"
                     data-product-id={product.id}
                     onChange={handleQuantitySelect}
-                    defaultValue={this.state.quantity}
+                    defaultValue={product.quantity}
                   >
                     <option value={0}>Quantity</option>
                     <option value={1}>1</option>
@@ -96,7 +92,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addItem: product => dispatch(addItem(product))
+  addToCart: (product, userId, orderId) =>
+    dispatch(addToCart(product, userId, orderId))
 })
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ProductCard)

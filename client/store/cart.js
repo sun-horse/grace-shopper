@@ -24,21 +24,13 @@ const getCart = cart => ({type: GET_CART, cart, orderId: cart.orderId})
  * THUNK CREATORS
  */
 
-export const createCart = userId => async dispatch => {
-  try {
-    if (userId) {
-      await axios.post(`/api/${userId}/cart`)
-    }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
-    await axios.put(`/api/${userId}/orders`, {item, orderId})
-    // put request
-    // check for null userId/orderId
+    if (userId) {
+      await axios.put(`/api/users/${userId}/cart`, {item, orderId})
+    } else {
+      //update local storage
+    }
     dispatch(addItem(item))
   } catch (err) {
     console.error(err)
@@ -53,7 +45,6 @@ export const setCart = userId => async dispatch => {
       cart = res.data
     } else {
       // get cart from local storage
-      console.log('not logged in, need to get cart from local storage!')
       cart = {products: [], orderId: null}
     }
     dispatch(getCart(cart))
