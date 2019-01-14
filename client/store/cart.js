@@ -5,6 +5,7 @@ const ADD_ITEM = 'ADD_ITEM'
 const GET_CART = 'GET_CART'
 
 import axios from 'axios'
+import user from './user';
 
 /**
  * INITIAL STATE
@@ -25,8 +26,19 @@ const getCart = cart => ({type: GET_CART, cart, orderId: cart[0].orderId})
  */
 
 //DO NOT USE YET - need to send arguments to thunk
+//TODO #38 - Add arguments...
+// 1. *componentDidUpdate()
+// 2. *load user with a cart.
+// 3. /api/me/cart /api/me/orders
+
+
 export const addToOrder = (item, userId) => async dispatch => {
   try {
+    // if(userId){
+    //   await axios.post(`/api/${userId}/orders`, item)
+    // } else {
+    //   // await localStorage.setItem(...)
+    // }
     await axios.post(`/api/${userId}/orders`, item)
     dispatch(addItem(item))
   } catch (err) {

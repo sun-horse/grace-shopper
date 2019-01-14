@@ -31,6 +31,7 @@ export class Cart extends Component {
     const newProducts = [...products]
 
     // find the product whose quantity we want to change
+    // CG: Still don't sacrifice good naming conventions. 
     newProducts.forEach(p => {
       if (p.id === productId) {
         p.quantity = newQuantity

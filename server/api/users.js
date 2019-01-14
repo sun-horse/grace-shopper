@@ -20,6 +20,13 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:userId/orders', async (req, res, next) => {
   try {
+    // CG: if(req.user && (req.user.userId === Number(req.params.id) || req.user.isAdmin))
+    // CG: req.user.getOrders({
+    //   where:,
+    //   include: []
+    // })
+    // findOrCreate...
+    // getCart();
     const existingOrder = await Order.findOne({
       where: {
         userId: req.params.userId,

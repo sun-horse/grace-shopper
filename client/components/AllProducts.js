@@ -8,6 +8,7 @@ export class AllProducts extends Component {
     this.props.fetchProducts()
   }
 
+  // CG: Make sure top level divs are all classified/identified.
   render() {
     return (
       <div>

@@ -7,11 +7,13 @@ const OrderProduct = db.define('order-products', {
   quantity: {
     type: Sequelize.INTEGER,
     defaultValue: 1
-  }
+  } //CG: Think about putting a prcie on here at purchase.
 })
 
 OrderProduct.getProductsById = async function(orderId) {
   try {
+    // const order = await Order.findById(orderId);
+    // order.getProducts();
     const orderProducts = await OrderProduct.findAll({
       where: {orderId}
     }).map(obj => obj.dataValues.productId)

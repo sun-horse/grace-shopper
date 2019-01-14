@@ -63,6 +63,7 @@ export class ProductCard extends Component {
                     onChange={handleQuantitySelect}
                     defaultValue={this.state.quantity}
                   >
+                  {/* Think of a function based off inventory. */}
                     <option value={0}>Quantity</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>

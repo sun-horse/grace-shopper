@@ -12,9 +12,9 @@ const Order = db.define('orders', {
 })
 
 // Instance method
-Order.prototype.getProducts = function() {
-  return OrderProduct.getProductsById(this.dataValues.id)
-}
+// Order.prototype.getProducts = function() {
+//   return OrderProduct.getProductsById(this.dataValues.id)
+// }
 
 // Instance method -- does not account for quantity
 Order.prototype.getTotal = function(productArr) {
