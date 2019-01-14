@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const Op = Sequelize.Op
 const Product = require('./product')
+const Order = require('./order')
 
 const OrderProduct = db.define('order-products', {
   quantity: {
@@ -10,25 +11,20 @@ const OrderProduct = db.define('order-products', {
   }
 })
 
-OrderProduct.getProductsById = async function(orderId) {
+OrderProduct.getProductsByOrderId = async function(orderId) {
   try {
-    const orderProducts = await OrderProduct.findAll({
-      where: {orderId}
-    }).map(obj => obj.dataValues.productId)
+    const order = await Order.findById(orderId)
+    let products = []
 
-    const productList = await Product.findAll({
-      where: {
-        id: {
-          [Op.in]: orderProducts
-        }
-      }
-    })
-
-    const orderProductsObj = {
-      products: productList.map(obj => obj.dataValues),
-      orderId
+    if (order) {
+      products = await order
+        .getProducts()
+        .then(list => (list ? list.map(product => product.dataValues) : []))
+    } else {
+      orderId = null
     }
-    return orderProductsObj
+
+    return {products, orderId}
   } catch (err) {
     console.log(err.message)
   }
