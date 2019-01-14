@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-export const Navbar = ({handleClick, isLoggedIn, cart}) => {
+export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
   let totalProducts = 0
 
   cart.products.forEach(product => {
@@ -44,6 +44,11 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
               </Link>
             </div>
           )}
+          <div className="navbar-item">
+            <h3 className="subtitle is-4 has-text-info">
+              Be empowered {user.email ? user.email : 'SunHorse'}!
+            </h3>
+          </div>
         </div>
 
         <div className="navbar-end">
@@ -66,6 +71,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
+    user: state.user,
     cart: state.cart
   }
 }
