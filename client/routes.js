@@ -16,8 +16,9 @@ import {me, setCart} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
+    this.props.setCart(this.props.user.id)
   }
 
   render() {
@@ -61,8 +62,8 @@ const mapDispatch = dispatch => {
   return {
     async loadInitialData() {
       await dispatch(me())
-      dispatch(setCart())
-    }
+    },
+    setCart: userId => dispatch(setCart(userId))
   }
 }
 

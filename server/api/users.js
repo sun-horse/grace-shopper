@@ -19,8 +19,13 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:userId/cart', async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.userId)
-    const cart = await user.getCart()
+    let cart
+    if (req.user) {
+      const user = await User.findById(req.params.userId)
+      cart = await user.getCart()
+    } else {
+      cart = undefined
+    }
     res.json(cart)
   } catch (err) {
     next(err)

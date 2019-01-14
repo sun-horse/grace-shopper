@@ -43,18 +43,14 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
   }
 }
 
-export const setCart = () => async dispatch => {
+export const setCart = userId => async dispatch => {
   try {
-    let cart
-    if (req.user) {
-      const res = await axios.get(`/api/users/${userId}/cart`)
-      cart = res.data
+    const res = await axios.get(`/api/users/${userId}/cart`)
+    if (res.data) {
+      dispatch(getCart(res.data))
     } else {
-      // get cart from local storage
-      cart = {products: [], orderId: null}
+      //get cart from local storage and dispatch that cart
     }
-    console.log('in thunk', cart)
-    dispatch(getCart(cart))
   } catch (err) {
     console.error(err)
   }
@@ -66,11 +62,7 @@ export const setCart = () => async dispatch => {
 export default function(state = defaultCart, action) {
   switch (action.type) {
     case GET_CART:
-      return {
-        ...state,
-        products: action.cart.products,
-        orderId: action.cart.orderId
-      }
+      return action.cart
     case ADD_ITEM:
       return {...state, products: [...state.products, action.item]}
     // case UPDATE_ITEM_QUANTITY:
