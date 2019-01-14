@@ -33,7 +33,7 @@ router.put('/:userId/cart', async (req, res, next) => {
     const orderId = req.body.orderId
     const user = await User.findById(req.params.userId)
     // update our association table
-    await OrderProduct.create({
+    const addedItem = await OrderProduct.create({
       orderId,
       productId: item.id,
       quantity: item.quantity
