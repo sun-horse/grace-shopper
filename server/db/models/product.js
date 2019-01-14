@@ -25,7 +25,8 @@ const Product = db.define('products', {
     defaultValue: DEFAULT_IMAGE_URL
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    allowNull: false
   }
 })
 

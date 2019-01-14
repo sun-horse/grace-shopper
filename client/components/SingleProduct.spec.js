@@ -11,7 +11,7 @@ enzyme.configure({adapter})
 
 describe('SingleProduct component', () => {
   let wrapper
-  const product = {name: 'Fake glitter', price: 100}
+  const product = {name: 'Fake glitter', price: 100, description: 'Test desc'}
   const match = {
     params: {
       productId: 1 //any id you want to set
