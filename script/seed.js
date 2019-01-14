@@ -1,7 +1,17 @@
 'use strict'
-
+const hipsum = require('lorem-hipsum')
 const db = require('../server/db')
 const {User, Product, Order} = require('../server/db/models')
+
+// generate description
+const loremHipsum = () =>
+  hipsum({
+    count: 3,
+    units: 'paragraphs',
+    paragraphLowerBound: 3,
+    paragraphUpperBound: 15,
+    format: 'plain'
+  })
 
 async function seed() {
   await db.sync({force: true})
@@ -12,9 +22,21 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
   const products = await Promise.all([
-    Product.create({name: 'Glitter Paint', price: 690}),
-    Product.create({name: 'Soothing Balm', price: 350}),
-    Product.create({name: 'Flying Dust', price: 1000})
+    Product.create({
+      name: 'Glitter Paint',
+      price: 690,
+      description: loremHipsum()
+    }),
+    Product.create({
+      name: 'Soothing Balm',
+      price: 350,
+      description: loremHipsum()
+    }),
+    Product.create({
+      name: 'Flying Dust',
+      price: 1000,
+      description: loremHipsum()
+    })
   ])
 
   // Seed association tables

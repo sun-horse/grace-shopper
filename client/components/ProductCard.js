@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {withRouter} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {formatPrice} from '../utils'
 
@@ -43,7 +43,10 @@ export class ProductCard extends Component {
           </figure>
         </div>
         <div className="card-content">
-          <h4 className="title is-3">{product.name}</h4>
+          <NavLink to={`/products/${product.id}`}>
+            <h4 className="title is-3">{product.name}</h4>
+          </NavLink>
+
           <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
 
           <form
