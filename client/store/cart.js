@@ -24,8 +24,7 @@ const getCart = cart => ({type: GET_CART, cart, orderId: cart[0].orderId})
  * THUNK CREATORS
  */
 
-//DO NOT USE YET - need to send arguments to thunk
-export const addToOrder = (item, userId) => async dispatch => {
+export const addToCart = (item, userId) => async dispatch => {
   try {
     await axios.post(`/api/${userId}/orders`, item)
     dispatch(addItem(item))
