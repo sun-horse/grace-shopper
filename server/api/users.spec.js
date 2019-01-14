@@ -11,7 +11,7 @@ describe('User routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
+  xdescribe('/api/users/', () => {
     const codysEmail = 'cody@puppybook.com'
 
     beforeEach(() => {
