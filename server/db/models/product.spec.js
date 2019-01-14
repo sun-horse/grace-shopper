@@ -47,5 +47,18 @@ describe('Product model', () => {
         expect(err.message).to.contain('price cannot be null')
       }
     })
+
+    it('requires `description`', async () => {
+      const product = Product.build()
+
+      try {
+        await product.validate()
+        throw Error(
+          'validation was successful but should have failed without `description`'
+        )
+      } catch (err) {
+        expect(err.message).to.contain('description cannot be null')
+      }
+    })
   })
 })

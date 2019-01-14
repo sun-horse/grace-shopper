@@ -12,7 +12,8 @@ describe('Product routes', () => {
   describe('/api/products', () => {
     const freeSample = {
       name: 'Free Sample',
-      price: 0
+      price: 0,
+      description: 'Test description'
     }
 
     beforeEach(() => {

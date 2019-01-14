@@ -28,7 +28,12 @@ describe('product thunk creators', () => {
 
   describe('fetchProducts', () => {
     it('eventually dispatches the GET PRODUCTS action', async () => {
-      const fakeProduct = {name: 'Fake Glitter', price: 100, quantity: 1}
+      const fakeProduct = {
+        name: 'Fake Glitter',
+        price: 100,
+        quantity: 1,
+        description: 'Test description'
+      }
       const fakeProducts = [fakeProduct]
       mockAxios.onGet('/api/products').replyOnce(200, fakeProducts)
       await store.dispatch(fetchProducts())
