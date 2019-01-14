@@ -21,3 +21,7 @@ nav button {
 .cart .add-to-cart {
   display: none;
 }
+
+.input {
+  width: 30%;
+}
