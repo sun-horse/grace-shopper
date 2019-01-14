@@ -15,44 +15,44 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item" href="/products">
+        <Link to="/products" className="navbar-item">
           <img src="logo.png" height="50" />
-        </a>
+        </Link>
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item" href="/products">
+          <Link to="/products" className="navbar-item">
             Shop
-          </a>
+          </Link>
 
           {isLoggedIn ? (
             <div className="navbar-item">
               {/* The navbar will show these links after you log in */}
-              <a href="#" onClick={handleClick} className="button is-light">
+              <Link to="#" onClick={handleClick} className="button is-light">
                 Log out
-              </a>
+              </Link>
             </div>
           ) : (
             <div className="navbar-item">
-              <a href="/login" className="button is-light">
+              <Link to="/login" className="button is-light">
                 Log in
-              </a>
+              </Link>
 
-              <a href="/signup" className="button is-primary">
+              <Link to="/signup" className="button is-primary">
                 <strong>Sign up</strong>
-              </a>
+              </Link>
             </div>
           )}
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <a href="/cart" className="button is-primary">
+            <Link to="/cart" className="button is-primary">
               <i className="fas fa-shopping-cart" />
               <p>&nbsp;</p>
               <p id="cart-count">{totalProducts}</p>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
