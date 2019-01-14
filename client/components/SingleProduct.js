@@ -41,8 +41,12 @@ export class SingleProduct extends Component {
           </div>
           <div className="column card-content">
             <h4 className="title is-3">{product.name}</h4>
-            <p className="desc is-medium"> {product.description}</p>
             <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
+            <p className="desc is-medium">
+              {' '}
+              {product.description.slice(0, 250)}
+              {'...'}
+            </p>
 
             <form
               method="post"

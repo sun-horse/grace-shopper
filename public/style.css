@@ -31,3 +31,7 @@ nav button {
 #cart-checkout {
   margin-left: 1em;
 }
+/* single product desc*/
+.desc {
+  margin-bottom: 1.5rem;
+}
