@@ -32,7 +32,8 @@ export class ProductCard extends Component {
   }
 
   render() {
-    const {product} = this.props
+    const {product, actionToken} = this.props
+    console.log('In product card', actionToken)
     return (
       <div className="product card">
         <div className="card-image">
@@ -76,7 +77,7 @@ export class ProductCard extends Component {
                 name="add"
                 type="submit"
               >
-                Add to Cart
+                {actionToken ? actionToken : 'Add to Cart'}
               </button>
             </div>
           </form>

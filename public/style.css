@@ -24,9 +24,9 @@ nav .button {
 }
 
 /* don't display add to cart buttons on cart componenent */
-.cart .add-to-cart {
+/* .cart .add-to-cart {
   display: none;
-}
+} */
 
 .input {
   width: 30%;

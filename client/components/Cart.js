@@ -4,6 +4,15 @@ import {ProductCard} from '.'
 import {formatPrice, countTotalItems} from '../utils'
 
 export class Cart extends Component {
+  constructor(props) {
+    super(props)
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this)
+  }
+
+  handleCheckoutClick(evt) {
+    console.log('checking out', this.props.cart)
+  }
+
   render() {
     let totalCost = 0
     const products = this.props.cart.products
@@ -19,7 +28,11 @@ export class Cart extends Component {
               totalCost += product.price * product.quantity
               return (
                 <div key={product.id} className="cart-item column">
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    actionToken="Update Cart"
+                  />
                 </div>
               )
             })}
@@ -30,7 +43,7 @@ export class Cart extends Component {
               <div className="level-item cart-total">
                 <h4 className="subtitle is-3 is-spaced">
                   <i className="fas fa-calculator" />
-                  Total Cost ({cartQuantity} items):
+                  Total Cost ({cartQuantity}
                   {cartQuantity === 1 ? ' item' : ' items'}):
                 </h4>
                 <h5 className="title is-3">${formatPrice(totalCost)}</h5>
@@ -40,6 +53,7 @@ export class Cart extends Component {
                   type="button"
                   id="cart-checkout"
                   className="button is-primary is-large"
+                  onClick={this.handleCheckoutClick}
                 >
                   Check Out
                 </button>
@@ -55,6 +69,9 @@ export class Cart extends Component {
 const mapStateToProps = state => ({
   cart: state.cart,
   user: state.user
+})
+const mapDispatchToProps = dispatch => ({
+  cartCheckout: products => dispatch(cartCheckout(products))
 })
 
 export default connect(mapStateToProps)(Cart)
