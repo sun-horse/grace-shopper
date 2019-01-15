@@ -52,3 +52,7 @@ nav .button {
 .cart-total h4 {
   color: #666;
 }
+
+.product.card {
+  margin-bottom: 2rem;
+}
