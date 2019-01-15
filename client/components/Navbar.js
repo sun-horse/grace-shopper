@@ -10,7 +10,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/products" className="navbar-item">
-          <img src="logo.png" height="50" />
+          <img src="/images/logo.png" height="50" />
         </Link>
       </div>
 
