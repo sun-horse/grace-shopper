@@ -29,13 +29,10 @@ router.put('/:userId/cart', async (req, res, next) => {
     const existingItem = await OrderProduct.findOne({
       where: {orderId, productId}
     })
-    console.log('existing item is: ', existingItem)
     if (existingItem) {
       const quantity = existingItem.quantity + item.quantity
-      console.log('new quantity: ', quantity)
       await existingItem.update({quantity})
     } else {
-      console.log('order ID is: ', orderId)
       await OrderProduct.create({
         quantity: item.quantity,
         productId,
