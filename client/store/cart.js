@@ -56,7 +56,6 @@ export const setCart = userId => async dispatch => {
     const localCart = JSON.parse(window.localStorage.getItem('cart'))
     // if user is logged in
     if (userId) {
-      console.log('logged in')
       // TODO: api route that just returns the orderId based on userId?
       const getResponse = await axios.get(`/api/users/${userId}/cart`)
       const orderId = getResponse.data.orderId
