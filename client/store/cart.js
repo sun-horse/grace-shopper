@@ -2,8 +2,8 @@
  * ACTION TYPES
  */
 const ADD_ITEM = 'ADD_ITEM'
-const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 const GET_CART = 'GET_CART'
+const CLEAR_CART = 'CLEAR_CART'
 
 import axios from 'axios'
 
@@ -20,6 +20,7 @@ export const defaultCart = {
  */
 const addItem = item => ({type: ADD_ITEM, item})
 export const getCart = cart => ({type: GET_CART, cart})
+export const clearCart = () => ({type: CLEAR_CART})
 
 /**
  * THUNK CREATORS
@@ -78,6 +79,8 @@ export default function(state = defaultCart, action) {
       return {...state, products: [...state.products, action.item]}
     case GET_CART:
       return action.cart
+    case CLEAR_CART:
+      return defaultCart
     default:
       return state
   }
