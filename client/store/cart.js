@@ -26,7 +26,12 @@ export const clearCart = () => ({type: CLEAR_CART})
  * THUNK CREATORS
  */
 
-export const addToCart = (item, userId, orderId) => async dispatch => {
+export const addToCart = (
+  item,
+  userId,
+  orderId,
+  actionToken
+) => async dispatch => {
   try {
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
@@ -41,7 +46,13 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
         dispatch(addItem(item))
       } else {
         // otherwise, update product quantity and get the cart
-        localCart.products[itemIndex].quantity += item.quantity
+        if (actionToken) {
+          // update cart action
+          localCart.products[itemIndex].quantity = item.quantity
+        } else {
+          // add to existing quantity
+          localCart.products[itemIndex].quantity += item.quantity
+        }
         dispatch(getCart(localCart))
       }
       window.localStorage.setItem('cart', JSON.stringify(localCart))

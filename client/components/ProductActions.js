@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProductActions = ({product, handleAddToCartSubmit}) => {
+const ProductActions = ({product, handleCartSubmit, actionToken}) => {
   const numOptions = product.inventory < 10 ? product.inventory : 10
   const dropdown = [...Array(numOptions)]
   return (
@@ -10,7 +10,7 @@ const ProductActions = ({product, handleAddToCartSubmit}) => {
           <div className="message-body">Sold Out!</div>
         </article>
       ) : (
-        <form method="post" onSubmit={handleAddToCartSubmit} className="level">
+        <form method="post" onSubmit={handleCartSubmit} className="level">
           <div className="field cart-item-quantity is-grouped">
             <div className="control has-icons-left">
               <span className="select">
@@ -35,7 +35,7 @@ const ProductActions = ({product, handleAddToCartSubmit}) => {
               name="add"
               type="submit"
             >
-              Add to Cart
+              {actionToken ? actionToken : 'Add to Cart'}
             </button>
           </div>
         </form>

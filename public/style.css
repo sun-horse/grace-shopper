@@ -35,11 +35,6 @@ nav .button {
   padding-right: 0.3rem;
 }
 
-/* don't display add to cart buttons on cart componenent */
-.cart .add-to-cart {
-  display: none;
-}
-
 .input {
   width: 30%;
 }

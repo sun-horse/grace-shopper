@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {formatPrice} from '../utils'
+import {formatPrice, handleCartSubmit} from '../utils'
 import ProductActions from './ProductActions'
 
 /**
@@ -19,26 +19,12 @@ import {addToCart, setCart} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
-  }
-
-  async handleAddToCartSubmit(evt) {
-    evt.preventDefault()
-    const quantity = Number(evt.target.quantity.value)
-    const productToAdd = this.props.product
-    productToAdd.quantity = quantity
-    // if product is already in cart, update quantity on state instead of
-    // adding a new item on the front end
-    await this.props.addToCart(
-      productToAdd,
-      this.props.userId,
-      this.props.orderId
-    )
-    this.props.setCart(this.props.userId)
+    this.handleCartSubmit = handleCartSubmit
+    this.handleCartSubmit = this.handleCartSubmit.bind(this)
   }
 
   render() {
-    const {product} = this.props
+    const {product, actionToken} = this.props
     return (
       <div className="product card">
         <div className="card-image">
@@ -56,7 +42,8 @@ export class ProductCard extends Component {
           <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
           <ProductActions
             product={product}
-            handleAddToCartSubmit={this.handleAddToCartSubmit}
+            handleCartSubmit={this.handleCartSubmit}
+            actionToken={actionToken}
           />
         </div>
       </div>
@@ -70,8 +57,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: (product, userId, orderId) =>
-    dispatch(addToCart(product, userId, orderId)),
+  addToCart: (product, userId, orderId, actionToken) =>
+    dispatch(addToCart(product, userId, orderId, actionToken)),
   setCart: userId => dispatch(setCart(userId))
 })
 export default withRouter(

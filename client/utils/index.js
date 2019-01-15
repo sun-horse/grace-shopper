@@ -25,7 +25,7 @@ export const sumTotalCost = products => {
   return total
 }
 
-export const formatProductColumns = products => {
+export const formatProductColumns = (products, actionToken) => {
   // if there are more than 3 products, chunk them into columns
   const productsInColumns =
     products.length > 3
@@ -37,11 +37,27 @@ export const formatProductColumns = products => {
         return (
           <div className="column" key={i}>
             {column.map(product => {
-              return <ProductCard product={product} key={product.id} />
+              return (
+                <ProductCard
+                  product={product}
+                  key={product.id}
+                  actionToken={actionToken}
+                />
+              )
             })}
           </div>
         )
       })}
     </div>
   )
+}
+
+// method to add / update cart
+export async function handleCartSubmit(evt) {
+  evt.preventDefault()
+  const {product, userId, orderId, actionToken} = this.props
+  const quantity = Number(evt.target.quantity.value)
+  product.quantity = quantity
+  await this.props.addToCart(product, userId, orderId, actionToken)
+  this.props.setCart(userId)
 }

@@ -28,7 +28,7 @@ export class Cart extends Component {
       return (
         <div className="section cart">
           <h3 className="title is-2">Cart</h3>
-          {formatProductColumns(products)}
+          {formatProductColumns(products, 'Update Cart')}
           <footer className="level footer">
             <div className="level-left" />
             <div className="level-right">
