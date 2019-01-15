@@ -49,7 +49,7 @@ export const auth = (email, password, method) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
-    // clear local storage
+    // TODO: clear local storage
     dispatch(removeUser())
     history.push('/login')
   } catch (err) {
