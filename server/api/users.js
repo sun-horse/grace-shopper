@@ -3,7 +3,15 @@ const {User, OrderProduct} = require('../db/models')
 
 module.exports = router
 
-router.get('/:userId/cart', async (req, res, next) => {
+const sameUser = (req, res, next) => {
+  if (Number(req.params.userId) === req.user.id) {
+    next()
+  } else {
+    res.sendStatus(403)
+  }
+}
+
+router.get('/:userId/cart', sameUser, async (req, res, next) => {
   try {
     let cart = null
     if (req.user) {
@@ -16,7 +24,7 @@ router.get('/:userId/cart', async (req, res, next) => {
   }
 })
 
-router.put('/:userId/cart', async (req, res, next) => {
+router.put('/:userId/cart', sameUser, async (req, res, next) => {
   try {
     const item = req.body.item
     const orderId = req.body.orderId

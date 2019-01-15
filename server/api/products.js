@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, OrderProduct} = require('../db/models')
+const {Product} = require('../db/models')
 module.exports = router
 
 // all products
@@ -39,20 +39,6 @@ router.get('/:productId', async (req, res, next) => {
     } else {
       res.status(401).send('Nothing found here, go to store front')
     }
-  } catch (err) {
-    next(err)
-  }
-})
-
-// security check pending
-router.post('/', async (req, res, next) => {
-  try {
-    await OrderProduct.create({
-      orderId: req.body.orderId,
-      productId: req.body.productId
-    })
-    res.status(201)
-    res.json('Product added to order')
   } catch (err) {
     next(err)
   }
