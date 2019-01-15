@@ -79,7 +79,6 @@ export const setCart = userId => async dispatch => {
         dispatch(getCart(getResponse.data))
       }
     } else {
-      console.log('not logged in')
       // if user is not logged in, get cart from local storage
       // create the cart key on local storage first if needed
       if (!localCart) {
