@@ -14,7 +14,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
         </Link>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div className="navbar-menu">
         <div className="navbar-start">
           <Link to="/products" className="navbar-item">
             Shop

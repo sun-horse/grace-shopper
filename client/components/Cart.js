@@ -4,6 +4,56 @@ import {ProductCard} from '.'
 import {formatPrice, countTotalItems} from '../utils'
 
 export class Cart extends Component {
+  constructor(props) {
+    super(props)
+    this.handleQuantitySelect = this.handleQuantitySelect.bind(this)
+    this.state = {
+      cart: {
+        products: [],
+        orderId: null
+      }
+    }
+  }
+
+  componentDidMount() {
+    let localCart
+    if (process.env.NODE_ENV !== 'test') {
+      localCart = JSON.parse(window.localStorage.getItem('cart'))
+    }
+    if (this.props.isLoggedIn || process.env.NODE_ENV === 'test') {
+      // need to fetch cart from store with state.user.id
+      this.setState({cart: dummyCart})
+    } else {
+      // use local storage if user is not logged in
+      this.setState({cart: localCart})
+    }
+  }
+
+  handleQuantitySelect(evt) {
+    const newQuantity = Number(evt.target.value)
+
+    // determine current product on which to change the quantity key
+    const productId = Number(evt.target.getAttribute('data-product-id'))
+
+    // don't mutate existing products array on state
+    const products = this.state.cart.products
+    const newProducts = [...products]
+
+    // find the product whose quantity we want to change
+    newProducts.forEach(p => {
+      if (p.id === productId) {
+        p.quantity = newQuantity
+      }
+    })
+
+    // update local state
+    this.setState({
+      cart: {
+        products: newProducts
+      }
+    })
+  }
+
   render() {
     let totalCost = 0
     const products = this.props.cart.products

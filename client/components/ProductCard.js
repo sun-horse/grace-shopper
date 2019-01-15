@@ -52,8 +52,11 @@ export class ProductCard extends Component {
             onSubmit={this.handleAddToCartSubmit}
             className="level"
           >
-            <div className="field cart-item-quantity is-grouped">
-              <div className="control has-icons-left">
+            <div className="field cart-item-quantity is-grouped level">
+              <label className="label level-item is-marginless">
+                Quantity:&nbsp;&nbsp;
+              </label>
+              <div className="control level-item has-icons-left">
                 <span className="select">
                   <select
                     name="quantity"
@@ -72,7 +75,7 @@ export class ProductCard extends Component {
                 </span>
               </div>
               <button
-                className="add-to-cart button is-link"
+                className="add-to-cart button is-link level-item"
                 name="add"
                 type="submit"
               >
