@@ -4,10 +4,16 @@ module.exports = router
 
 router.post('/', async (req, res, next) => {
   try {
-    // console.log(req)
-    // const order = await Order.findCreateFind({where: {id: 1}})
-    const order = await Order.create()
-    await Product.findById(1).then(product => product.addOrders(order))
+    const [order] = await Order.findOrCreate({
+      where: {id: req.body.orderId, isActive: true}
+    })
+    const products = req.body.products
+
+    products.forEach(async product => {
+      await Product.findById(product.id).then(product =>
+        product.addOrders(order)
+      )
+    })
     // await order.update({
     //   isActive: false,
     //   finalizedAt: new Date()
