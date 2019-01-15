@@ -2,7 +2,7 @@ const {expect} = require('chai')
 const db = require('../index')
 const Product = db.model('products')
 const Order = db.model('orders')
-const OrderProduct = db.model('order-products')
+const OrderProduct = db.model('order_products')
 
 describe('Order and Order-products model', () => {
   beforeEach(async () => {
