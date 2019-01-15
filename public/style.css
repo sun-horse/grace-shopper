@@ -38,3 +38,12 @@ nav button {
 .desc {
   margin-bottom: 1.5rem;
 }
+
+.cart-total i,
+.cart-total h4 {
+  margin-right: 0.5rem;
+}
+
+.cart-total h4 {
+  color: #666;
+}
