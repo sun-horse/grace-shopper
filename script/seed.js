@@ -68,14 +68,14 @@ async function seed() {
     })
   ])
 
-  // Seed association tables
-  const newUser = await User.findById(2)
-  const newOrder = await Order.create({isActive: true})
-  newUser.addOrders(newOrder)
+  // // Seed association tables
+  // const newUser = await User.findById(2)
+  // const newOrder = await Order.create({isActive: true})
+  // newUser.addOrders(newOrder)
 
-  // Add items to Order-Products listg
-  await Product.findById(3).then(product => product.addOrders(newOrder))
-  await Product.findById(2).then(product => product.addOrders(newOrder))
+  // // Add items to Order-Products listg
+  // await Product.findById(3).then(product => product.addOrders(newOrder))
+  // await Product.findById(2).then(product => product.addOrders(newOrder))
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
