@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import {ProductCard} from '../components/ProductCard'
+import ProductCard from '../components/ProductCard'
 
 // price is stored in cents, so divide by 100 for dollars
 export const formatPrice = priceInCents => {
@@ -27,7 +27,7 @@ export const sumTotalCost = products => {
 
 export const formatProductColumns = products => {
   const productsInColumns =
-    products.length > 2
+    products.length > 3
       ? _.chunk(products, 2)
       : products.map(product => [product])
   return (
