@@ -13,7 +13,7 @@ export class AllProducts extends Component {
       <div>
         <h3 className="title is-2">All Products</h3>
         <div className="columns">
-          {this.props.products.map((product, i) => {
+          {this.props.products.map(product => {
             return (
               <div className="column" key={product.id}>
                 <ProductCard product={product} />

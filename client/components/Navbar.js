@@ -3,15 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {countTotalItems} from '../utils'
 
 export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
-  let totalProducts = 0
-
-  cart.products.forEach(product => {
-    totalProducts += Number(product.quantity)
-  })
-  totalProducts = totalProducts.toString()
-
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -56,7 +50,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
             <Link to="/cart" className="button is-primary">
               <i className="fas fa-shopping-cart" />
               <p>&nbsp;</p>
-              <p id="cart-count">{totalProducts}</p>
+              <p id="cart-count">{countTotalItems(cart.products).toString()}</p>
             </Link>
           </div>
         </div>

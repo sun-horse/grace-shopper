@@ -10,7 +10,7 @@ import {formatPrice} from '../utils'
 /**
  * IMPORT CART THUNK
  */
-import {addItem} from '../store'
+import {addToCart} from '../store'
 
 /**
  * COMPONENT
@@ -18,10 +18,6 @@ import {addItem} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    // local state for keeping track of product quantity
-    this.state = {
-      quantity: 0
-    }
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
 
@@ -30,11 +26,13 @@ export class ProductCard extends Component {
     const quantity = Number(evt.target.quantity.value)
     const productToAdd = this.props.product
     productToAdd.quantity = quantity
-    this.props.addItem(productToAdd)
+    // if product is already in cart, update quantity on state instead of
+    // adding a new item on the front end
+    this.props.addToCart(productToAdd, this.props.userId, this.props.orderId)
   }
 
   render() {
-    const {product, handleQuantitySelect} = this.props
+    const {product} = this.props
     return (
       <div className="product card">
         <div className="card-image">
@@ -60,10 +58,8 @@ export class ProductCard extends Component {
                   <select
                     name="quantity"
                     data-product-id={product.id}
-                    onChange={handleQuantitySelect}
-                    defaultValue={this.state.quantity}
+                    defaultValue={product.quantity}
                   >
-                    <option value={0}>Quantity</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
@@ -90,10 +86,18 @@ export class ProductCard extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  addItem: product => dispatch(addItem(product))
+const mapStateToProps = state => ({
+  userId: state.user.id,
+  orderId: state.cart.orderId
 })
-export default withRouter(connect(null, mapDispatchToProps)(ProductCard))
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: (product, userId, orderId) =>
+    dispatch(addToCart(product, userId, orderId))
+})
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductCard)
+)
 
 /**
  * PROP TYPES

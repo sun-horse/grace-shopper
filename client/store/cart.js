@@ -2,6 +2,7 @@
  * ACTION TYPES
  */
 const ADD_ITEM = 'ADD_ITEM'
+const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 const GET_CART = 'GET_CART'
 
 import axios from 'axios'
@@ -17,28 +18,36 @@ const defaultCart = {
 /**
  * ACTION CREATORS
  */
-export const addItem = item => ({type: ADD_ITEM, item})
-const getCart = cart => ({type: GET_CART, cart, orderId: cart[0].orderId})
+const addItem = item => ({type: ADD_ITEM, item})
+export const updateItemQuantity = () => ({})
+
+const getCart = cart => ({type: GET_CART, cart, orderId: cart.orderId})
 
 /**
  * THUNK CREATORS
  */
 
-//DO NOT USE YET - need to send arguments to thunk
-export const addToOrder = (item, userId) => async dispatch => {
+export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
-    await axios.post(`/api/${userId}/orders`, item)
+    if (userId) {
+      await axios.put(`/api/users/${userId}/cart`, {item, orderId})
+    } else {
+      //update local storage
+    }
     dispatch(addItem(item))
   } catch (err) {
     console.error(err)
   }
 }
 
-//DO NOT USE YET - Need to send userId to thunk
 export const setCart = userId => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${userId}/orders`)
-    dispatch(getCart(res.data))
+    const res = await axios.get(`/api/users/${userId}/cart`)
+    if (res.data) {
+      dispatch(getCart(res.data))
+    } else {
+      //get cart from local storage and dispatch that cart
+    }
   } catch (err) {
     console.error(err)
   }
@@ -49,10 +58,12 @@ export const setCart = userId => async dispatch => {
  */
 export default function(state = defaultCart, action) {
   switch (action.type) {
-    case GET_CART:
-      return action.cart
     case ADD_ITEM:
       return {...state, products: [...state.products, action.item]}
+    case UPDATE_ITEM_QUANTITY:
+      return state
+    case GET_CART:
+      return action.cart
     default:
       return state
   }

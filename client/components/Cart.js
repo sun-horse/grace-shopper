@@ -1,55 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {ProductCard} from '.'
-import {formatPrice} from '../utils'
-import {dummyCart} from './testData.js'
+import {formatPrice, countTotalItems} from '../utils'
 
 export class Cart extends Component {
-  constructor(props) {
-    super(props)
-    this.handleQuantitySelect = this.handleQuantitySelect.bind(this)
-    this.state = {
-      cart: {
-        products: [],
-        orderId: null
-      }
-    }
-  }
-
-  componentDidMount() {
-    this.setState({cart: dummyCart})
-  }
-
-  handleQuantitySelect(evt) {
-    const newQuantity = Number(evt.target.value)
-
-    // determine current product on which to change the quantity key
-    const productId = Number(evt.target.getAttribute('data-product-id'))
-
-    // don't mutate existing products array on state
-    const products = this.state.cart.products
-    const newProducts = [...products]
-
-    // find the product whose quantity we want to change
-    newProducts.forEach(p => {
-      if (p.id === productId) {
-        p.quantity = newQuantity
-      }
-    })
-
-    // update local state
-    this.setState({
-      cart: {
-        products: newProducts
-      }
-    })
-  }
-
   render() {
     let totalCost = 0
-    let totalItems = 0
-    const products = this.state.cart.products
-
+    const products = this.props.cart.products
     if (products) {
       return (
         <div className="cart">
@@ -58,14 +15,9 @@ export class Cart extends Component {
           <div className="columns">
             {products.map(product => {
               totalCost += product.price * product.quantity
-              totalItems += product.quantity
               return (
                 <div key={product.id} className="cart-item column">
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    handleQuantitySelect={this.handleQuantitySelect}
-                  />
+                  <ProductCard key={product.id} product={product} />
                 </div>
               )
             })}
@@ -75,7 +27,7 @@ export class Cart extends Component {
             <div className="level-right">
               <div className="level-item">
                 <h4 className="subtitle is-3 is-spaced">
-                  Total Cost ({totalItems} items):
+                  Total Cost ({countTotalItems(products)} items):
                 </h4>
                 <h5 className="title is-3">
                   &nbsp;&nbsp;${formatPrice(totalCost)}
@@ -99,9 +51,8 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps)(Cart)

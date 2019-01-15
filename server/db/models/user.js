@@ -1,6 +1,8 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Order = require('./order')
+const OrderProduct = require('./orderProduct')
 
 const User = db.define('user', {
   email: {
@@ -36,6 +38,14 @@ module.exports = User
  */
 User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
+}
+
+User.prototype.getCart = async function() {
+  const [activeOrder] = await Order.findOrCreate({
+    where: {userId: this.id, isActive: true}
+  })
+  const cart = await OrderProduct.getProductsByOrderId(activeOrder.id)
+  return cart
 }
 
 /**

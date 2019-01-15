@@ -41,7 +41,7 @@ async function seed() {
 
   // Seed association tables
   const newUser = await User.findById(2)
-  const newOrder = await Order.create({isActive: false})
+  const newOrder = await Order.create({isActive: true})
   newUser.addOrders(newOrder)
 
   // Add items to Order-Products listg
