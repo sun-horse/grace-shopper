@@ -76,9 +76,9 @@ export const checkoutCart = (userId, cart) => async dispatch => {
       // axios post request
       // const response = await axios.post('/api/checkout', data)
     } else {
-      console.log(cart)
       const response = await axios.post('/api/checkout', cart)
-      console.log(response)
+      window.localStorage.clear()
+      dispatch(clearCart())
     }
   } catch (err) {
     console.error(err)
