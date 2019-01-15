@@ -1,7 +1,8 @@
 import React from 'react'
 
 const ProductActions = ({product, handleAddToCartSubmit}) => {
-  const dropdown = [...Array(product.inventory)]
+  const numOptions = product.inventory < 10 ? product.inventory : 10
+  const dropdown = [...Array(numOptions)]
   return (
     <form method="post" onSubmit={handleAddToCartSubmit} className="level">
       <div className="field cart-item-quantity is-grouped">
