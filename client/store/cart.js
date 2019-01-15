@@ -19,7 +19,6 @@ export const defaultCart = {
  * ACTION CREATORS
  */
 const addItem = item => ({type: ADD_ITEM, item})
-const updateItemQuantity = () => ({type: UPDATE_ITEM_QUANTITY})
 export const getCart = cart => ({type: GET_CART, cart})
 
 /**
@@ -77,8 +76,6 @@ export default function(state = defaultCart, action) {
   switch (action.type) {
     case ADD_ITEM:
       return {...state, products: [...state.products, action.item]}
-    case UPDATE_ITEM_QUANTITY:
-      return state
     case GET_CART:
       return action.cart
     default:
