@@ -25,7 +25,6 @@ export class ProductCard extends Component {
 
   render() {
     const {product, actionToken} = this.props
-    console.log('In product card', actionToken)
     return (
       <div className="product card">
         <div className="card-image">
