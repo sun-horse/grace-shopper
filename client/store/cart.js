@@ -72,9 +72,7 @@ export const setCart = userId => async dispatch => {
 export const checkoutCart = (userId, cart) => async dispatch => {
   try {
     if (userId) {
-      // const {data} = await axios.get(`/api/users/${userId}/cart`)
-      // axios post request
-      // const response = await axios.post('/api/checkout', data)
+      // TODO: checkout for logged in users
     } else {
       const response = await axios.post('/api/checkout', cart)
       window.localStorage.clear()
