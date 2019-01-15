@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {defaultCart, clearCart} from './cart'
+import {defaultCart, clearCart, fetchProducts} from '../store'
 
 /**
  * ACTION TYPES
@@ -59,6 +59,7 @@ export const logout = () => async dispatch => {
       window.localStorage.setItem('cart', JSON.stringify(defaultCart))
     }
     dispatch(clearCart())
+    dispatch(fetchProducts())
 
     history.push('/login')
   } catch (err) {
