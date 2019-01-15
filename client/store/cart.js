@@ -30,7 +30,7 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
-      dispatch(addItem(item))
+      //dispatch(addItem(item))
     } else {
       // update cart in local storage
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
@@ -54,6 +54,7 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
 
 export const setCart = userId => async dispatch => {
   try {
+    console.log('made it to setCart')
     if (userId) {
       const {data} = await axios.get(`/api/users/${userId}/cart`)
       dispatch(getCart(data))
