@@ -37,7 +37,9 @@ export class ProductCard extends Component {
       <div className="product card">
         <div className="card-image">
           <figure className="image">
-            <img src={product.imageUrl} />
+            <NavLink to={`/products/${product.id}`}>
+              <img src={product.imageUrl} />
+            </NavLink>
           </figure>
         </div>
         <div className="card-content">
