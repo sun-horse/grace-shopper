@@ -26,7 +26,7 @@ export const sumTotalCost = products => {
 }
 
 export const formatProductColumns = products => {
-  // if there are more than 3 products, chunk into columns
+  // if there are more than 3 products, chunk them into columns
   const productsInColumns =
     products.length > 3
       ? _.chunk(products, 2)
