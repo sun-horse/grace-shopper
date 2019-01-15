@@ -10,7 +10,7 @@ import {formatPrice} from '../utils'
 /**
  * IMPORT CART THUNK
  */
-import {addToCart} from '../store'
+import {addToCart, setCart} from '../store'
 
 /**
  * COMPONENT
@@ -21,14 +21,19 @@ export class ProductCard extends Component {
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
 
-  handleAddToCartSubmit(evt) {
+  async handleAddToCartSubmit(evt) {
     evt.preventDefault()
     const quantity = Number(evt.target.quantity.value)
     const productToAdd = this.props.product
     productToAdd.quantity = quantity
     // if product is already in cart, update quantity on state instead of
     // adding a new item on the front end
-    this.props.addToCart(productToAdd, this.props.userId, this.props.orderId)
+    await this.props.addToCart(
+      productToAdd,
+      this.props.userId,
+      this.props.orderId
+    )
+    this.props.setCart(this.props.userId)
   }
 
   render() {
@@ -93,7 +98,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addToCart: (product, userId, orderId) =>
-    dispatch(addToCart(product, userId, orderId))
+    dispatch(addToCart(product, userId, orderId)),
+  setCart: userId => dispatch(setCart(userId))
 })
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ProductCard)
