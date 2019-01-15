@@ -3,7 +3,18 @@ import {connect} from 'react-redux'
 import {ProductCard} from '.'
 import {formatPrice, countTotalItems} from '../utils'
 
+import {checkoutCart} from '../store'
+
 export class Cart extends Component {
+  constructor() {
+    super()
+    this.handleCheckout = this.handleCheckout.bind(this)
+  }
+  handleCheckout(evt) {
+    evt.preventDefault()
+    this.props.checkoutCart(this.props.userId)
+  }
+
   render() {
     let totalCost = 0
     const products = this.props.cart.products
@@ -40,6 +51,7 @@ export class Cart extends Component {
                   type="button"
                   id="cart-checkout"
                   className="button is-primary is-large"
+                  onClick={this.handleCheckout}
                 >
                   Check Out
                 </button>
@@ -54,7 +66,12 @@ export class Cart extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  user: state.user
+  user: state.user,
+  userId: state.user.id
 })
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = dispatch => ({
+  checkoutCart: userId => dispatch(checkoutCart(userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
