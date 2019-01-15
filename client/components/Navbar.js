@@ -50,7 +50,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
             <Link to="/cart" className="button is-primary" id="cart-button">
               <i className="fas fa-shopping-cart" />
               <p id="cart-count">
-                <strong>{countTotalItems(cart.products).toString()}</strong>
+                <strong>{countTotalItems(cart.products)}</strong>
               </p>
             </Link>
           </div>
