@@ -33,8 +33,6 @@ describe('Order and Order-products model', () => {
         order.returnOrderObject()
       )
 
-      console.log(orderProducts1)
-
       const orderProducts2 = await Order.findById(2).then(order =>
         order.returnOrderObject()
       )
