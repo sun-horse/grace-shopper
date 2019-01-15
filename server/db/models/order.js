@@ -17,6 +17,8 @@ Order.prototype.returnOrderObject = async function() {
     list => (list ? list.map(product => product.dataValues) : [])
   )
 
+  // console.log(products.order_products)
+
   return {products, orderId: this.id}
 }
 
