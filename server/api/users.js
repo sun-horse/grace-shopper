@@ -5,12 +5,10 @@ module.exports = router
 
 router.get('/:userId/cart', async (req, res, next) => {
   try {
-    let cart
+    let cart = undefined
     if (req.user) {
       const user = await User.findById(req.params.userId)
       cart = await user.getCart()
-    } else {
-      cart = undefined
     }
     res.json(cart)
   } catch (err) {
