@@ -10,6 +10,7 @@ export const handleAddToCartSubmit = evt => {
   this.props.addItem(productToAdd)
 }
 
+// sum up product quantities to determine total number of items in cart
 export const countTotalItems = products => {
   let total = 0
   products.forEach(product => {
