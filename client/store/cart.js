@@ -18,12 +18,9 @@ const defaultCart = {
 /**
  * ACTION CREATORS
  */
-const addItem = item => ({type: ADD_ITEM, payload: {item}})
-const updateItemQuantity = (item, index) => ({
-  type: UPDATE_ITEM_QUANTITY,
-  payload: {item, index}
-})
-const getCart = cart => ({type: GET_CART, payload: {cart}})
+const addItem = item => ({type: ADD_ITEM, item})
+const updateItemQuantity = () => ({type: UPDATE_ITEM_QUANTITY})
+const getCart = cart => ({type: GET_CART, cart})
 
 /**
  * THUNK CREATORS
@@ -44,9 +41,9 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
         localCart.products.push(item)
         dispatch(addItem(item))
       } else {
-        // otherwise, update product quantity
+        // otherwise, update product quantity and get the cart
         localCart.products[itemIndex].quantity += item.quantity
-        dispatch(updateItemQuantity(item, itemIndex))
+        dispatch(getCart(localCart))
       }
       window.localStorage.setItem('cart', JSON.stringify(localCart))
     }
@@ -77,17 +74,13 @@ export const setCart = userId => async dispatch => {
  * REDUCER
  */
 export default function(state = defaultCart, action) {
-  const payload = action.payload
   switch (action.type) {
     case ADD_ITEM:
-      return {...state, products: [...state.products, payload.item]}
-    case UPDATE_ITEM_QUANTITY: {
-      const newProducts = [...state.products]
-      newProducts[payload.index].quantity += payload.item.quantity
-      return {...state, products: newProducts}
-    }
+      return {...state, products: [...state.products, action.item]}
+    case UPDATE_ITEM_QUANTITY:
+      return state
     case GET_CART:
-      return payload.cart
+      return action.cart
     default:
       return state
   }

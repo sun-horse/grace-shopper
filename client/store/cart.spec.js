@@ -20,12 +20,8 @@ describe('cart reducer', () => {
 
   const updatedCart = reducer(initialCart, {
     type: 'ADD_ITEM',
-    payload: {
-      item: {
-        orderId: 3,
-        products: [glitterPaint]
-      }
-    }
+    orderId: 3,
+    products: [glitterPaint]
   })
 
   // Expect last item to be the one just added
@@ -40,12 +36,8 @@ describe('cart reducer', () => {
 
   const addOneMore = reducer(updatedCart, {
     type: 'ADD_ITEM',
-    payload: {
-      item: {
-        orderId: 3,
-        products: [soothingBalm]
-      }
-    }
+    orderId: 3,
+    products: [soothingBalm]
   })
 
   xit('can add multiple items', () => {
