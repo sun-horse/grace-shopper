@@ -10,14 +10,19 @@ router.post('/', async (req, res, next) => {
     const products = req.body.products
 
     products.forEach(async product => {
-      await Product.findById(product.id).then(product =>
-        product.addOrders(order)
-      )
+      await Product.findById(product.id)
+        .then(productInstance =>
+          productInstance.update({
+            inventory: productInstance.inventory - product.quantity
+          })
+        )
+        .then(productInstance => productInstance.addOrders(order))
     })
-    // await order.update({
-    //   isActive: false,
-    //   finalizedAt: new Date()
-    // })
+
+    await order.update({
+      isActive: false,
+      finalizedAt: new Date()
+    })
     res.send(order)
   } catch (err) {
     next(err)
