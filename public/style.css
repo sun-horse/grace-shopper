@@ -12,10 +12,14 @@ nav a {
   margin: 1em;
 }
 
-/* cart button in navbar */
-nav button {
-  padding: 16px;
+nav .button {
+  padding: 1em;
   cursor: pointer;
+}
+
+/* cart button in navbar */
+#cart-button i {
+  padding-right: 0.3rem;
 }
 
 /* don't display add to cart buttons on cart componenent */

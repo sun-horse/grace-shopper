@@ -47,10 +47,11 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link to="/cart" className="button is-primary">
+            <Link to="/cart" className="button is-primary" id="cart-button">
               <i className="fas fa-shopping-cart" />
-              <p>&nbsp;</p>
-              <p id="cart-count">{countTotalItems(cart.products).toString()}</p>
+              <p id="cart-count">
+                <strong>{countTotalItems(cart.products).toString()}</strong>
+              </p>
             </Link>
           </div>
         </div>
