@@ -18,7 +18,7 @@ const Product = db.define('products', {
   inventory: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    defaultValue: 100
+    defaultValue: 10
   },
   imageUrl: {
     type: Sequelize.STRING,

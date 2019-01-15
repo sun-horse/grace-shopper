@@ -14,7 +14,13 @@ const Order = db.define('orders', {
 Order.prototype.returnOrderObject = async function() {
   // Returns an empty array if no products in order
   const products = await this.getProducts().then(
-    list => (list ? list.map(product => product.dataValues) : [])
+    list =>
+      list
+        ? list.map(product => ({
+            ...product.dataValues,
+            quantity: product.dataValues.order_products.quantity
+          }))
+        : []
   )
 
   return {products, orderId: this.id}
