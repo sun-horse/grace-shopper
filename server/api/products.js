@@ -6,7 +6,14 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      attributes: ['id', 'name', 'price', 'imageUrl', 'description']
+      attributes: [
+        'id',
+        'name',
+        'price',
+        'imageUrl',
+        'description',
+        'inventory'
+      ]
     })
     res.json(products)
   } catch (err) {
@@ -18,7 +25,14 @@ router.get('/', async (req, res, next) => {
 router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.productId, {
-      attributes: ['id', 'name', 'price', 'imageUrl', 'description']
+      attributes: [
+        'id',
+        'name',
+        'price',
+        'imageUrl',
+        'description',
+        'inventory'
+      ]
     })
     if (product) {
       res.json(product)
