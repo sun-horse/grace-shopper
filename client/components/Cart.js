@@ -8,7 +8,7 @@ export class Cart extends Component {
     let totalCost = 0
     const products = this.props.cart.products
     const cartQuantity = countTotalItems(products)
-    
+
     if (products) {
       return (
         <div className="cart">
@@ -31,8 +31,7 @@ export class Cart extends Component {
                 <h4 className="subtitle is-3 is-spaced">
                   <i className="fas fa-calculator" />
                   Total Cost ({cartQuantity} items):
-                  {totalItems === 1 ? ' item' : ' items'}):
-
+                  {cartQuantity === 1 ? ' item' : ' items'}):
                 </h4>
                 <h5 className="title is-3">${formatPrice(totalCost)}</h5>
               </div>
