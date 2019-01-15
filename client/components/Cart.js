@@ -8,6 +8,8 @@ import {
 } from '../utils'
 
 import {checkoutCart} from '../store'
+import CheckoutForm from './CheckoutForm'
+import {Elements, StripeProvider} from 'react-stripe-elements'
 
 export class Cart extends Component {
   constructor() {
@@ -49,6 +51,14 @@ export class Cart extends Component {
                 >
                   Check Out
                 </button>
+                <StripeProvider apiKey="pk_test_5Ceg56t6bUrBwee4HVtv7nOd">
+                  <div className="example">
+                    <h1>React Stripe Elements Example</h1>
+                    <Elements>
+                      <CheckoutForm />
+                    </Elements>
+                  </div>
+                </StripeProvider>
               </div>
             </div>
           </footer>
