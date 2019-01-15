@@ -16,7 +16,7 @@ export class Cart extends Component {
   }
   handleCheckout(evt) {
     evt.preventDefault()
-    this.props.checkoutCart(this.props.userId)
+    this.props.checkoutCart(this.props.userId, this.props.cart)
   }
 
   render() {
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  checkoutCart: userId => dispatch(checkoutCart(userId))
+  checkoutCart: (userId, cart) => dispatch(checkoutCart(userId, cart))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

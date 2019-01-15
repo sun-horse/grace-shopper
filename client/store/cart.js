@@ -69,17 +69,15 @@ export const setCart = userId => async dispatch => {
   }
 }
 
-export const checkoutCart = userId => async dispatch => {
+export const checkoutCart = (userId, cart) => async dispatch => {
   try {
     if (userId) {
       // const {data} = await axios.get(`/api/users/${userId}/cart`)
       // axios post request
       // const response = await axios.post('/api/checkout', data)
     } else {
-      const localCart = JSON.parse(window.localStorage.getItem('cart'))
-      console.log(localCart)
-      // axios post request
-      const response = await axios.post('/api/checkout', localCart)
+      console.log(cart)
+      const response = await axios.post('/api/checkout', cart)
       console.log(response)
     }
   } catch (err) {
