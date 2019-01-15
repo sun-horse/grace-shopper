@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, setCart} from '../store'
-import {ProductCard} from '.'
+import {formatProductColumns} from '../utils'
 
 export class AllProducts extends Component {
   componentDidMount() {
@@ -10,18 +10,11 @@ export class AllProducts extends Component {
   }
 
   render() {
+    const products = this.props.products
     return (
-      <div>
+      <div className="section all-products">
         <h3 className="title is-2">All Products</h3>
-        <div className="columns">
-          {this.props.products.map(product => {
-            return (
-              <div className="column" key={product.id}>
-                <ProductCard product={product} />
-              </div>
-            )
-          })}
-        </div>
+        {formatProductColumns(products)}
       </div>
     )
   }

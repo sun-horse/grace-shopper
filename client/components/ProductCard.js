@@ -6,9 +6,10 @@ import PropTypes from 'prop-types'
 import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {formatPrice} from '../utils'
+import ProductActions from './ProductActions'
 
 /**
- * IMPORT CART THUNK
+ * IMPORT ADD TO CART THUNK
  */
 import {addToCart, setCart} from '../store'
 
@@ -42,7 +43,9 @@ export class ProductCard extends Component {
       <div className="product card">
         <div className="card-image">
           <figure className="image">
-            <img src={product.imageUrl} />
+            <NavLink to={`/products/${product.id}`}>
+              <img src={product.imageUrl} />
+            </NavLink>
           </figure>
         </div>
         <div className="card-content">
@@ -51,40 +54,10 @@ export class ProductCard extends Component {
           </NavLink>
 
           <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
-
-          <form
-            method="post"
-            onSubmit={this.handleAddToCartSubmit}
-            className="level"
-          >
-            <div className="field cart-item-quantity is-grouped">
-              <div className="control has-icons-left">
-                <span className="select">
-                  <select
-                    name="quantity"
-                    data-product-id={product.id}
-                    defaultValue={product.quantity}
-                  >
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                  </select>
-                </span>
-                <span className="icon is-small is-left">
-                  <i className="fas fa-shopping-cart" />
-                </span>
-              </div>
-              <button
-                className="add-to-cart button is-link"
-                name="add"
-                type="submit"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </form>
+          <ProductActions
+            product={product}
+            handleAddToCartSubmit={this.handleAddToCartSubmit}
+          />
         </div>
       </div>
     )
