@@ -51,6 +51,8 @@ export const formatProductColumns = (products, actionToken) => {
     </div>
   )
 }
+
+// method to add / update cart
 export async function handleCartSubmit(evt) {
   evt.preventDefault()
   const {product, userId, orderId, actionToken} = this.props

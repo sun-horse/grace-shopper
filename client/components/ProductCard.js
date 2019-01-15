@@ -57,8 +57,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: (product, userId, orderId) =>
-    dispatch(addToCart(product, userId, orderId)),
+  addToCart: (product, userId, orderId, actionToken) =>
+    dispatch(addToCart(product, userId, orderId, actionToken)),
   setCart: userId => dispatch(setCart(userId))
 })
 export default withRouter(
