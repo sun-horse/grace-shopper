@@ -7,6 +7,7 @@ import {countTotalItems} from '../utils'
 
 export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
   const cartQuantity = countTotalItems(cart.products)
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">

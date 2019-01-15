@@ -8,7 +8,7 @@ export class Cart extends Component {
     let totalCost = 0
     const products = this.props.cart.products
     const cartQuantity = countTotalItems(products)
-    console.log('products:', products)
+
     if (products) {
       return (
         <div className="cart">
