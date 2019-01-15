@@ -68,7 +68,7 @@ export class ProductCard extends Component {
                   </select>
                 </span>
                 <span className="icon is-small is-left">
-                  <i className="fas fa-cart-plus" />
+                  <i className="fas fa-shopping-cart" />
                 </span>
               </div>
               <button
