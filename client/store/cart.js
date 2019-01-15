@@ -32,8 +32,20 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
     } else {
-      //update local storage
+      // update cart in local storage
+      const localCart = JSON.parse(window.localStorage.getItem('cart'))
+      // map array of product objects to array of ids to find the item index
+      const itemIndex = localCart.products.map(obj => obj.id).indexOf(item.id)
+      if (itemIndex === -1) {
+        // if product is not already in local cart, add it
+        localCart.products.push(item)
+      } else {
+        // otherwise, update product quantity
+        localCart.products[itemIndex].quantity += item.quantity
+      }
+      window.localStorage.setItem('cart', JSON.stringify(localCart))
     }
+    //
     dispatch(addItem(item))
   } catch (err) {
     console.error(err)
@@ -46,7 +58,7 @@ export const setCart = userId => async dispatch => {
       const {data} = await axios.get(`/api/users/${userId}/cart`)
       dispatch(getCart(data))
     } else {
-      // get cart from local storage instead
+      // get cart from local storage instead (and create the key if needed)
       if (!window.localStorage.getItem('cart')) {
         window.localStorage.setItem('cart', JSON.stringify(defaultCart))
       }
