@@ -79,9 +79,8 @@ export const setCart = userId => async dispatch => {
 export default function(state = defaultCart, action) {
   const payload = action.payload
   switch (action.type) {
-    case ADD_ITEM: {
+    case ADD_ITEM:
       return {...state, products: [...state.products, payload.item]}
-    }
     case UPDATE_ITEM_QUANTITY: {
       const newProducts = [...state.products]
       newProducts[payload.index].quantity += payload.item.quantity
