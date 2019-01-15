@@ -10,7 +10,7 @@ import axios from 'axios'
 /**
  * INITIAL STATE
  */
-const defaultCart = {
+export const defaultCart = {
   products: [],
   orderId: null
 }
@@ -20,7 +20,7 @@ const defaultCart = {
  */
 const addItem = item => ({type: ADD_ITEM, item})
 const updateItemQuantity = () => ({type: UPDATE_ITEM_QUANTITY})
-const getCart = cart => ({type: GET_CART, cart})
+export const getCart = cart => ({type: GET_CART, cart})
 
 /**
  * THUNK CREATORS
