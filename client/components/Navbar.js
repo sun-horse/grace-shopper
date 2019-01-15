@@ -12,7 +12,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/products" className="navbar-item">
-          <img src="logo.png" height="50" />
+          <img src="/images/logo.png" height="50" />
         </Link>
       </div>
 
@@ -41,18 +41,21 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
             </div>
           )}
           <div className="navbar-item">
-            <h3 className="subtitle is-4 has-text-info">
-              Be empowered {user.email ? user.email : 'SunHorse'}!
+            <h3 className="subtitle is-5 has-text-info">
+              <em>
+                Be an empowered SunHorse{user.email ? `, ${user.email}` : ''}!
+              </em>
             </h3>
           </div>
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link to="/cart" className="button is-primary">
+            <Link to="/cart" className="button is-primary" id="cart-button">
               <i className="fas fa-shopping-cart" />
-              <p>&nbsp;</p>
-              <p id="cart-count">{cartQuantity}</p>
+              <p id="cart-count">
+                <strong>{cartQuantity}</strong>
+              </p>
             </Link>
           </div>
         </div>

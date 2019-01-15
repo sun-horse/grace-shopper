@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   margin-bottom: 5em;
+  font-family: 'Lato', sans-serif;
 }
 
 a {
@@ -12,10 +13,14 @@ nav a {
   margin: 1em;
 }
 
-/* cart button in navbar */
-nav button {
-  padding: 16px;
+nav .button {
+  padding: 1em;
   cursor: pointer;
+}
+
+/* cart button in navbar */
+#cart-button i {
+  padding-right: 0.3rem;
 }
 
 /* don't display add to cart buttons on cart componenent */
@@ -37,4 +42,13 @@ nav button {
 /* single product desc*/
 .desc {
   margin-bottom: 1.5rem;
+}
+
+.cart-total i,
+.cart-total h4 {
+  margin-right: 0.5rem;
+}
+
+.cart-total h4 {
+  color: #666;
 }
