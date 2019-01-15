@@ -6,6 +6,9 @@ import {logout} from '../store'
 import {countTotalItems} from '../utils'
 
 export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
+  console.log(cart.products)
+  const cartQuantity = countTotalItems(cart.products)
+  console.log('cart quant', cartQuantity)
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -50,7 +53,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
             <Link to="/cart" className="button is-primary">
               <i className="fas fa-shopping-cart" />
               <p>&nbsp;</p>
-              <p id="cart-count">{countTotalItems(cart.products).toString()}</p>
+              <p id="cart-count">{cartQuantity}</p>
             </Link>
           </div>
         </div>

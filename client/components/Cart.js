@@ -7,6 +7,8 @@ export class Cart extends Component {
   render() {
     let totalCost = 0
     const products = this.props.cart.products
+    // const quantOnState = countTotalItems(this.propscart.products)
+    // const quantfromDb = countTotalItems(this.props.cart.products.order-products.quantity)
     if (products) {
       return (
         <div className="cart">
@@ -27,7 +29,12 @@ export class Cart extends Component {
             <div className="level-right">
               <div className="level-item">
                 <h4 className="subtitle is-3 is-spaced">
-                  Total Cost ({countTotalItems(products)} items):
+                  Total Cost ({this.props.cart.products.quantity
+                    ? countTotalItems(this.props.cart.products)
+                    : countTotalItems(
+                        this.props.cart.products.order - products.quantity
+                      )}{' '}
+                  items):
                 </h4>
                 <h5 className="title is-3">
                   &nbsp;&nbsp;${formatPrice(totalCost)}
