@@ -59,7 +59,6 @@ export class ProductCard extends Component {
                     onChange={handleQuantitySelect}
                     defaultValue={product.quantity}
                   >
-                    <option value={0}>Quantity</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
