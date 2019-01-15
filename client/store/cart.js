@@ -6,6 +6,7 @@ import axios from 'axios'
 const ADD_ITEM = 'ADD_ITEM'
 const GET_CART = 'GET_CART'
 const CLEAR_CART = 'CLEAR_CART'
+const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 
 /**
  * INITIAL STATE
@@ -21,6 +22,7 @@ export const defaultCart = {
 const addItem = item => ({type: ADD_ITEM, item})
 export const getCart = cart => ({type: GET_CART, cart})
 export const clearCart = () => ({type: CLEAR_CART})
+const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item})
 
 /**
  * THUNK CREATORS
@@ -33,6 +35,7 @@ export const addToCart = (
   actionToken
 ) => async dispatch => {
   try {
+    console.log('in add to cart thunk')
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
     } else {
@@ -96,6 +99,15 @@ export const setCart = userId => async dispatch => {
       }
       dispatch(getCart(JSON.parse(window.localStorage.getItem('cart'))))
     }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const removeFromCart = (item, userId, orderId) => async dispatch => {
+  try {
+    console.log('in remove from cart thunk')
+    await axios.delete(`api/users/${userId}/cart`, {item, orderId})
   } catch (err) {
     console.error(err)
   }

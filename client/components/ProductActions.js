@@ -1,6 +1,11 @@
 import React from 'react'
 
-const ProductActions = ({product, handleCartSubmit, actionToken}) => {
+const ProductActions = ({
+  product,
+  handleCartSubmit,
+  actionToken,
+  handleDelete
+}) => {
   const numOptions = product.inventory < 10 ? product.inventory : 10
   const dropdown = [...Array(numOptions)]
   return (
@@ -37,6 +42,17 @@ const ProductActions = ({product, handleCartSubmit, actionToken}) => {
             >
               {actionToken ? actionToken : 'Add to Cart'}
             </button>
+          </div>
+          <div className="level">
+            {actionToken ? (
+              <button
+                className="delete level-right"
+                onClick={() => handleDelete(product)}
+                type="submit"
+              />
+            ) : (
+              ''
+            )}
           </div>
         </form>
       )}

@@ -61,3 +61,11 @@ export async function handleCartSubmit(evt) {
   await this.props.addToCart(product, userId, orderId, actionToken)
   this.props.setCart(userId)
 }
+
+export async function handleDelete(evt) {
+  evt.preventDefault()
+  const {product, userId} = this.props
+  console.log('made it to if statement in util')
+  await this.props.removeFromCart(product)
+  this.props.setCart(userId)
+}
