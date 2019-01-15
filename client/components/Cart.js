@@ -67,8 +67,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   checkoutCart: (userId, cart) => dispatch(checkoutCart(userId, cart))
 })
-const mapDispatchToProps = dispatch => ({
-  cartCheckout: products => dispatch(cartCheckout(products))
-})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
