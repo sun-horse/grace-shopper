@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {defaultCart, clearCart} from './cart'
 
 /**
  * ACTION TYPES
@@ -48,8 +49,17 @@ export const auth = (email, password, method) => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
+    // remove user
     await axios.post('/auth/logout')
     dispatch(removeUser())
+
+    // clear local storage cart and reset key
+    if (process.env.NODE_ENV !== 'test') {
+      window.localStorage.clear()
+      window.localStorage.setItem('cart', JSON.stringify(defaultCart))
+    }
+    dispatch(clearCart())
+
     history.push('/login')
   } catch (err) {
     console.error(err)

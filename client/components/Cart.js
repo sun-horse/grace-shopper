@@ -27,13 +27,13 @@ export class Cart extends Component {
           <footer className="level footer">
             <div className="level-left" />
             <div className="level-right">
-              <div className="level-item">
+              <div className="level-item cart-total">
                 <h4 className="subtitle is-3 is-spaced">
+                  <i className="fas fa-calculator" />
                   Total Cost ({cartQuantity} items):
+                  {cartQuantity === 1 ? ' item' : ' items'}):
                 </h4>
-                <h5 className="title is-3">
-                  &nbsp;&nbsp;${formatPrice(totalCost)}
-                </h5>
+                <h5 className="title is-3">${formatPrice(totalCost)}</h5>
               </div>
               <div className="level-item has-text-right">
                 <button

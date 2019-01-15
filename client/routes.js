@@ -45,6 +45,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
+    // load user first and then set the cart
     async loadInitialData() {
       await dispatch(me())
     },
