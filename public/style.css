@@ -1,3 +1,19 @@
+/* COLORS (OVERWRITE BULMA DEFAULTS) */
+
+.button.is-link {
+  background-color: #ac5022;
+}
+
+.button:hover.is-link {
+  background-color: #793818;
+}
+
+.section .title.is-2 {
+  color: #793818;
+}
+
+/* MISC CUSTOM STYLES */
+
 body {
   font-family: sans-serif;
   margin-bottom: 5em;
@@ -57,7 +73,7 @@ nav .button {
 }
 
 .cart-total h4 {
-  color: #666;
+  opacity: 0.7;
 }
 
 .product.card {
