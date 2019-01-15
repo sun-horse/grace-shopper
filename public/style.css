@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+.navbar-brand .navbar-item {
+  margin-left: 2em;
+}
+
 .navbar-item img {
   max-height: 3.75rem;
 }
