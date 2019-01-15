@@ -8,9 +8,17 @@ a {
   text-decoration: none;
 }
 
+.navbar-brand .navbar-item {
+  margin-left: 2em;
+}
+
+.navbar-item img {
+  max-height: 3.75rem;
+}
+
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 1em 0.5em;
 }
 
 nav .button {
@@ -19,6 +27,10 @@ nav .button {
 }
 
 /* cart button in navbar */
+#cart-button {
+  margin-right: 2em;
+}
+
 #cart-button i {
   padding-right: 0.3rem;
 }
@@ -51,4 +63,8 @@ nav .button {
 
 .cart-total h4 {
   color: #666;
+}
+
+.product.card {
+  margin-bottom: 2rem;
 }
