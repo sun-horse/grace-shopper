@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {ProductCard} from '.'
 import {formatPrice, countTotalItems} from '../utils'
-import {setCart} from '../store'
 
 export class Cart extends Component {
   render() {
@@ -53,12 +52,7 @@ export class Cart extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  user: state.user,
-  orderId: state.cart.orderId
+  user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({
-  setCart: userId => dispatch(setCart(userId))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps)(Cart)
