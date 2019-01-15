@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {countTotalItems} from '../utils'
 
-export const Navbar = ({handleClick, isLoggedIn, cart}) => {
+export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -38,6 +38,11 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
               </Link>
             </div>
           )}
+          <div className="navbar-item">
+            <h3 className="subtitle is-4 has-text-info">
+              Be empowered {user.email ? user.email : 'SunHorse'}!
+            </h3>
+          </div>
         </div>
 
         <div className="navbar-end">
@@ -60,6 +65,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart}) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
+    user: state.user,
     cart: state.cart
   }
 }
