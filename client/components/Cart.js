@@ -30,8 +30,9 @@ export class Cart extends Component {
               <div className="level-item cart-total">
                 <h4 className="subtitle is-3 is-spaced">
                   <i className="fas fa-calculator" />
-                  Total Cost ({cartQuantity} items):
+                  Total Cost ({cartQuantity}{' '}
                   {cartQuantity === 1 ? ' item' : ' items'}):
+                  {/* {cartQuantity === 1 ? ' item' : ' items'}): */}
                 </h4>
                 <h5 className="title is-3">${formatPrice(totalCost)}</h5>
               </div>
