@@ -49,10 +49,15 @@ export const auth = (email, password, method) => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
+    // remove user
     await axios.post('/auth/logout')
-    window.localStorage.clear()
-    dispatch(getCart(defaultCart))
     dispatch(removeUser())
+
+    // clear local storage cart and reset key
+    window.localStorage.clear()
+    window.localStorage.setItem('cart', JSON.stringify(defaultCart))
+    dispatch(getCart(defaultCart))
+
     history.push('/login')
   } catch (err) {
     console.error(err)
