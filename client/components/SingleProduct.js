@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {formatPrice} from '../utils'
-import {fetchProduct, addToCart} from '../store'
+import {fetchProduct, addToCart, setCart} from '../store'
 import ProductActions from './ProductActions'
 
 // define class SingleProduct
@@ -16,13 +16,18 @@ export class SingleProduct extends Component {
     this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
   }
 
-  handleAddToCartSubmit(evt) {
+  async handleAddToCartSubmit(evt) {
     evt.preventDefault()
     const quantity = Number(evt.target.quantity.value)
     const productToAdd = this.props.product
     productToAdd.quantity = quantity
 
-    this.props.addToCart(productToAdd, this.props.userId, this.props.orderId)
+    await this.props.addToCart(
+      productToAdd,
+      this.props.userId,
+      this.props.orderId
+    )
+    this.props.setCart(this.props.userId)
   }
 
   render() {
@@ -64,7 +69,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchProduct: productId => dispatch(fetchProduct(productId)),
   addToCart: (product, userId, orderId) =>
-    dispatch(addToCart(product, userId, orderId))
+    dispatch(addToCart(product, userId, orderId)),
+  setCart: userId => dispatch(setCart(userId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
