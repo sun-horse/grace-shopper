@@ -18,10 +18,12 @@ const defaultCart = {
 /**
  * ACTION CREATORS
  */
-const addItem = item => ({type: ADD_ITEM, item})
-export const updateItemQuantity = () => ({})
-
-const getCart = cart => ({type: GET_CART, cart})
+const addItem = item => ({type: ADD_ITEM, payload: {item}})
+const updateItemQuantity = (item, index) => ({
+  type: UPDATE_ITEM_QUANTITY,
+  payload: {item, index}
+})
+const getCart = cart => ({type: GET_CART, payload: {cart}})
 
 /**
  * THUNK CREATORS
@@ -31,6 +33,7 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
+      dispatch(addItem(item))
     } else {
       // update cart in local storage
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
@@ -39,14 +42,14 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
       if (itemIndex === -1) {
         // if product is not already in local cart, add it
         localCart.products.push(item)
+        dispatch(addItem(item))
       } else {
         // otherwise, update product quantity
         localCart.products[itemIndex].quantity += item.quantity
+        dispatch(updateItemQuantity(item, itemIndex))
       }
       window.localStorage.setItem('cart', JSON.stringify(localCart))
     }
-    //
-    dispatch(addItem(item))
   } catch (err) {
     console.error(err)
   }
@@ -74,13 +77,18 @@ export const setCart = userId => async dispatch => {
  * REDUCER
  */
 export default function(state = defaultCart, action) {
+  const payload = action.payload
   switch (action.type) {
-    case ADD_ITEM:
-      return {...state, products: [...state.products, action.item]}
-    case UPDATE_ITEM_QUANTITY:
-      return state
+    case ADD_ITEM: {
+      return {...state, products: [...state.products, payload.item]}
+    }
+    case UPDATE_ITEM_QUANTITY: {
+      const newProducts = [...state.products]
+      newProducts[payload.index].quantity += payload.item.quantity
+      return {...state, products: newProducts}
+    }
     case GET_CART:
-      return action.cart
+      return payload.cart
     default:
       return state
   }
