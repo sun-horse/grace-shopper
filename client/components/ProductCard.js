@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {formatPrice} from '../utils'
+import {formatPrice, handleCartSubmit} from '../utils'
 import ProductActions from './ProductActions'
 
 /**
@@ -19,16 +19,8 @@ import {addToCart, setCart} from '../store'
 export class ProductCard extends Component {
   constructor(props) {
     super(props)
-    this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
-  }
-
-  async handleAddToCartSubmit(evt) {
-    evt.preventDefault()
-    const {product, userId, orderId, actionToken} = this.props
-    const quantity = Number(evt.target.quantity.value)
-    product.quantity = quantity
-    await this.props.addToCart(product, userId, orderId, actionToken)
-    this.props.setCart(userId)
+    this.handleCartSubmit = handleCartSubmit
+    this.handleCartSubmit = this.handleCartSubmit.bind(this)
   }
 
   render() {
@@ -51,7 +43,7 @@ export class ProductCard extends Component {
           <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
           <ProductActions
             product={product}
-            handleAddToCartSubmit={this.handleAddToCartSubmit}
+            handleCartSubmit={this.handleCartSubmit}
             actionToken={actionToken}
           />
         </div>

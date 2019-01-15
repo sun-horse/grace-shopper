@@ -51,3 +51,11 @@ export const formatProductColumns = (products, actionToken) => {
     </div>
   )
 }
+export async function handleCartSubmit(evt) {
+  evt.preventDefault()
+  const {product, userId, orderId, actionToken} = this.props
+  const quantity = Number(evt.target.quantity.value)
+  product.quantity = quantity
+  await this.props.addToCart(product, userId, orderId, actionToken)
+  this.props.setCart(userId)
+}

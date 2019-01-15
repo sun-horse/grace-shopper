@@ -1,33 +1,20 @@
 // SingleProduct module
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {formatPrice} from '../utils'
+import {formatPrice, handleCartSubmit} from '../utils'
 import {fetchProduct, addToCart, setCart} from '../store'
 import ProductActions from './ProductActions'
 
 // define class SingleProduct
 export class SingleProduct extends Component {
+  constructor(props) {
+    super(props)
+    this.handleCartSubmit = handleCartSubmit
+    this.handleCartSubmit = this.handleCartSubmit.bind(this)
+  }
   componentDidMount() {
     const productId = Number(this.props.match.params.productId)
     this.props.fetchProduct(productId)
-  }
-  constructor(props) {
-    super(props)
-    this.handleAddToCartSubmit = this.handleAddToCartSubmit.bind(this)
-  }
-
-  async handleAddToCartSubmit(evt) {
-    evt.preventDefault()
-    const quantity = Number(evt.target.quantity.value)
-    const productToAdd = this.props.product
-    productToAdd.quantity = quantity
-
-    await this.props.addToCart(
-      productToAdd,
-      this.props.userId,
-      this.props.orderId
-    )
-    this.props.setCart(this.props.userId)
   }
 
   render() {
@@ -52,7 +39,7 @@ export class SingleProduct extends Component {
             </p>
             <ProductActions
               product={product}
-              handleAddToCartSubmit={this.handleAddToCartSubmit}
+              handleCartSubmit={this.handleCartSubmit}
             />
           </div>
         </div>
