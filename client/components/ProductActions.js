@@ -18,7 +18,7 @@ const ProductActions = ({
         <form method="post" onSubmit={handleCartSubmit} className="level">
           <div className="field cart-item-quantity is-grouped">
             <div className="control has-icons-left">
-              <span className="select">
+              <span className="select is-primary">
                 <select
                   name="quantity"
                   data-product-id={product.id}
@@ -36,7 +36,7 @@ const ProductActions = ({
               </span>
             </div>
             <button
-              className="add-to-cart button is-link"
+              className="add-to-cart button is-primary"
               name="add"
               type="submit"
             >
