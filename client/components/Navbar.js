@@ -39,8 +39,10 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
             </div>
           )}
           <div className="navbar-item">
-            <h3 className="subtitle is-4 has-text-info">
-              Be empowered {user.email ? user.email : 'SunHorse'}!
+            <h3 className="subtitle is-5 has-text-info">
+              <em>
+                Be an empowered Sunhorse{user.email ? `, ${user.email}` : ''}!
+              </em>
             </h3>
           </div>
         </div>
