@@ -29,10 +29,8 @@ export const clearCart = () => ({type: CLEAR_CART})
 export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
     if (userId) {
-      console.log('adding to cart while logged in')
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
     } else {
-      console.log('adding to cart while not logged in')
       // update cart in local storage
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
       // map array of product objects to array of ids to find the item index
@@ -67,8 +65,6 @@ export const setCart = userId => async dispatch => {
       // then clear local storage!
       if (localCart && localCart.products && localCart.products.length > 0) {
         const localProducts = localCart.products
-        console.log('logged in & local storage')
-        console.log('local products: ', localProducts)
         let putResponse
         for (let i = 0; i < localProducts.length; i++) {
           const item = localProducts[i]
@@ -78,7 +74,6 @@ export const setCart = userId => async dispatch => {
           })
         }
         window.localStorage.clear()
-        console.log('updated cart: ', putResponse.data)
         dispatch(getCart(putResponse.data))
       } else {
         dispatch(getCart(getResponse.data))
@@ -88,7 +83,6 @@ export const setCart = userId => async dispatch => {
       // if user is not logged in, get cart from local storage
       // create the cart key on local storage first if needed
       if (!localCart) {
-        console.log('need to set local storage cart key')
         window.localStorage.setItem('cart', JSON.stringify(defaultCart))
       }
       dispatch(getCart(JSON.parse(window.localStorage.getItem('cart'))))
