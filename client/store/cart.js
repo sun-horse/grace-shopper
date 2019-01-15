@@ -53,16 +53,37 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
 
 export const setCart = userId => async dispatch => {
   try {
+    const localCart = JSON.parse(window.localStorage.getItem('cart'))
+    // if user is logged in
     if (userId) {
-      const {data} = await axios.get(`/api/users/${userId}/cart`)
-      dispatch(getCart(data))
+      // TODO: api route that just returns the orderId based on userId?
+      const getResponse = await axios.get(`/api/users/${userId}/cart`)
+      const orderId = getResponse.data.orderId
+
+      // if there are products in local storage, add them all to user's cart
+      // then clear local storage!
+      if (localCart && localCart.products && localCart.products.length > 0) {
+        const localProducts = localCart.products
+        let putResponse
+        for (let i = 0; i < localProducts.length; i++) {
+          const item = localProducts[i]
+          putResponse = await axios.put(`/api/users/${userId}/cart`, {
+            item,
+            orderId
+          })
+        }
+        window.localStorage.clear()
+        dispatch(getCart(putResponse.data))
+      } else {
+        dispatch(getCart(getResponse.data))
+      }
     } else {
-      // get cart from local storage instead (and create the key if needed)
-      if (!window.localStorage.getItem('cart')) {
+      // if user is not logged in, get cart from local storage
+      // create the cart key on local storage first if needed
+      if (!localCart) {
         window.localStorage.setItem('cart', JSON.stringify(defaultCart))
       }
-      const localCart = JSON.parse(window.localStorage.getItem('cart'))
-      dispatch(getCart(localCart))
+      dispatch(getCart(JSON.parse(window.localStorage.getItem('cart'))))
     }
   } catch (err) {
     console.error(err)

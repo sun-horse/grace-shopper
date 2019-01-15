@@ -5,7 +5,7 @@ module.exports = router
 
 router.get('/:userId/cart', async (req, res, next) => {
   try {
-    let cart = undefined
+    let cart = null
     if (req.user) {
       const user = await User.findById(req.params.userId)
       cart = await user.getCart()
