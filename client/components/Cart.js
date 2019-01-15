@@ -5,9 +5,10 @@ import {formatPrice, countTotalItems} from '../utils'
 
 export class Cart extends Component {
   render() {
-    let totalCost
+    let totalCost = 0
     const products = this.props.cart.products
     const totalItems = countTotalItems(products)
+
     if (products) {
       return (
         <div className="cart">
