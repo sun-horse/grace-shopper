@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const stripe = require('stripe')('sk_test_NAZJtifVSlAFd081l1IjWJ4A')
+const stripe = require('stripe')(process.env.SECRET_KEY)
 
 router.post('/charge', async (req, res) => {
   try {
