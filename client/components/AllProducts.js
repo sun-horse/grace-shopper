@@ -7,19 +7,13 @@ export class AllProducts extends Component {
   componentDidMount() {
     this.props.fetchProducts()
   }
-  componentDidUpdate(prevProps) {
-    // Did we just log in or out?
-    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
-      this.props.setCart(this.props.user.id)
-    }
-  }
 
   render() {
     return (
       <div>
         <h3 className="title is-2">All Products</h3>
         <div className="columns">
-          {this.props.products.map((product, i) => {
+          {this.props.products.map(product => {
             return (
               <div className="column" key={product.id}>
                 <ProductCard product={product} />
@@ -33,14 +27,11 @@ export class AllProducts extends Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products,
-  isLoggedIn: !!state.user.id,
-  user: state.user
+  products: state.products
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchProducts: () => dispatch(fetchProducts()),
-  setCart: userId => dispatch(setCart(userId))
+  fetchProducts: () => dispatch(fetchProducts())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
