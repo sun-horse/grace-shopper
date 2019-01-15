@@ -2,30 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {ProductCard} from '.'
 import {formatPrice, countTotalItems} from '../utils'
-import {dummyCart} from './testData.js'
-import {setCart, getUser} from '../store'
+import {setCart} from '../store'
 
 export class Cart extends Component {
-  constructor(props) {
-    super(props)
-    this.handleQuantitySelect = this.handleQuantitySelect.bind(this)
-  }
-
-  // componentDidMount() {
-  //   if(this.props.user.id){
-  //     this.props.setCart(this.props.user.id)
-  //   }
-  // }
-
-  handleQuantitySelect(evt) {
-    const newQuantity = Number(evt.target.value)
-  }
-
   render() {
     let totalCost = 0
-    let totalItems = 0
     const products = this.props.cart.products
-    console.log(this.props)
     if (products) {
       return (
         <div className="cart">
@@ -34,14 +16,9 @@ export class Cart extends Component {
           <div className="columns">
             {products.map(product => {
               totalCost += product.price * product.quantity
-              totalItems += product.quantity
               return (
                 <div key={product.id} className="cart-item column">
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    handleQuantitySelect={this.handleQuantitySelect}
-                  />
+                  <ProductCard key={product.id} product={product} />
                 </div>
               )
             })}
@@ -51,7 +28,7 @@ export class Cart extends Component {
             <div className="level-right">
               <div className="level-item">
                 <h4 className="subtitle is-3 is-spaced">
-                  Total Cost ({totalItems} items):
+                  Total Cost ({countTotalItems(products)} items):
                 </h4>
                 <h5 className="title is-3">
                   &nbsp;&nbsp;${formatPrice(totalCost)}

@@ -26,11 +26,13 @@ export class ProductCard extends Component {
     const quantity = Number(evt.target.quantity.value)
     const productToAdd = this.props.product
     productToAdd.quantity = quantity
+    // if product is already in cart, update quantity on state instead of
+    // adding a new item on the front end
     this.props.addToCart(productToAdd, this.props.userId, this.props.orderId)
   }
 
   render() {
-    const {product, handleQuantitySelect} = this.props
+    const {product} = this.props
     return (
       <div className="product card">
         <div className="card-image">
@@ -56,7 +58,6 @@ export class ProductCard extends Component {
                   <select
                     name="quantity"
                     data-product-id={product.id}
-                    onChange={handleQuantitySelect}
                     defaultValue={product.quantity}
                   >
                     <option value={1}>1</option>

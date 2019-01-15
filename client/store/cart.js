@@ -19,11 +19,8 @@ const defaultCart = {
  * ACTION CREATORS
  */
 const addItem = item => ({type: ADD_ITEM, item})
-export const updateItemQuantity = item => ({
-  type: UPDATE_ITEM_QUANTITY,
-  item,
-  quantity: item.quantity
-})
+export const updateItemQuantity = () => ({})
+
 const getCart = cart => ({type: GET_CART, cart, orderId: cart.orderId})
 
 /**
@@ -61,17 +58,12 @@ export const setCart = userId => async dispatch => {
  */
 export default function(state = defaultCart, action) {
   switch (action.type) {
-    case GET_CART:
-      return action.cart
     case ADD_ITEM:
       return {...state, products: [...state.products, action.item]}
-    // case UPDATE_ITEM_QUANTITY:
-    //   let indexOfItem
-    //   const itemToUpdate = state.products.filter(
-    //     product => product.id === action.item.id
-    //   )
-    //   itemToUpdate.quantity += action.quantity
-    //   return {...state, products: [...state.products]}
+    case UPDATE_ITEM_QUANTITY:
+      return state
+    case GET_CART:
+      return action.cart
     default:
       return state
   }
