@@ -32,7 +32,7 @@ export class SingleProduct extends Component {
     return !product.id ? (
       <div>Nothing found</div>
     ) : (
-      <div className="product">
+      <div className="section product">
         <div className="columns is-multiline is-mobile">
           <div className="column card-image is-one-third">
             <figure className="image">

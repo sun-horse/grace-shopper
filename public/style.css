@@ -8,9 +8,13 @@ a {
   text-decoration: none;
 }
 
+.navbar-item img {
+  max-height: 3.75rem;
+}
+
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 1em 0.5em;
 }
 
 nav .button {
@@ -19,6 +23,10 @@ nav .button {
 }
 
 /* cart button in navbar */
+#cart-button {
+  margin-right: 2em;
+}
+
 #cart-button i {
   padding-right: 0.3rem;
 }

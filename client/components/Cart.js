@@ -15,7 +15,7 @@ export class Cart extends Component {
 
     if (products) {
       return (
-        <div className="cart">
+        <div className="section cart">
           <h3 className="title is-2">Cart</h3>
           {formatProductColumns(products)}
           <footer className="level footer">

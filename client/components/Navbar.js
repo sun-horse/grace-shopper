@@ -9,10 +9,14 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
   const cartQuantity = countTotalItems(cart.products)
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      className="navbar is-light"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <Link to="/products" className="navbar-item">
-          <img src="/images/logo.png" height="50" />
+          <img src="/images/logo.png" />
         </Link>
       </div>
 
@@ -25,18 +29,18 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
           {isLoggedIn ? (
             <div className="navbar-item">
               {/* The navbar will show these links after you log in */}
-              <Link to="#" onClick={handleClick} className="button is-light">
+              <Link to="#" onClick={handleClick} className="button is-primary">
                 Log out
               </Link>
             </div>
           ) : (
             <div className="navbar-item">
-              <Link to="/login" className="button is-light">
-                Log in
+              <Link to="/login" className="button is-primary">
+                Log In
               </Link>
 
-              <Link to="/signup" className="button is-primary">
-                <strong>Sign up</strong>
+              <Link to="/signup" className="button is-link">
+                <strong>Sign Up</strong>
               </Link>
             </div>
           )}
@@ -51,7 +55,7 @@ export const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link to="/cart" className="button is-primary" id="cart-button">
+            <Link to="/cart" className="button is-link" id="cart-button">
               <i className="fas fa-shopping-cart" />
               <p id="cart-count">
                 <strong>{cartQuantity}</strong>
