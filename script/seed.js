@@ -27,14 +27,16 @@ async function seed() {
       price: 690,
       imageUrl:
         'https://cdn.shopify.com/s/files/1/0012/8168/7600/products/GPA---Silver-Holographic-Stars-_-Moons_3e431705-e893-4ae8-9397-fc53fb61e73a_1000x.jpg?v=1545306524',
-      description: loremHipsum()
+      description: loremHipsum(),
+      inventory: 5
     }),
     Product.create({
       name: 'Soothing Balm',
       price: 350,
       imageUrl:
         'https://www.rituals.com/dw/image/v2/BBKL_PRD/on/demandware.static/-/Sites-rituals-products/default/dw2af68f6e/images/zoom/019461_MagicBalm1PRO.png?sw=500&sh=500&sm=fit&q=100',
-      description: loremHipsum()
+      description: loremHipsum(),
+      inventory: 0
     }),
     Product.create({
       name: 'Flying Dust',
