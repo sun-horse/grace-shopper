@@ -7,14 +7,16 @@ import {
   formatProductColumns
 } from '../utils'
 
-export class Cart extends Component {
-  constructor(props) {
-    super(props)
-    this.handleCheckoutClick = this.handleCheckoutClick.bind(this)
-  }
+import {checkoutCart} from '../store'
 
-  handleCheckoutClick(evt) {
-    console.log('checking out', this.props.cart)
+export class Cart extends Component {
+  constructor() {
+    super()
+    this.handleCheckout = this.handleCheckout.bind(this)
+  }
+  handleCheckout(evt) {
+    evt.preventDefault()
+    this.props.checkoutCart(this.props.userId, this.props.cart)
   }
 
   render() {
@@ -43,7 +45,7 @@ export class Cart extends Component {
                   type="button"
                   id="cart-checkout"
                   className="button is-primary is-large"
-                  onClick={this.handleCheckoutClick}
+                  onClick={this.handleCheckout}
                 >
                   Check Out
                 </button>
@@ -58,10 +60,15 @@ export class Cart extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  user: state.user
+  user: state.user,
+  userId: state.user.id
+})
+
+const mapDispatchToProps = dispatch => ({
+  checkoutCart: (userId, cart) => dispatch(checkoutCart(userId, cart))
 })
 const mapDispatchToProps = dispatch => ({
   cartCheckout: products => dispatch(cartCheckout(products))
 })
 
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

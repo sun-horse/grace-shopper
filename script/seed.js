@@ -75,7 +75,6 @@ async function seed() {
 
   // Add items to Order-Products listg
   await Product.findById(3).then(product => product.addOrders(newOrder))
-
   await Product.findById(2).then(product => product.addOrders(newOrder))
 
   console.log(`seeded ${users.length} users`)
