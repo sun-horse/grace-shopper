@@ -62,10 +62,11 @@ export const setCart = userId => async dispatch => {
       // TODO: api route that just returns the orderId based on userId?
       const getResponse = await axios.get(`/api/users/${userId}/cart`)
       const orderId = getResponse.data.orderId
-      const localProducts = localCart.products
 
       // if there are products in local storage, add them all to user's cart
-      if (localCart && localProducts.length > 0) {
+      // then clear local storage!
+      if (localCart && localCart.products && localCart.products.length > 0) {
+        const localProducts = localCart.products
         console.log('logged in & local storage')
         console.log('local products: ', localProducts)
         let putResponse
@@ -76,6 +77,7 @@ export const setCart = userId => async dispatch => {
             orderId
           })
         }
+        window.localStorage.clear()
         console.log('updated cart: ', putResponse.data)
         dispatch(getCart(putResponse.data))
       } else {
