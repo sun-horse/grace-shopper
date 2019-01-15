@@ -1,11 +1,11 @@
+import axios from 'axios'
+
 /**
  * ACTION TYPES
  */
 const ADD_ITEM = 'ADD_ITEM'
 const GET_CART = 'GET_CART'
 const CLEAR_CART = 'CLEAR_CART'
-
-import axios from 'axios'
 
 /**
  * INITIAL STATE
@@ -30,7 +30,6 @@ export const addToCart = (item, userId, orderId) => async dispatch => {
   try {
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
-      dispatch(addItem(item))
     } else {
       // update cart in local storage
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
