@@ -25,39 +25,39 @@ async function seed() {
     Product.create({
       name: 'Glitter Paint',
       price: 690,
-      imageUrl: '/images/glitterpaint.jpg',
+      imageUrl: '/images/seed/glitterpaint.jpg',
       description: loremHipsum(),
       inventory: 5
     }),
     Product.create({
       name: 'Soothing Balm',
       price: 350,
-      imageUrl: '/images/magicbalm.png',
+      imageUrl: '/images/seed/magicbalm.png',
       description: loremHipsum(),
       inventory: 0
     }),
     Product.create({
       name: 'Flying Dust',
       price: 1000,
-      imageUrl: '/images/flyingdust.jpg',
+      imageUrl: '/images/seed/flyingdust.jpg',
       description: loremHipsum()
     }),
     Product.create({
       name: 'Hoof Oil',
       price: 500,
-      imageUrl: '/images/hoofoil.jgp',
+      imageUrl: '/images/seed/hoofoil.jpg',
       description: loremHipsum()
     }),
     Product.create({
       name: 'Mane Mask',
       price: 850,
-      imageUrl: '/images/manemask.png',
+      imageUrl: '/images/seed/manemask.png',
       description: loremHipsum()
     }),
     Product.create({
       name: 'Festival Flower Crown',
       price: 1995,
-      imageUrl: '/images/flowercrown.jpg',
+      imageUrl: '/images/seed/flowercrown.jpg',
       description: loremHipsum()
     })
   ])
