@@ -14,7 +14,11 @@ export class AllProducts extends Component {
     return (
       <div className="section all-products">
         <h3 className="title is-2">All Products</h3>
-        {formatProductColumns(products)}
+        {products.length ? (
+          formatProductColumns(products)
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     )
   }
