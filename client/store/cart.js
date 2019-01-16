@@ -6,7 +6,6 @@ import axios from 'axios'
 const ADD_ITEM = 'ADD_ITEM'
 const GET_CART = 'GET_CART'
 const CLEAR_CART = 'CLEAR_CART'
-const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 
 /**
  * INITIAL STATE
@@ -22,7 +21,6 @@ export const defaultCart = {
 const addItem = item => ({type: ADD_ITEM, item})
 export const getCart = cart => ({type: GET_CART, cart})
 export const clearCart = () => ({type: CLEAR_CART})
-const removeItem = item => ({type: REMOVE_ITEM_FROM_CART, item})
 
 /**
  * THUNK CREATORS
@@ -115,7 +113,6 @@ export const removeFromCart = (item, orderId, userId) => async dispatch => {
           return product
         }
       })
-      console.log('updatedProducts', updatedProducts)
       localCart.products = updatedProducts
       dispatch(getCart(localCart))
       window.localStorage.setItem('cart', JSON.stringify(localCart))

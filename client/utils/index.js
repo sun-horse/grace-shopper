@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
 import ProductCard from '../components/ProductCard'
-import {compose} from 'redux'
 
 // price is stored in cents, so divide by 100 for dollars
 export const formatPrice = priceInCents => {
