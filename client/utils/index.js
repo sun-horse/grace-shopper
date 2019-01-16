@@ -33,11 +33,12 @@ export const formatProductColumns = (products, actionToken) => {
     products.length > 3
       ? _.chunk(products, 2)
       : products.map(product => [product])
+
   return (
     <div className="columns">
       {productsInColumns.map((column, i) => {
         return (
-          <div className="column" key={i}>
+          <div className={'column ' + (actionToken ? 'cart-item' : '')} key={i}>
             {column.map(product => {
               return (
                 <ProductCard

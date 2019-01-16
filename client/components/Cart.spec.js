@@ -15,8 +15,7 @@ describe('Cart component', () => {
   let itemDivs
 
   beforeEach(() => {
-    wrapper = shallow(<Cart />)
-    wrapper.setState(dummyCart)
+    wrapper = shallow(<Cart cart={dummyCart} />)
     itemDivs = wrapper.find('.cart-item')
   })
 
