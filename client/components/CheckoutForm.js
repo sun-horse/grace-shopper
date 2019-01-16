@@ -11,7 +11,10 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let {token} = await this.props.stripe.createToken({name: 'Name'})
-    let response = await axios.post('/charge', token.id)
+    let response = await axios.post('/charge', {
+      stripToken: token,
+      total: this.props.total
+    })
 
     this.props.handleCheckout(ev)
     if (response.status === 200) console.log('Purchase Complete!')

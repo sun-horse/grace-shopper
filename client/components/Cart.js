@@ -86,7 +86,10 @@ export class Cart extends Component {
                     {formatProductColumns(products, 'Update Cart')}
                     <footer className="level footer">
                       {this.state.readyForCheckout ? (
-                        <CheckoutForm handleCheckout={this.handleCheckout} />
+                        <CheckoutForm
+                          handleCheckout={this.handleCheckout}
+                          total={totalCost}
+                        />
                       ) : (
                         ''
                       )}
