@@ -54,48 +54,64 @@ export class Cart extends Component {
                 <p className="subtitle is-4">
                   {this.state.confirmationMessage}
                 </p>
-
                 <Link to="/products" className="button is-success">
-                  <strong>Return to the SunHorse Shop</strong>
+                  Return to the SunHorse Shop
                 </Link>
               </div>
             </article>
           ) : (
             <div className="cart">
               <h3 className="title is-2">Cart</h3>
-              {formatProductColumns(products, 'Update Cart')}
-              <footer className="level footer">
-                <div className="level-left" />
-                <div className="level-right">
-                  <div className="level-item cart-total">
-                    <h4 className="subtitle is-3 is-spaced">
-                      <i className="fas fa-calculator" />
-                      Total Cost ({cartQuantity}{' '}
-                      {cartQuantity === 1 ? ' item' : ' items'}):
-                    </h4>
-                    <h5 className="title is-3">${formatPrice(totalCost)}</h5>
+              {cartQuantity === 0 ? (
+                <article className="message is-warning">
+                  <div className="message-body">
+                    <p className="subtitle is-4">
+                      Your cart is currently empty.
+                    </p>
+                    <Link to="/products" className="button is-warning">
+                      Go Shopping
+                    </Link>
                   </div>
-                  <div className="level-item has-text-right">
-                    <button
-                      type="button"
-                      id="cart-checkout"
-                      className="button is-primary is-large"
-                      onClick={this.handleCheckout}
-                      disabled={cartQuantity === 0}
-                    >
-                      Check Out
-                    </button>
-                    <StripeProvider apiKey={publishableKey}>
-                      <div className="example">
-                        <h1>React Stripe Elements Example</h1>
-                        <Elements>
-                          <CheckoutForm />
-                        </Elements>
+                </article>
+              ) : (
+                <div>
+                  {' '}
+                  {formatProductColumns(products, 'Update Cart')}
+                  <footer className="level footer">
+                    <div className="level-left" />
+                    <div className="level-right">
+                      <div className="level-item cart-total">
+                        <h4 className="subtitle is-3 is-spaced">
+                          <i className="fas fa-calculator" />
+                          Total Cost ({cartQuantity}{' '}
+                          {cartQuantity === 1 ? ' item' : ' items'}):
+                        </h4>
+                        <h5 className="title is-3">
+                          ${formatPrice(totalCost)}
+                        </h5>
                       </div>
-                    </StripeProvider>
-                  </div>
+                      <div className="level-item has-text-right">
+                        <button
+                          type="button"
+                          id="cart-checkout"
+                          className="button is-primary is-large"
+                          onClick={this.handleCheckout}
+                        >
+                          Check Out
+                        </button>
+                        <StripeProvider apiKey={publishableKey}>
+                          <div className="example">
+                            <h1>React Stripe Elements Example</h1>
+                            <Elements>
+                              <CheckoutForm />
+                            </Elements>
+                          </div>
+                        </StripeProvider>
+                      </div>
+                    </div>
+                  </footer>
                 </div>
-              </footer>
+              )}
             </div>
           )}
         </div>
