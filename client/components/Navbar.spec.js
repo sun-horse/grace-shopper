@@ -6,6 +6,7 @@ import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {Navbar} from './Navbar'
 import {dummyCart} from './testData'
+import {countTotalItems} from '../utils'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
@@ -19,7 +20,9 @@ describe('Navbar', () => {
     navBar = shallow(<Navbar cart={cart} user={user} />)
   })
 
-  it('renders the number of items in the cart', () => {
-    expect(navBar.find('#cart-count').text()).to.be.equal('4')
+  it('counts the correct number of items in the cart', () => {
+    expect(Number(navBar.find('#cart-count').text())).to.be.equal(
+      countTotalItems(cart.products)
+    )
   })
 })
