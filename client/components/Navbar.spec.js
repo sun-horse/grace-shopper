@@ -13,16 +13,15 @@ enzyme.configure({adapter})
 
 describe('Navbar', () => {
   let navBar
-  const cart = dummyCart
   const user = {email: 'test@email.com'}
 
   beforeEach(() => {
-    navBar = shallow(<Navbar cart={cart} user={user} />)
+    navBar = shallow(<Navbar cart={dummyCart} user={user} />)
   })
 
   it('counts the correct number of items in the cart', () => {
     expect(Number(navBar.find('#cart-count').text())).to.be.equal(
-      countTotalItems(cart.products)
+      countTotalItems(dummyCart.products)
     )
   })
 })
