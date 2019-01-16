@@ -86,9 +86,7 @@ export class Cart extends Component {
                           Total Cost ({cartQuantity}{' '}
                           {cartQuantity === 1 ? ' item' : ' items'}):
                         </h4>
-                        <h5 className="title is-3">
-                          ${formatPrice(totalCost)}
-                        </h5>
+                        <h5 className="title is-3">{formatPrice(totalCost)}</h5>
                       </div>
                       <div className="level-item has-text-right">
                         <button
