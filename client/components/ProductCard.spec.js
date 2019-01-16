@@ -20,7 +20,7 @@ describe('ProductCard component', () => {
   it('renders the product name in an h4', () => {
     expect(wrapper.find('h4').text()).to.be.equal('Fake glitter')
   })
-  xit('renders add to cart button for each product', () => {
+  it('renders add to cart button for each product', () => {
     expect(wrapper.find('button').text()).to.be.equal('Add to Cart')
   })
 })
