@@ -50,7 +50,7 @@ export class Cart extends Component {
     const cartQuantity = countTotalItems(products)
     const totalCost = sumTotalCost(products)
 
-    if (products) {
+    if (products.length > 0) {
       return (
         <Elements>
           <div className="section">
@@ -84,36 +84,39 @@ export class Cart extends Component {
                   <div>
                     {' '}
                     {formatProductColumns(products, 'Update Cart')}
-                    <footer className="level footer">
-                      {this.state.readyForCheckout ? (
-                        <CheckoutForm
-                          handleCheckout={this.handleCheckout}
-                          total={totalCost}
-                        />
-                      ) : (
-                        ''
-                      )}
-                      <div className="level-left" />
-                      <div className="level-right">
-                        <div className="level-item cart-total">
-                          <h4 className="subtitle is-3 is-spaced">
-                            <i className="fas fa-calculator" />
-                            Total Cost ({cartQuantity}{' '}
-                            {cartQuantity === 1 ? ' item' : ' items'}):
-                          </h4>
-                          <h5 className="title is-3">
-                            {formatPrice(totalCost)}
-                          </h5>
-                        </div>
-                        <div className="level-item has-text-right">
-                          <button
-                            type="button"
-                            id="cart-checkout"
-                            className="button is-primary is-large"
-                            onClick={this.togglePaymentView}
-                          >
-                            Check Out
-                          </button>
+                    <footer className="footer">
+                      <div className="level">
+                        <div className="level-left" />
+                        <div className="level-right">
+                          <div className="level-item cart-total">
+                            <h4 className="subtitle is-3 is-spaced">
+                              <i className="fas fa-calculator" />
+                              Total Cost ({cartQuantity}{' '}
+                              {cartQuantity === 1 ? ' item' : ' items'}):
+                            </h4>
+                            <h5 className="title is-3">
+                              {formatPrice(totalCost)}
+                            </h5>
+                          </div>
+                          <div className="level-item has-text-right">
+                            {this.state.readyForCheckout ? (
+                              <div id="stripe-form">
+                                <CheckoutForm
+                                  handleCheckout={this.handleCheckout}
+                                  total={totalCost}
+                                />
+                              </div>
+                            ) : (
+                              <button
+                                type="button"
+                                id="cart-checkout"
+                                className="button is-primary is-large"
+                                onClick={this.togglePaymentView}
+                              >
+                                Check Out
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </footer>
@@ -124,6 +127,8 @@ export class Cart extends Component {
           </div>
         </Elements>
       )
+    } else {
+      return <div className="section">Loading...</div>
     }
   }
 }
