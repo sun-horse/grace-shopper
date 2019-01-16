@@ -15,12 +15,11 @@ describe('Cart component', () => {
   let itemDivs
 
   beforeEach(() => {
-    wrapper = shallow(<Cart />)
-    wrapper.setState(dummyCart)
+    wrapper = shallow(<Cart cart={dummyCart} />)
     itemDivs = wrapper.find('.cart-item')
   })
 
-  xit('renders correct number of items in cart', () => {
+  it('renders correct number of products in the cart', () => {
     expect(itemDivs).to.have.length(dummyCart.products.length)
   })
 })

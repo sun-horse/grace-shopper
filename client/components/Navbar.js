@@ -93,7 +93,9 @@ export default connect(mapState, mapDispatch)(Navbar)
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+if (process.env.NODE_ENV !== 'test') {
+  Navbar.propTypes = {
+    handleClick: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired
+  }
 }

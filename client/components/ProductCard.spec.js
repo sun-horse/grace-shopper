@@ -5,6 +5,7 @@ import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {ProductCard} from './ProductCard'
+import {formatPrice} from '../utils'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
@@ -20,7 +21,8 @@ describe('ProductCard component', () => {
   it('renders the product name in an h4', () => {
     expect(wrapper.find('h4').text()).to.be.equal('Fake glitter')
   })
-  xit('renders add to cart button for each product', () => {
-    expect(wrapper.find('button').text()).to.be.equal('Add to Cart')
+  it('correctly formats the price', () => {
+    expect(wrapper.find('h5').text()).to.be.equal(formatPrice(product.price))
+    // expect(Number(wrapper.find('h5').text())).to.be.equal(100)
   })
 })

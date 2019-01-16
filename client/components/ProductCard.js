@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {NavLink, withRouter} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {formatPrice, handleCartSubmit, handleDelete} from '../utils'
 import ProductActions from './ProductActions'
@@ -40,8 +40,7 @@ export class ProductCard extends Component {
           <NavLink to={`/products/${product.id}`}>
             <h4 className="title is-3">{product.name}</h4>
           </NavLink>
-
-          <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
+          <h5 className="subtitle is-4">{formatPrice(product.price)}</h5>
           <ProductActions
             product={product}
             handleCartSubmit={this.handleCartSubmit}
@@ -68,9 +67,7 @@ const mapDispatchToProps = dispatch => ({
   removeFromCart: (product, orderId, userId) =>
     dispatch(removeFromCart(product, orderId, userId))
 })
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductCard)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)
 
 /**
  * PROP TYPES
