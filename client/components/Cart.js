@@ -55,7 +55,7 @@ export class Cart extends Component {
                   {this.state.confirmationMessage}
                 </p>
                 <Link to="/products" className="button is-success">
-                  Return to the SunHorse Shop
+                  Return to the Shop
                 </Link>
               </div>
             </article>
