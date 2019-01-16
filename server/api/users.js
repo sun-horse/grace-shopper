@@ -62,7 +62,7 @@ router.put('/:userId/cart', sameUser, async (req, res, next) => {
   }
 })
 
-router.delete('/:userId/cart', async (req, res, next) => {
+router.delete('/:userId/cart', sameUser, async (req, res, next) => {
   try {
     const productId = req.body.item.id
     const orderId = req.body.orderId
