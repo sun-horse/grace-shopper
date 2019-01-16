@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {NavLink, withRouter} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {formatPrice, handleCartSubmit, handleDelete} from '../utils'
 import ProductActions from './ProductActions'
@@ -68,9 +68,7 @@ const mapDispatchToProps = dispatch => ({
   removeFromCart: (product, orderId, userId) =>
     dispatch(removeFromCart(product, orderId, userId))
 })
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductCard)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)
 
 /**
  * PROP TYPES
