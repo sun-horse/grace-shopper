@@ -43,12 +43,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  const resObj = {
-    id: req.user.id,
-    email: req.user.email,
-    googleId: req.user.googleId
-  }
-  res.json(resObj)
+  res.json(req.user)
 })
 
 router.use('/google', require('./google'))
