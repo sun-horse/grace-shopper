@@ -40,8 +40,7 @@ export class ProductCard extends Component {
           <NavLink to={`/products/${product.id}`}>
             <h4 className="title is-3">{product.name}</h4>
           </NavLink>
-
-          <h5 className="subtitle is-4"> ${formatPrice(product.price)}</h5>
+          <h5 className="subtitle is-4">{formatPrice(product.price)}</h5>
           <ProductActions
             product={product}
             handleCartSubmit={this.handleCartSubmit}
