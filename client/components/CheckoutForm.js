@@ -22,14 +22,18 @@ class CheckoutForm extends Component {
   render() {
     return (
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
+        <p>
+          <em>Please enter your payment information:</em>
+        </p>
+
         <CardElement />
+
         <button
           type="button"
-          className="button is-primary is-large"
+          className="button is-primary"
           onClick={this.submit}
         >
-          Send
+          Submit
         </button>
       </div>
     )

@@ -80,6 +80,14 @@ nav .button {
   margin-bottom: 2rem;
 }
 
-.checkout {
-  font-size: 16pt;
+/* STRIPE FORM */
+
+#stripe-form {
+  margin-left: 3em;
+}
+
+#stripe-form .StripeElement {
+  margin: 0.5em 0 1em 0;
+  padding: 1em;
+  background-color: #eee;
 }
