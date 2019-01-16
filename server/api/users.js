@@ -28,6 +28,7 @@ router.put('/:userId/cart', sameUser, async (req, res, next) => {
   try {
     const item = req.body.item
     const orderId = req.body.orderId
+    const actionToken = req.body.actionToken
     const productId = item.id
     const user = await User.findById(req.params.userId)
 
@@ -36,7 +37,14 @@ router.put('/:userId/cart', sameUser, async (req, res, next) => {
       where: {orderId, productId}
     })
     if (existingItem) {
-      const quantity = existingItem.quantity + item.quantity
+      let quantity
+      if (actionToken) {
+        // update quantity button in <Cart />
+        quantity = item.quantity
+      } else {
+        // add to cart button in <AllProducts />
+        quantity = existingItem.quantity + item.quantity
+      }
       await existingItem.update({quantity})
     } else {
       await OrderProduct.create({

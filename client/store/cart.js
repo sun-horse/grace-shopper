@@ -34,7 +34,7 @@ export const addToCart = (
 ) => async dispatch => {
   try {
     if (userId) {
-      await axios.put(`/api/users/${userId}/cart`, {item, orderId})
+      await axios.put(`/api/users/${userId}/cart`, {item, orderId, actionToken})
     } else {
       // update cart in local storage
       const localCart = JSON.parse(window.localStorage.getItem('cart'))
