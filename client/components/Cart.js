@@ -50,7 +50,7 @@ export class Cart extends Component {
     const cartQuantity = countTotalItems(products)
     const totalCost = sumTotalCost(products)
 
-    if (products.length > 0) {
+    if (products) {
       return (
         <Elements>
           <div className="section">
@@ -127,8 +127,6 @@ export class Cart extends Component {
           </div>
         </Elements>
       )
-    } else {
-      return <div className="section">Loading...</div>
     }
   }
 }
