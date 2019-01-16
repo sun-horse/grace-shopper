@@ -17,7 +17,6 @@ class CheckoutForm extends Component {
     })
 
     this.props.handleCheckout(ev)
-    if (response.status === 200) console.log('Purchase Complete!')
   }
 
   render() {
@@ -25,7 +24,11 @@ class CheckoutForm extends Component {
       <div className="checkout">
         <p>Would you like to complete the purchase?</p>
         <CardElement />
-        <button className="button is-primary is-large" onClick={this.submit}>
+        <button
+          type="button"
+          className="button is-primary is-large"
+          onClick={this.submit}
+        >
           Send
         </button>
       </div>
