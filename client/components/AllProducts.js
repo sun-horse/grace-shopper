@@ -4,8 +4,8 @@ import {fetchProducts, setCart} from '../store'
 import {formatProductColumns} from '../utils'
 
 export class AllProducts extends Component {
-  componentDidMount() {
-    this.props.fetchProducts()
+  async componentDidMount() {
+    await this.props.fetchProducts()
     this.props.setCart(this.props.user.id)
   }
 

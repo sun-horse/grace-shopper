@@ -61,3 +61,20 @@ router.put('/:userId/cart', sameUser, async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/:userId/cart', async (req, res, next) => {
+  try {
+    const productId = req.body.item.id
+    const orderId = req.body.orderId
+    const user = await User.findById(req.params.userId)
+    await OrderProduct.destroy({
+      where: {
+        orderId,
+        productId
+      }
+    })
+    res.sendStatus(200)
+  } catch (err) {
+    next(err)
+  }
+})

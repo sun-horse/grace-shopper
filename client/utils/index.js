@@ -10,9 +10,11 @@ export const formatPrice = priceInCents => {
 // sum up product quantities to determine total number of items in cart
 export const countTotalItems = products => {
   let total = 0
-  products.forEach(product => {
-    total += product.quantity
-  })
+  if (products) {
+    products.forEach(product => {
+      total += product.quantity
+    })
+  }
   return total
 }
 
@@ -59,5 +61,11 @@ export async function handleCartSubmit(evt) {
   const quantity = Number(evt.target.quantity.value)
   product.quantity = quantity
   await this.props.addToCart(product, userId, orderId, actionToken)
+  this.props.setCart(userId)
+}
+
+export async function handleDelete(product) {
+  const {userId, orderId} = this.props
+  await this.props.removeFromCart(product, orderId, userId)
   this.props.setCart(userId)
 }

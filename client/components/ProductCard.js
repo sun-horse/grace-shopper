@@ -5,13 +5,13 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {formatPrice, handleCartSubmit} from '../utils'
+import {formatPrice, handleCartSubmit, handleDelete} from '../utils'
 import ProductActions from './ProductActions'
 
 /**
  * IMPORT ADD TO CART THUNK
  */
-import {addToCart, setCart} from '../store'
+import {addToCart, setCart, removeFromCart} from '../store'
 
 /**
  * COMPONENT
@@ -21,6 +21,8 @@ export class ProductCard extends Component {
     super(props)
     this.handleCartSubmit = handleCartSubmit
     this.handleCartSubmit = this.handleCartSubmit.bind(this)
+    this.handleDelete = handleDelete
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   render() {
@@ -44,6 +46,9 @@ export class ProductCard extends Component {
             product={product}
             handleCartSubmit={this.handleCartSubmit}
             actionToken={actionToken}
+            handleDelete={this.handleDelete}
+            orderId={this.orderId}
+            userId={this.userId}
           />
         </div>
       </div>
@@ -59,7 +64,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addToCart: (product, userId, orderId, actionToken) =>
     dispatch(addToCart(product, userId, orderId, actionToken)),
-  setCart: userId => dispatch(setCart(userId))
+  setCart: userId => dispatch(setCart(userId)),
+  removeFromCart: (product, orderId, userId) =>
+    dispatch(removeFromCart(product, orderId, userId))
 })
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ProductCard)

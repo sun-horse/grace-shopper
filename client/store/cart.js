@@ -101,6 +101,27 @@ export const setCart = userId => async dispatch => {
   }
 }
 
+export const removeFromCart = (item, orderId, userId) => async dispatch => {
+  try {
+    if (userId) {
+      await axios.delete(`api/users/${userId}/cart`, {data: {item, orderId}})
+    } else {
+      const localCart = JSON.parse(window.localStorage.getItem('cart'))
+      const products = localCart.products
+      const updatedProducts = products.filter(product => {
+        if (product.id !== item.id) {
+          return product
+        }
+      })
+      localCart.products = updatedProducts
+      dispatch(getCart(localCart))
+      window.localStorage.setItem('cart', JSON.stringify(localCart))
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const checkoutCart = (userId, cart) => async dispatch => {
   try {
     const response = await axios.post('/api/checkout', {userId, cart})
