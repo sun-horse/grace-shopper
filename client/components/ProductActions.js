@@ -48,7 +48,7 @@ const ProductActions = ({
               <button
                 className="delete level-right"
                 onClick={() => handleDelete(product)}
-                type="submit"
+                type="button"
               />
             ) : (
               ''

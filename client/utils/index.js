@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import ProductCard from '../components/ProductCard'
+import {compose} from 'redux'
 
 // price is stored in cents, so divide by 100 for dollars
 export const formatPrice = priceInCents => {
@@ -62,10 +63,8 @@ export async function handleCartSubmit(evt) {
   this.props.setCart(userId)
 }
 
-export async function handleDelete(evt) {
-  evt.preventDefault()
-  const {product, userId} = this.props
-  console.log('made it to if statement in util')
-  await this.props.removeFromCart(product)
+export async function handleDelete(product) {
+  const {userId, orderId} = this.props
+  await this.props.removeFromCart(product, orderId, userId)
   this.props.setCart(userId)
 }

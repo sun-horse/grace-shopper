@@ -35,7 +35,6 @@ export const addToCart = (
   actionToken
 ) => async dispatch => {
   try {
-    console.log('in add to cart thunk')
     if (userId) {
       await axios.put(`/api/users/${userId}/cart`, {item, orderId})
     } else {
@@ -104,10 +103,9 @@ export const setCart = userId => async dispatch => {
   }
 }
 
-export const removeFromCart = (item, userId, orderId) => async dispatch => {
+export const removeFromCart = (item, orderId, userId) => async dispatch => {
   try {
-    console.log('in remove from cart thunk')
-    await axios.delete(`api/users/${userId}/cart`, {item, orderId})
+    await axios.delete(`api/users/${userId}/cart`, {data: {item, orderId}})
   } catch (err) {
     console.error(err)
   }

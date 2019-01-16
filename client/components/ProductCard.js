@@ -47,6 +47,8 @@ export class ProductCard extends Component {
             handleCartSubmit={this.handleCartSubmit}
             actionToken={actionToken}
             handleDelete={this.handleDelete}
+            orderId={this.orderId}
+            userId={this.userId}
           />
         </div>
       </div>
@@ -63,7 +65,8 @@ const mapDispatchToProps = dispatch => ({
   addToCart: (product, userId, orderId, actionToken) =>
     dispatch(addToCart(product, userId, orderId, actionToken)),
   setCart: userId => dispatch(setCart(userId)),
-  removeFromCart: product => dispatch(removeFromCart(product))
+  removeFromCart: (product, orderId, userId) =>
+    dispatch(removeFromCart(product, orderId, userId))
 })
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ProductCard)
