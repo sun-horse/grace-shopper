@@ -11,11 +11,13 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let {token} = await this.props.stripe.createToken({name: 'Name'})
-    let response = await axios.post('/charge', token.id)
+    let response = await axios.post('/charge', {
+      stripToken: token,
+      total: this.props.total
+    })
 
-    console.log(response.statusText)
-
-    if (response.ok) console.log('Purchase Complete!')
+    this.props.handleCheckout(ev)
+    if (response.status === 200) console.log('Purchase Complete!')
   }
 
   render() {
@@ -23,7 +25,9 @@ class CheckoutForm extends Component {
       <div className="checkout">
         <p>Would you like to complete the purchase?</p>
         <CardElement />
-        <button onClick={this.submit}>Send</button>
+        <button className="button is-primary is-large" onClick={this.submit}>
+          Send
+        </button>
       </div>
     )
   }
