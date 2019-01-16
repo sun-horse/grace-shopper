@@ -45,7 +45,8 @@ router.post('/logout', (req, res) => {
 router.get('/me', (req, res) => {
   const resObj = {
     id: req.user.id,
-    email: req.user.email
+    email: req.user.email,
+    googleId: req.user.googleId
   }
   res.json(resObj)
 })
